@@ -134,6 +134,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Logisim复用器库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/panfengblog/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/">Logisim复用器库</a>
+    </h1>
+  
+
+        
+        <a href="/panfengblog/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/" class="archive-article-date">
+  	<time datetime="2020-03-26T10:13:52.368Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="logisim复用器库介绍"><a href="#logisim复用器库介绍" class="headerlink" title="logisim复用器库介绍"></a>logisim复用器库介绍</h1><p><strong>【注】</strong>：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][<a href="https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce]" target="_blank" rel="noopener">https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce]</a></p>
+<h2 id="多路选择器MUX"><a href="#多路选择器MUX" class="headerlink" title="多路选择器MUX"></a>多路选择器MUX</h2><p><img src="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&shareKey=a77e8ca6fcb28c799376424797e333ae" alt="多路选择器"></p>
+<p>就是从多个输入端中选择一个输出，通过选择端来控制，如图所示选择端[11]表示选择第三个输入（二进制表示），使能端控制是否输出（1表示输出，0表示不输出，输出呈高阻态）。</p>
+<p><strong>注意</strong>：不要滥用多路选择器，比如说将其当做if-else结构使用，不符合实际！</p>
+<h2 id="解复用器DMX"><a href="#解复用器DMX" class="headerlink" title="解复用器DMX"></a>解复用器DMX</h2><p><img src="https://note.youdao.com/yws/api/personal/file/DFB45A30FDA746F28F09B0039FFE9C03?method=download&shareKey=3878e9590dca28f078b6bce7438125ab" alt="解复用器"></p>
+<p>一个输入多个输出，通过选择端来控制在哪一路输出，如图所示[10]表示在第二路输出，是能端控制是否输出。</p>
+<h2 id="解码器Decoder"><a href="#解码器Decoder" class="headerlink" title="解码器Decoder"></a>解码器Decoder</h2><p><img src="https://note.youdao.com/yws/api/personal/file/2CA41B71412649B582AE9AF54F3978DD?method=download&shareKey=2d7d38a3e10fd9363d41d933395854c9" alt="解码器"></p>
+<p>输出2[^n] 个一位的输出，由选择端控制，使能端控制是否输出</p>
+<h2 id="优先编码器Priority-Encoder"><a href="#优先编码器Priority-Encoder" class="headerlink" title="优先编码器Priority Encoder"></a>优先编码器Priority Encoder</h2><p><img src="https://note.youdao.com/yws/api/personal/file/BD2E3EAEFA28491DAB06523BDC44C3CE?method=download&shareKey=448bd7e48c29b212e7f7e92b7bc8e6a5" alt="优先编码器"></p>
+<p>使能输入和使能输出控制优先编码器是否输入和输出。</p>
+<p>当使能输入和使能输出全打开时（最左边一张图），输出的请求为优先级最高的请求（如图编号为[110]，即6号请求），并且有请求输出端为1.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/panfengblog/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Typroa入门笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -252,81 +325,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/panfengblog/2020/03/17/Typroa%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/panfengblog/2020/03/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/panfengblog/2020/03/17/hello-world/" class="archive-article-date">
-  	<time datetime="2020-03-17T08:58:25.889Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/panfengblog/2020/03/17/hello-world/">展开全文 >></a>
         </p>
       
 
