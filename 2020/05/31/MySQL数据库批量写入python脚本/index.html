@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://coolguo.gitee.io">
-  <title>Archives: 2020 | panfengblog</title>
+  <title>MySQL数据库批量写入python脚本 | panfengblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="panfengblog">
-<meta property="og:url" content="http://coolguo.gitee.io/archives/2020/index.html">
+  <meta name="description" content="MySQL数据库批量写入python脚本这是一个个人信息的数据库批量写入的脚本，随机生成的一些数据，如有变动，可以在代码上稍作修改即可 1234567891011121314151617181920212223242526272829303132333435import pymysqlimport randomdb &#x3D; pymysql.connect(    user &#x3D; &quot;root&quot;,    p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据库批量写入python脚本">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="MySQL数据库批量写入python脚本这是一个个人信息的数据库批量写入的脚本，随机生成的一些数据，如有变动，可以在代码上稍作修改即可 1234567891011121314151617181920212223242526272829303132333435import pymysqlimport randomdb &#x3D; pymysql.connect(    user &#x3D; &quot;root&quot;,    p">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-31T02:33:38.071Z">
+<meta property="article:modified_time" content="2020-05-31T02:22:41.029Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta name="twitter:card" content="summary">
   
@@ -132,184 +136,163 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-MySQL数据库批量写入python脚本" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      MySQL数据库批量写入python脚本
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/panfengblog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/" class="archive-article-date">
+
+        
+        <a href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/" class="archive-article-date">
   	<time datetime="2020-05-31T02:33:38.071Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/">MySQL数据库批量写入python脚本</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL数据库批量写入python脚本"><a href="#MySQL数据库批量写入python脚本" class="headerlink" title="MySQL数据库批量写入python脚本"></a>MySQL数据库批量写入python脚本</h1><p>这是一个个人信息的数据库批量写入的脚本，随机生成的一些数据，如有变动，可以在代码上稍作修改即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">db = pymysql.connect(</span><br><span class="line">    user = <span class="string">"root"</span>,</span><br><span class="line">    password = <span class="string">"qwer"</span>,</span><br><span class="line">    host = <span class="string">"localhost"</span>,</span><br><span class="line">    database = <span class="string">"utf8"</span></span><br><span class="line">)</span><br><span class="line">cursor = db.cursor()</span><br><span class="line">IDnumber_pre = <span class="string">"1010"</span></span><br><span class="line">Phone_pre = <span class="string">"(86)1"</span></span><br><span class="line">Country_pre = <span class="string">"CN"</span></span><br><span class="line">Address_pre = <span class="string">"RM 1-10,THRD,HY District,WH"</span></span><br><span class="line">randnum = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    randnum += str(random.randint(<span class="number">0</span>,<span class="number">9</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>):</span><br><span class="line">    IDnumber = IDnumber_pre + <span class="string">''</span>.join(random.sample(randnum,<span class="number">14</span>))</span><br><span class="line">    name = (<span class="string">''</span>.join(random.sample(<span class="string">"abcdefghijklmnopqrstuvwxyz"</span>,<span class="number">8</span>))).title()</span><br><span class="line">    Phone = Phone_pre + <span class="string">''</span>.join(random.sample(randnum,<span class="number">10</span>))</span><br><span class="line">    Country = random.choice([<span class="string">"CN"</span>, <span class="string">"US"</span>, <span class="string">"UK"</span>])</span><br><span class="line">    Address = Address_pre</span><br><span class="line">    Email = <span class="string">''</span>.join(random.sample(<span class="string">"abcdefghijklmnopqrstuvwxyz123456789"</span> , random.randint(<span class="number">5</span>,<span class="number">15</span>))) + <span class="string">"@"</span> + random.choice([<span class="string">"qq.com"</span>, <span class="string">"163.com"</span>, <span class="string">"wuhan.com"</span>])</span><br><span class="line">    DataOfBirth = str(random.randint(<span class="number">1920</span>,<span class="number">2020</span>)) + <span class="string">"-"</span> +  str(random.randint(<span class="number">1</span>,<span class="number">12</span>)) + <span class="string">"-"</span> + str(random.randint(<span class="number">1</span>,<span class="number">28</span>))</span><br><span class="line">    print(IDnumber, name, Phone, Country, Address, Email, DataOfBirth)</span><br><span class="line">    sql = <span class="string">"insert into PassengerInfo(IDNumber,Name,PhoneNumber,Country,Address,Email,DataOfbirth) value('%s','%s','%s','%s','%s','%s','%s')"</span> % (IDnumber, name, Phone, Country, Address, Email, DataOfBirth)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        cursor.execute(sql)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(sql)</span><br><span class="line">db.commit()</span><br><span class="line">cursor.close()</span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://note.youdao.com/yws/api/personal/file/08805E3517574C8983793611BB832E78?method=download&amp;shareKey=ce11dd8dc7a4270fb51bdb1bdcc71adb">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://coolguo.gitee.io/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/04/10/%E5%85%A5%E9%97%A8%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BD%BF%E7%94%A8vs2015%E5%92%8CQt%20Creator%E5%88%B6%E4%BD%9C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2020-04-10T09:05:41.953Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/panfengblog/2020/04/10/%E5%85%A5%E9%97%A8%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BD%BF%E7%94%A8vs2015%E5%92%8CQt%20Creator%E5%88%B6%E4%BD%9C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">入门项目：使用vs2015和Qt Creator制作文本编辑器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/04/10/%E5%85%A5%E9%97%A8%E9%A1%B9%E7%9B%AE%EF%BC%9A%E4%BD%BF%E7%94%A8vs2015%E5%92%8CQt%20Creator%E5%88%B6%E4%BD%9C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/">入门项目：使用vs2015和Qt Creator制作文本编辑器</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/04/08/QT%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90/" class="archive-article-date">
-  	<time datetime="2020-04-07T17:02:17.595Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/04/08/QT%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90/">QT项目文件的组成</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/04/05/sagemath%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2020-04-04T16:33:31.377Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/04/05/sagemath%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">sagemath常用函数</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/" class="archive-article-date">
-  	<time datetime="2020-03-26T10:13:52.368Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/">Logisim复用器库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/panfengblog/2020/03/17/Typroa%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-03-17T09:02:28.905Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/panfengblog/2020/03/17/Typroa%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">Typroa入门笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -332,8 +315,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

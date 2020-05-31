@@ -134,6 +134,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL数据库批量写入python脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/">MySQL数据库批量写入python脚本</a>
+    </h1>
+  
+
+        
+        <a href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/" class="archive-article-date">
+  	<time datetime="2020-05-31T02:33:38.071Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MySQL数据库批量写入python脚本"><a href="#MySQL数据库批量写入python脚本" class="headerlink" title="MySQL数据库批量写入python脚本"></a>MySQL数据库批量写入python脚本</h1><p>这是一个个人信息的数据库批量写入的脚本，随机生成的一些数据，如有变动，可以在代码上稍作修改即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">db = pymysql.connect(</span><br><span class="line">    user = <span class="string">"root"</span>,</span><br><span class="line">    password = <span class="string">"qwer"</span>,</span><br><span class="line">    host = <span class="string">"localhost"</span>,</span><br><span class="line">    database = <span class="string">"utf8"</span></span><br><span class="line">)</span><br><span class="line">cursor = db.cursor()</span><br><span class="line">IDnumber_pre = <span class="string">"1010"</span></span><br><span class="line">Phone_pre = <span class="string">"(86)1"</span></span><br><span class="line">Country_pre = <span class="string">"CN"</span></span><br><span class="line">Address_pre = <span class="string">"RM 1-10,THRD,HY District,WH"</span></span><br><span class="line">randnum = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    randnum += str(random.randint(<span class="number">0</span>,<span class="number">9</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>):</span><br><span class="line">    IDnumber = IDnumber_pre + <span class="string">''</span>.join(random.sample(randnum,<span class="number">14</span>))</span><br><span class="line">    name = (<span class="string">''</span>.join(random.sample(<span class="string">"abcdefghijklmnopqrstuvwxyz"</span>,<span class="number">8</span>))).title()</span><br><span class="line">    Phone = Phone_pre + <span class="string">''</span>.join(random.sample(randnum,<span class="number">10</span>))</span><br><span class="line">    Country = random.choice([<span class="string">"CN"</span>, <span class="string">"US"</span>, <span class="string">"UK"</span>])</span><br><span class="line">    Address = Address_pre</span><br><span class="line">    Email = <span class="string">''</span>.join(random.sample(<span class="string">"abcdefghijklmnopqrstuvwxyz123456789"</span> , random.randint(<span class="number">5</span>,<span class="number">15</span>))) + <span class="string">"@"</span> + random.choice([<span class="string">"qq.com"</span>, <span class="string">"163.com"</span>, <span class="string">"wuhan.com"</span>])</span><br><span class="line">    DataOfBirth = str(random.randint(<span class="number">1920</span>,<span class="number">2020</span>)) + <span class="string">"-"</span> +  str(random.randint(<span class="number">1</span>,<span class="number">12</span>)) + <span class="string">"-"</span> + str(random.randint(<span class="number">1</span>,<span class="number">28</span>))</span><br><span class="line">    print(IDnumber, name, Phone, Country, Address, Email, DataOfBirth)</span><br><span class="line">    sql = <span class="string">"insert into PassengerInfo(IDNumber,Name,PhoneNumber,Country,Address,Email,DataOfbirth) value('%s','%s','%s','%s','%s','%s','%s')"</span> % (IDnumber, name, Phone, Country, Address, Email, DataOfBirth)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        cursor.execute(sql)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(sql)</span><br><span class="line">db.commit()</span><br><span class="line">cursor.close()</span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/panfengblog/2020/05/31/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%B9%E9%87%8F%E5%86%99%E5%85%A5python%E8%84%9A%E6%9C%AC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-入门项目：使用vs2015和Qt Creator制作文本编辑器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
