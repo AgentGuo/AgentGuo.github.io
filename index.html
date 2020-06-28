@@ -134,33 +134,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-C++ STL容器笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-C++ STL容器详细笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E7%AC%94%E8%AE%B0/">C++ STL容器笔记</a>
+      <a class="article-title" href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/">C++ STL容器详细笔记</a>
     </h1>
   
 
         
-        <a href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-06-27T16:51:40.533Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
+        <a href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-06-28T10:03:28.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-STL容器笔记"><a href="#C-STL容器笔记" class="headerlink" title="C++ STL容器笔记"></a>C++ STL容器笔记</h1><h2 id="Vector容器详解"><a href="#Vector容器详解" class="headerlink" title="Vector容器详解"></a>Vector容器详解</h2><p>使用vector容器前需要#include <vector>并且加上一句 using namespace std; 即可</p>
+        <h1 id="C-STL容器详细笔记"><a href="#C-STL容器详细笔记" class="headerlink" title="C++ STL容器详细笔记"></a>C++ STL容器详细笔记</h1><h2 id="Vector容器详解"><a href="#Vector容器详解" class="headerlink" title="Vector容器详解"></a>Vector容器详解</h2><p>使用vector容器前需要#include <vector>并且加上一句 using namespace std; 即可</p>
 <p>vector容器常见用途：</p>
 <p><strong>1）存储数据</strong></p>
 <p>①作为数组使用，在数组元素个数不确定时能够很好的节省空间</p>
 <p>②有些场合需要根据一些条件把部分数据输出在同-行，数据中间用空格隔开。由于输出数据的个数是不确定的，为了更方便地处理最后一个满足条件的数据后面不输出额外的空格，可以先用vector 记录所有需要输出的数据，然后-次性输出。</p>
 <p><strong>2）用邻接表存储图</strong></p>
-<h3 id="vector容器的定义"><a href="#vector容器的定义" class="headerlink" title="vector容器的定义"></a>vector容器的定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通用格式</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">typename</span>&gt; Arrayname[arraySize];</span><br><span class="line"><span class="comment">//举个例子</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi[<span class="number">100</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="vector容器的定义"><a href="#vector容器的定义" class="headerlink" title="vector容器的定义"></a>vector容器的定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通用格式</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">typename</span>&gt; Arrayname;</span><br><span class="line"><span class="comment">//举个例子</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="vector容器的访问"><a href="#vector容器的访问" class="headerlink" title="vector容器的访问"></a>vector容器的访问</h3><p>vector容器有两种访问形式：一种是和访问普通数组相同，另一种是通过迭代器访问。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		vi.push_back(i);	<span class="comment">//push_back在vi的末尾添加元素i </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, vi[i]);	<span class="comment">//和数组相同的方式访问 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = vi.<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, *(it+i));	<span class="comment">//使用迭代器访问 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -536,7 +536,7 @@
 <p>输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p1 &lt; p3</span><br><span class="line">p1 &lt; p2</span><br></pre></td></tr></table></figure>
 
-<h2 id="algoruthm头文件下的常用函数"><a href="#algoruthm头文件下的常用函数" class="headerlink" title="algoruthm头文件下的常用函数"></a>algoruthm头文件下的常用函数</h2><p>使用时需加入头文件#include <algorithm> ，并且using namespace std;即可</p>
+<h2 id="algorithm头文件下的常用函数"><a href="#algorithm头文件下的常用函数" class="headerlink" title="algorithm头文件下的常用函数"></a>algorithm头文件下的常用函数</h2><p>使用时需加入头文件#include <algorithm> ，并且using namespace std;即可</p>
 <h3 id="1-max-min-abs"><a href="#1-max-min-abs" class="headerlink" title="1. max(), min(), abs()"></a>1. max(), min(), abs()</h3><p>max(x, y)返回x和y中的较大值，参数必须是<strong>两个</strong>，如果需要比较三者可以max(x, max(y, z))，min同max。</p>
 <p>abs(x)返回x的绝对值，x必须是<strong>整数</strong>，浮点值的绝对值可以使用math头文件下的fabs。</p>
 <p>样例代码：</p>
@@ -628,7 +628,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
