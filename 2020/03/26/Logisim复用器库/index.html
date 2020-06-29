@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://coolguo.gitee.io">
   <title>Logisim复用器库 | panfengblog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce] 多路选择器MUX 就是从多个输入端中选择一个输出，通过选择端来控制，如图所示选择端[11]表示选择第三个输入（二进制表示），使能端控制">
+  <meta name="description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logisim复用器库">
 <meta property="og:url" content="http://coolguo.gitee.io/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce] 多路选择器MUX 就是从多个输入端中选择一个输出，通过选择端来控制，如图所示选择端[11]表示选择第三个输入（二进制表示），使能端控制">
+<meta property="og:description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce]">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&shareKey=a77e8ca6fcb28c799376424797e333ae">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DFB45A30FDA746F28F09B0039FFE9C03?method=download&shareKey=3878e9590dca28f078b6bce7438125ab">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2CA41B71412649B582AE9AF54F3978DD?method=download&shareKey=2d7d38a3e10fd9363d41d933395854c9">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/BD2E3EAEFA28491DAB06523BDC44C3CE?method=download&shareKey=448bd7e48c29b212e7f7e92b7bc8e6a5">
 <meta property="article:published_time" content="2020-03-26T10:13:52.368Z">
-<meta property="article:modified_time" content="2020-03-26T10:12:06.179Z">
+<meta property="article:modified_time" content="2020-06-29T10:06:29.409Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&shareKey=a77e8ca6fcb28c799376424797e333ae">
@@ -162,6 +162,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="logisim复用器库介绍"><a href="#logisim复用器库介绍" class="headerlink" title="logisim复用器库介绍"></a>logisim复用器库介绍</h1><p><strong>【注】</strong>：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][<a href="https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce]" target="_blank" rel="noopener">https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce]</a></p>
+<a id="more"></a>
+
 <h2 id="多路选择器MUX"><a href="#多路选择器MUX" class="headerlink" title="多路选择器MUX"></a>多路选择器MUX</h2><p><img src="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&shareKey=a77e8ca6fcb28c799376424797e333ae" alt="多路选择器"></p>
 <p>就是从多个输入端中选择一个输出，通过选择端来控制，如图所示选择端[11]表示选择第三个输入（二进制表示），使能端控制是否输出（1表示输出，0表示不输出，输出呈高阻态）。</p>
 <p><strong>注意</strong>：不要滥用多路选择器，比如说将其当做if-else结构使用，不符合实际！</p>
