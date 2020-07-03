@@ -82,13 +82,13 @@
 
 <meta name="description" content="C++ STL容器详细笔记C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++ STL容器详细笔记#文章標題">
+<meta property="og:title" content="C++ STL容器详细笔记">
 <meta property="og:url" content="http://coolguo.gitee.io/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="panfengblog">
 <meta property="og:description" content="C++ STL容器详细笔记C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-28T15:47:44.000Z">
-<meta property="article:modified_time" content="2020-07-03T10:31:02.736Z">
+<meta property="article:modified_time" content="2020-07-03T11:11:17.558Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="STL">
@@ -129,7 +129,7 @@
 
 
 
-  <title>C++ STL容器详细笔记#文章標題 | panfengblog</title>
+  <title>C++ STL容器详细笔记 | panfengblog</title>
   
 
 
@@ -190,16 +190,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/panfengblog/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
           </a>
         </li>
       
@@ -273,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++ STL容器详细笔记#文章標題</h1>
+          <h1 class="post-title" itemprop="name headline">C++ STL容器详细笔记</h1>
         
 
         <div class="post-meta">
@@ -334,17 +324,6 @@
           
 
           
-          
-             <span id="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="C++ STL容器详细笔记#文章標題">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -940,7 +919,7 @@
   
     <div class="comments" id="comments">
       <div class="ds-thread" data-thread-key="2020/06/28/C++ STL容器详细笔记/"
-           data-title="C++ STL容器详细笔记#文章標題" data-url="http://coolguo.gitee.io/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/">
+           data-title="C++ STL容器详细笔记" data-url="http://coolguo.gitee.io/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/">
       </div>
     </div>
 
@@ -1007,7 +986,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/panfengblog/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1018,7 +997,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/panfengblog/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1279,113 +1258,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("IWwWI1vlJGTEvNKo3OPKkntV-gzGzoHsz#<app_id>", "r8zkgRstKhLkESRwJMHBhkGJ#<app_key>");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
