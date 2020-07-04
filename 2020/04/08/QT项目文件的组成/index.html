@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -141,7 +141,7 @@
 
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -150,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -380,19 +380,14 @@
       
         <h1 id="QT项目文件的组成"><a href="#QT项目文件的组成" class="headerlink" title="QT项目文件的组成"></a>QT项目文件的组成</h1><p>我新建项目的文件结构截图，下面将对文件各部分功能进行简要介绍，本博客用于学习、记录。</p>
 <a id="more"></a>
-
-<img src="https://note.youdao.com/yws/api/personal/file/F3D62800EE2F4CC28668527652C35DC0?method=download&shareKey=cf22e5dd3fcadfc5f2eb420fd5b5a087">
-
+<p><img src="https://note.youdao.com/yws/api/personal/file/F3D62800EE2F4CC28668527652C35DC0?method=download&shareKey=cf22e5dd3fcadfc5f2eb420fd5b5a087"></p>
 <h2 id="1-项目管理文件"><a href="#1-项目管理文件" class="headerlink" title="1.项目管理文件"></a>1.项目管理文件</h2><p>.pro是项目的管理文件，文件名就是项目的名称</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">QT       += core gui<span class="comment">//表示项目加入core gui模块，core gui是qt使用gui设计的类库模块，如果创建控制台程序，则不需要添加core gui</span></span><br><span class="line"><span class="comment">//qt类库以模块的形式组织各种功能的类，根据涉及项目的功能需求，在项目中 添加适当的类库模块支持即可。例如，涉及数据库操作就加上这么一行：Qt  +=sql</span></span><br><span class="line">greaterThan(QT_MAJOR_VERSION, <span class="number">4</span>): QT += widgets<span class="comment">//当Qt版本大于4时，加入widgets模块</span></span><br><span class="line"></span><br><span class="line">CONFIG += c++<span class="number">11</span></span><br><span class="line"></span><br><span class="line"># The following define makes your compiler emit warnings <span class="keyword">if</span> you use</span><br><span class="line"># any Qt feature that has been marked deprecated (the exact warnings</span><br><span class="line"># depend on your compiler). Please consult the documentation of the</span><br><span class="line"># deprecated API in order to know how to port your code away from it.</span><br><span class="line">DEFINES += QT_DEPRECATED_WARNINGS</span><br><span class="line"></span><br><span class="line"># You can also make your code fail to compile <span class="keyword">if</span> it uses deprecated APIs.</span><br><span class="line"># In order to <span class="keyword">do</span> so, uncomment the following <span class="built_in">line</span>.</span><br><span class="line"># You can also select to disable deprecated APIs only up to a certain version of Qt.</span><br><span class="line">#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=<span class="number">0x060000</span>    # disables all the APIs deprecated before Qt <span class="number">6.0</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line">SOURCES += \</span><br><span class="line">    main.cpp \</span><br><span class="line">    mainwindow.cpp</span><br><span class="line"></span><br><span class="line">HEADERS += \</span><br><span class="line">    mainwindow.h</span><br><span class="line"></span><br><span class="line">FORMS += \</span><br><span class="line">    mainwindow.ui</span><br><span class="line"></span><br><span class="line">TRANSLATIONS += \</span><br><span class="line">    sampl_1_zh_CN.ts</span><br><span class="line"></span><br><span class="line"># Default rules <span class="keyword">for</span> deployment.</span><br><span class="line">qnx: target.path = /tmp/$$&#123;TARGET&#125;/bin</span><br><span class="line"><span class="keyword">else</span>: unix:!android: target.path = /opt/$$&#123;TARGET&#125;/bin</span><br><span class="line">!isEmpty(target.path): INSTALLS += target</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-界面文件"><a href="#2-界面文件" class="headerlink" title="2.界面文件"></a>2.界面文件</h2><p>.ui文件是可视化设计的窗体的定义文件，双击项目可使用Qt Designer对窗体进行可视化设计</p>
 <p>以下是界面的简单说明</p>
-<img src="https://note.youdao.com/yws/api/personal/file/29FF14DCADCD43C49A7CB58A3C2D8946?method=download&shareKey=6c0a35f8b1993f919ac5380622d20667">
-
+<p><img src="https://note.youdao.com/yws/api/personal/file/29FF14DCADCD43C49A7CB58A3C2D8946?method=download&shareKey=6c0a35f8b1993f919ac5380622d20667"></p>
 <h2 id="3-主函数文件"><a href="#3-主函数文件" class="headerlink" title="3.主函数文件"></a>3.主函数文件</h2><p>main.cpp，以下是其中的内容</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"widget.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QApplication&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;	<span class="comment">//定义并创建应用程序</span></span><br><span class="line">    MainWindow w;				<span class="comment">//定义并创建窗口</span></span><br><span class="line">    w.show();					<span class="comment">//显示窗口</span></span><br><span class="line">    <span class="keyword">return</span> a.exec();			<span class="comment">//应用程序运行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="4-窗体类相关的文件"><a href="#4-窗体类相关的文件" class="headerlink" title="4.窗体类相关的文件"></a>4.窗体类相关的文件</h2><p>① .h文件</p>
 <p>在其中定义了一个继承来自QWidget的类Widget</p>
 <p>②.cpp（不是main.cpp）</p>
@@ -531,7 +526,7 @@
               
                 <a href="/panfengblog/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -542,7 +537,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/panfengblog/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -553,7 +548,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/panfengblog/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -647,7 +642,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12.3k字</span>
+  <span class="post-count">博客全站共19.5k字</span>
 </div>
         
 
@@ -787,7 +782,24 @@
     
     
     <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/panfengblog/js/src/hook-duoshuo.js"></script>
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 
@@ -823,6 +835,8 @@
   
 
   
+  
+
 
   
 

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/panfengblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/panfengblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/panfengblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/panfengblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/panfengblog/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/panfengblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/panfengblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript学习HTML中使用JavaScript方式1 在HTML代码中直接使用：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="JavaScript学习HTML中使用JavaScript方式1 在HTML代码中直接使用：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/594736B8946C4C1399CC2A5E3936C74E?method=download&shareKey=409a1fec2e1f505ec20211042c4897ea">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/5BA32058426B452A8BCD0ED5455B2404?method=download&shareKey=ad8ad82e92d8ed2cec48a56713ceef61">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/40E44340D9FF43749C83B1126C7B94D4?method=download&shareKey=f6f9e99c48c112a89aeba4531db56dec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/698BE383B25741988C9AEA3F7315FDCC?method=download&shareKey=19fd2756f29c7b3663e5167aae1eb864">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DFA54C3682F741B4970768DA63C949B5?method=download&shareKey=86f36dfce0e7a499b0f4665a2bdf858e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/D11B1C3A06574D22917EB5FAE9F16E59?method=download&shareKey=d53941a1484c051b0bdbc80e334c4573">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/CD2D3C65A8B443AA83995F341939B8B2?method=download&shareKey=c159beb34670105b8ed4bfebe88f0ff2">
+<meta property="article:published_time" content="2020-07-04T13:54:15.871Z">
+<meta property="article:modified_time" content="2020-07-04T13:55:10.244Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/594736B8946C4C1399CC2A5E3936C74E?method=download&shareKey=409a1fec2e1f505ec20211042c4897ea">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/panfengblog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/04/JavaScript学习/"/>
+
+
+
+
+
+  <title>JavaScript学习 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/panfengblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/panfengblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/panfengblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/panfengblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-04T21:54:15+08:00">
+                2020-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/panfengblog/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/panfengblog/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/04/JavaScript学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript学习"><a href="#JavaScript学习" class="headerlink" title="JavaScript学习"></a>JavaScript学习</h1><h2 id="HTML中使用JavaScript"><a href="#HTML中使用JavaScript" class="headerlink" title="HTML中使用JavaScript"></a>HTML中使用JavaScript</h2><p><strong>方式1</strong></p>
+<p>在HTML代码中直接使用：</p>
+<a id="more"></a>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=&lt;device-width&gt;, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Crash Course<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 一般在body的最后写javascript代码，因为希望html页面和css样式加载好后再执行JavaScript代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        alert(<span class="string">'Hello World!'</span>)</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>方式2</strong></p>
+<p>调用单独的js文件，可以在和html文件同级目录下新建一个.js文件，然后在html文件中调用即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=&lt;device-width&gt;, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Crash Course<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 一般在body的最后写javascript代码，因为希望html页面和css样式加载好后再执行JavaScript代码 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 调用js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>js代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'Hello World!'</span>)</span><br></pre></td></tr></table></figure>
+<p>方式一和方式二输出结果都是一样的，出现一个Hello World的弹窗。</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/594736B8946C4C1399CC2A5E3936C74E?method=download&shareKey=409a1fec2e1f505ec20211042c4897ea"></p>
+<h2 id="JavaScript-console对象"><a href="#JavaScript-console对象" class="headerlink" title="JavaScript console对象"></a>JavaScript console对象</h2><p>Console 对象用于 JavaScript 调试。常见的两个用途</p>
+<ul>
+<li>显示网页代码运行时的错误信息</li>
+<li>提供了一个命令行接口，用来与网页代码互动。</li>
+</ul>
+<p>Console窗口可以在浏览器的开发者选项中找到</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assert()</td>
+<td>ssert方法接受两个参数，第一个参数是表达式，第二个参数是字符串。只有当第一个参数为false，才会输出第二个参数，否则不会有任何结果。</td>
+</tr>
+<tr>
+<td>clear()</td>
+<td>清除当前控制台的所有输出，将光标回置到第一行。</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>用于计数，输出它被调用了多少次。</td>
+</tr>
+<tr>
+<td>error()</td>
+<td>输出信息时，在最前面加一个红色的叉，表示出错，同时会显示错误发生的堆栈。</td>
+</tr>
+<tr>
+<td>group()</td>
+<td>用于将显示的信息分组，可以把信息进行折叠和展开。</td>
+</tr>
+<tr>
+<td>groupCollapsed()</td>
+<td>与console.group方法很类似，唯一的区别是该组的内容，在第一次显示时是收起的（collapsed），而不是展开的。</td>
+</tr>
+<tr>
+<td>groupEnd()</td>
+<td>结束内联分组</td>
+</tr>
+<tr>
+<td>info()</td>
+<td>console.log 别名，输出信息</td>
+</tr>
+<tr>
+<td>log()</td>
+<td>输出信息</td>
+</tr>
+<tr>
+<td>table()</td>
+<td>将复合类型的数据转为表格显示。</td>
+</tr>
+<tr>
+<td>time()</td>
+<td>计时开始</td>
+</tr>
+<tr>
+<td>timeEnd()</td>
+<td>计时结束</td>
+</tr>
+<tr>
+<td>trace()</td>
+<td>追踪函数的调用过程</td>
+</tr>
+<tr>
+<td>warn()</td>
+<td>输出警告信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>JS代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Hello World'</span>)</span><br><span class="line"><span class="built_in">console</span>.warn(<span class="string">'This is a warn'</span>)</span><br><span class="line"><span class="built_in">console</span>.error(<span class="string">'This is an error'</span>)</span><br></pre></td></tr></table></figure>
+<p>实现效果：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/5BA32058426B452A8BCD0ED5455B2404?method=download&shareKey=ad8ad82e92d8ed2cec48a56713ceef61"></p>
+<h2 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h2><p>常用有三种变量定义方式：<code>var</code>,<code>let</code>,<code>const</code>，而<code>var</code>是全局定义，有时会造成不必要的麻烦，所以一般使用<code>let</code>和<code>const</code></p>
+<p><code>let</code>用于定义变量，<code>const</code>用与定义常量（值不能进行修改）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> score;</span><br><span class="line">score = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(score);</span><br></pre></td></tr></table></figure>
+<p>然后就能在console中输出10</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>主要的数据类型有：string, numbers, boolean, null, undefined，symbol（symbol在ES6中提出，在此没有介绍）</p>
+<p>可以看下面一个简单的例子轻松了解（js代码）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// string, numbers, boolean, null, undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">'John'</span>;    <span class="comment">//String</span></span><br><span class="line"><span class="keyword">const</span> age = <span class="number">30</span>;         <span class="comment">//Numbers</span></span><br><span class="line"><span class="keyword">const</span> rating = <span class="number">0.8</span>;     <span class="comment">//Numbers</span></span><br><span class="line"><span class="keyword">const</span> isCool = <span class="literal">true</span>;    <span class="comment">//Boolean</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="literal">null</span>;         <span class="comment">//null</span></span><br><span class="line"><span class="keyword">const</span> y = <span class="literal">undefined</span>;    <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">let</span> z;                  <span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> name)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> age)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> rating)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> isCool)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> x)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> y)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> z)</span><br></pre></td></tr></table></figure>
+<p>console输出结果：</p>
+<p><img src='https://note.youdao.com/yws/api/personal/file/40E44340D9FF43749C83B1126C7B94D4?method=download&shareKey=f6f9e99c48c112a89aeba4531db56dec'></p>
+<p><strong>关于字符串的一些更多的说明</strong></p>
+<p>由于经常会涉及一些字符串的一些操作，所以简单介绍以下，看下面代码就能很快理解一些方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符串的使用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">'John'</span>;    <span class="comment">//String</span></span><br><span class="line"><span class="keyword">const</span> age = <span class="number">30</span>;         <span class="comment">//Numbers</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串拼接</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'My name is '</span> + name + <span class="string">' and my age is '</span> + age);</span><br><span class="line"><span class="comment">//模板字符串</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;name&#125;</span> and my age is <span class="subst">$&#123;age&#125;</span>`</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取字符串的长度</span></span><br><span class="line"><span class="built_in">console</span>.log(name.length)</span><br><span class="line"><span class="comment">//大写</span></span><br><span class="line"><span class="built_in">console</span>.log(name.toUpperCase())</span><br><span class="line"><span class="comment">//小写</span></span><br><span class="line"><span class="built_in">console</span>.log(name.toLowerCase())</span><br><span class="line"><span class="comment">//获取字串,参数填写始末位置</span></span><br><span class="line"><span class="built_in">console</span>.log(name.substring(<span class="number">0</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment">//分割字符串,参数填写要以什么字符作为为分割依据</span></span><br><span class="line"><span class="comment">//这里没有填写任何字符，所以会将原字符串分割为单个的字符</span></span><br><span class="line"><span class="built_in">console</span>.log(name.split(<span class="string">''</span>))</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/698BE383B25741988C9AEA3F7315FDCC?method=download&shareKey=19fd2756f29c7b3663e5167aae1eb864"></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>JS的数组使用起来非常方便，而且其数组不要求数组元素的数据类型相同（这在许多其他编程语言中都是不允许的）</p>
+<p>可以参考以下代码快速了解JS数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数组的两种定义方式，一般用第二种</span></span><br><span class="line"><span class="comment">//JS的数组不要求同一数组的数据类型相同，可参考第二个数组的定义</span></span><br><span class="line"><span class="keyword">const</span> numbers = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line"><span class="keyword">const</span> fruits = [<span class="string">'apples'</span>, <span class="string">'oranges'</span>, <span class="string">'pears'</span>, <span class="number">1</span>, <span class="literal">true</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//在末尾添加元素的两种方法</span></span><br><span class="line"><span class="comment">//（const定义的数组是可以添加元素的，只是不能重新定义）</span></span><br><span class="line">fruits[<span class="number">5</span>] = <span class="string">'grapes'</span>;</span><br><span class="line">fruits.push(<span class="string">'grapes'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//往数组头添加元素</span></span><br><span class="line">fruits.unshift(<span class="string">'strawberries'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取元素下标</span></span><br><span class="line"><span class="built_in">console</span>.log(fruits.indexOf(<span class="string">'apples'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否为数组</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.isArray(fruits));</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="built_in">console</span>.log(fruits);</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/DFA54C3682F741B4970768DA63C949B5?method=download&shareKey=86f36dfce0e7a499b0f4665a2bdf858e"></p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>JS对象其实就是键值对，和JSON格式非常相似，可以参考下面代码快速入门</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象的定义</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    firstName: <span class="string">'John'</span>,</span><br><span class="line">    lastName: <span class="string">'Doe'</span>,</span><br><span class="line">    age: <span class="number">30</span>,</span><br><span class="line">    hobbies: [<span class="string">'music'</span>, <span class="string">'movies'</span>, <span class="string">'sports'</span>],</span><br><span class="line">    <span class="comment">//对象的嵌套定义</span></span><br><span class="line">    address: &#123;</span><br><span class="line">        street: <span class="string">'50 main st'</span>,</span><br><span class="line">        city: <span class="string">'Boston'</span>,</span><br><span class="line">        state: <span class="string">'MA'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出整个对象</span></span><br><span class="line"><span class="built_in">console</span>.log(person);</span><br><span class="line"><span class="comment">//输出对象的键值</span></span><br><span class="line"><span class="built_in">console</span>.log(person.firstName, person.hobbies[<span class="number">1</span>], person.address.city);</span><br><span class="line"></span><br><span class="line"><span class="comment">//对象的解构</span></span><br><span class="line"><span class="keyword">const</span> &#123;firstName, lastName, <span class="attr">address</span>:&#123; city &#125;&#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(firstName, lastName, city);</span><br><span class="line"></span><br><span class="line"><span class="comment">//对象添加属性</span></span><br><span class="line">person.email = <span class="string">'John@gmail.com'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.email)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/D11B1C3A06574D22917EB5FAE9F16E59?method=download&shareKey=d53941a1484c051b0bdbc80e334c4573"></p>
+<p><strong>数组中存储对象</strong></p>
+<p>数组中存储对象，与JSON格式更为相似了，但是JSON要求的键名为字符串，并且JSON只能用双引号（JS单双引号都可以），所以可以将存储对象的数组直接转化为JSON。</p>
+<p>可以尝试下面代码轻松了解</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组中存储对象</span></span><br><span class="line"><span class="keyword">const</span> todos = [</span><br><span class="line">    &#123;</span><br><span class="line">        id:<span class="number">1</span>,</span><br><span class="line">        text: <span class="string">'Take out trash'</span>,</span><br><span class="line">        isCompleted: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        id:<span class="number">2</span>,</span><br><span class="line">        text:<span class="string">'Meeting with boss'</span>,</span><br><span class="line">        isCompleted: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        id:<span class="number">3</span>,</span><br><span class="line">        text:<span class="string">'Dentist'</span>,</span><br><span class="line">        isCompleted: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出一个对象的键值</span></span><br><span class="line"><span class="built_in">console</span>.log(todos[<span class="number">1</span>].text)</span><br><span class="line"></span><br><span class="line"><span class="comment">//转化为JSON</span></span><br><span class="line"><span class="keyword">const</span> todoJSON = <span class="built_in">JSON</span>.stringify(todos)</span><br><span class="line"><span class="built_in">console</span>.log(todos)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/CD2D3C65A8B443AA83995F341939B8B2?method=download&shareKey=c159beb34670105b8ed4bfebe88f0ff2"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/panfengblog/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/panfengblog/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/panfengblog/2020/07/04/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/" rel="next" title="HTTP请求方法">
+                <i class="fa fa-chevron-left"></i> HTTP请求方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/panfengblog/2020/07/04/RSA%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E5%92%8C%E6%95%B4%E6%95%B0%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/" rel="prev" title="RSA密码体制和整数因子分解">
+                RSA密码体制和整数因子分解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/07/04/JavaScript学习/"
+           data-title="JavaScript学习" data-url="http://coolguo.gitee.io/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/panfengblog/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/panfengblog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/panfengblog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript学习"><span class="nav-number">1.</span> <span class="nav-text">JavaScript学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML中使用JavaScript"><span class="nav-number">1.1.</span> <span class="nav-text">HTML中使用JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-console对象"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript console对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量定义"><span class="nav-number">1.3.</span> <span class="nav-text">变量定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.5.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">1.6.</span> <span class="nav-text">对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.5k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/panfengblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/panfengblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/panfengblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/panfengblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/panfengblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/panfengblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/panfengblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/panfengblog/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/panfengblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/panfengblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法,RSA,非对称密码体制," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="RSA密码体制和整数因子分解整理于2020年5月25日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA密码体制和整数因子分解">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/04/RSA%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E5%92%8C%E6%95%B4%E6%95%B0%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="RSA密码体制和整数因子分解整理于2020年5月25日">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/14EFDA4BA7CF446A80B54C88CAB9DB2E?method=download&shareKey=f668e8010c9511f57bb08de47aa48f8d">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/49CCC072E8094A32AC55893324F1789F?method=download&shareKey=3398ed5999ea2f85b200522318b4003a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/E2DDBF1022B742A793EA86BEB293B8E0?method=download&shareKey=ebc5b303bb11a8f8d4afbf62f3762399">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0DD8E3317F184659B2F4CF6E9C86766A?method=download&shareKey=fc8b429b3428b25670208c8da505b7ff">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C0E50B080780405A94017551D8BDC37D?method=download&shareKey=c2497051c8ce6c760737df2a5c8bf715">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/6005F833CE6D43BE8C21A3810669EF78?method=download&shareKey=edfbf92e32e09c0aaf50e78645d8fb1c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/CD5C54935B544AC6BE2ED39FD5BC9053?method=download&shareKey=9f2b0243c3d02689bf208854b9f6cd2a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2AF4CF09D1CB44FBA6B8074EC7815FFC?method=download&shareKey=a7fa71a0c30534f6ff5537bec4d851ce">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/47A81555C4C6416495D5A94C8BE23FAA?method=download&shareKey=7e4d85eca68ccaae4a9cf05b52028f51">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/8256FC5E6ACD49D29582837D93A52972?method=download&shareKey=6f7cbfefbf7b38d1b5b6bf4861675131">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/03873F56F5F2494D8A85938012E661C4?method=download&shareKey=c9eda354c406645be67247fcbdd5d22b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C0D0DA7E389F4BE3A32D3DFAA445F7F1?method=download&shareKey=fd6dbf8d1ef2b0a438f4e4e97263b801">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/CE4381C0B0DD42A7B4FA477899FFD293?method=download&shareKey=da86922e9ba4a9610a61f9e3c6e312da">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DDB917AC827649EB9A71B0591E7F502E?method=download&shareKey=4c1f474d925d11d91f6034ad2ef1472d">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/7245E9404B55454B9A4BBCE92E37B1D0?method=download&shareKey=1ac17c268222f716247cbcbbb0c7986a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/E77431190AC140D7AFBAE0D4D8187AC4?method=download&shareKey=e2b765dff87438966442e4eca47da7c5">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/3E3620DB64834B72BE3DC36C6858886B?method=download&shareKey=7543b30167372e895c1f8bb6f5c54d65">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4425E09296964F6A9A47F8A789BAE826?method=download&shareKey=0bb85b2898417050a9a7b698683e91ce">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C670016533954CD489DECD6BF4FFD5C1?method=download&shareKey=8cded1afc81d459b0faf7c52e6fbf814">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/73A8C408BAE24E7EA5A77518BE0500A1?method=download&shareKey=1fdc32db26cbe2bb942602fd3a4e154c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0BDAF174D04F4BDD95DA3A453B3A41E4?method=download&shareKey=294b5bec22eaf1323eccfddbc1a0a65e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/69263B99693F48EF8E190E53EC3A0D29?method=download&shareKey=0fdac6748f29f3000f950fcf93575403">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/A465CCB2E72F4B1BB9BE668F49A7C36C?method=download&shareKey=d17625ca4c60707df3abde879edc0a0f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0D6C8145A0C9450885E8E9B632753F14?method=download&shareKey=f37d2e33b0870d7dd908d7bf7ba6028a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/6233A99757634B91A1FAAA8F2B2BEAA9?method=download&shareKey=35886c010bd5f6b5e0896a402c29f1dc">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2380AD2A5F604ED8B881EAC21D34D119?method=download&shareKey=5f95f53dc962c8ed4186457001af5475">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F755D31299C741869D84023C3901D6AD?method=download&shareKey=c63c83ab6ef2b00078c4566fde3e62ad">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/21C3610E85594C88941718BB6BAE5F00?method=download&shareKey=9a85880b821e3e65bbad16967d99c32a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C1BDB73CAF7A438F9812F008D5495F80?method=download&shareKey=8e2d38a5067477ac442ac6ea85e72ab4">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/961A00FA59D24A73916A760D7E4816CC?method=download&shareKey=2cf7191764b128bea5f3df8ffc8d867b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/20F571B754BC4B409898551D35C4686C?method=download&shareKey=afb04deaa1287d54a25cfe2f0c2e10bc">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/59579F0F8BE448939C3FC284AEF95EEE?method=download&shareKey=7b575e4cf6f97d834addd80ef43fe97e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/C9F266A4723645C69BC15E592C618101?method=download&shareKey=8014b1af4e96a8db565c6be93f87a8ad">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1369243C80EA46589A7F14AEF03A2468?method=download&shareKey=fac6b0d54f157f7809d28ff163f31834">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/8CE51CAD3FE1469AA6C7A3C694682282?method=download&shareKey=f35d4f416dbedbb8c005d4e4068d5d6b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/58C9565AF19E4B87B0BDA1768AD7307D?method=download&shareKey=7bd23b7bcc47300a0c78d42a3b572d67">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F7D3BEF7535342FB91F4ED9D4BAEF944?method=download&shareKey=95049baf7eadfb7f68704cad0fea7fb4">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DB3528FFA6E94897B340E8F08F63DDAC?method=download&shareKey=c9563718cd7854878b01d2caf28fe6f8">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/BA834D0F3F754733BEBC28C10F8B219B?method=download&shareKey=bb9c802c5949226b132f8345bf5b23a2">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/1545446ED0B74BD98095DE07EA264942?method=download&shareKey=19caafb16068c77a01d205bad113d12f">
+<meta property="article:published_time" content="2020-07-04T13:58:07.221Z">
+<meta property="article:modified_time" content="2020-07-04T14:27:48.864Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="非对称密码体制">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/14EFDA4BA7CF446A80B54C88CAB9DB2E?method=download&shareKey=f668e8010c9511f57bb08de47aa48f8d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/panfengblog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/04/RSA密码体制和整数因子分解/"/>
+
+
+
+
+
+  <title>RSA密码体制和整数因子分解 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/panfengblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/panfengblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/panfengblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/panfengblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/04/RSA%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E5%92%8C%E6%95%B4%E6%95%B0%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RSA密码体制和整数因子分解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-04T21:58:07+08:00">
+                2020-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/panfengblog/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/panfengblog/2020/07/04/RSA%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E5%92%8C%E6%95%B4%E6%95%B0%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/04/RSA密码体制和整数因子分解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="RSA密码体制和整数因子分解"><a href="#RSA密码体制和整数因子分解" class="headerlink" title="RSA密码体制和整数因子分解"></a>RSA密码体制和整数因子分解</h1><p>整理于2020年5月25日</p>
+<a id="more"></a>
+<h2 id="大整数分解算法"><a href="#大整数分解算法" class="headerlink" title="大整数分解算法"></a>大整数分解算法</h2><h3 id="Pollard-p-1-算法"><a href="#Pollard-p-1-算法" class="headerlink" title="Pollard p-1 算法"></a>Pollard p-1 算法</h3><p><strong>原理分析</strong></p>
+<p>设p为n的一个素因子，且$p-1=\prod_{i=1}^{s}q^{\alpha_{i}}$</p>
+<p>$\Rightarrow \exist \,B,\forall q^{\alpha_{i}},B&gt;q^{\alpha_{i}}$</p>
+<p>令$a=2^{B!}mod \,n$</p>
+<p>$\Rightarrow \, a\equiv 2^{B!}mod \, p$</p>
+<p>$\Rightarrow \, a\equiv 1\,mod \, p, 即a-1=0\,mod \, p$</p>
+<p>$\Rightarrow \,\mbox{可通过求}(a-1,n)\mbox{有一定概率求得n的素因子}$</p>
+<p>关键是希望p-1的分解中最大的素因子不是很大，</p>
+<p>使得B也可以不是很大，就能得出最后n的素因子</p>
+<p><strong>具体算法</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/14EFDA4BA7CF446A80B54C88CAB9DB2E?method=download&shareKey=f668e8010c9511f57bb08de47aa48f8d"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/49CCC072E8094A32AC55893324F1789F?method=download&shareKey=3398ed5999ea2f85b200522318b4003a"></p>
+<h3 id="Pollard-ρ-算法"><a href="#Pollard-ρ-算法" class="headerlink" title="Pollard ρ 算法"></a>Pollard ρ 算法</h3><p><strong>原理分析</strong></p>
+<p>若$x\ne x’$且 $x\equiv x’ mod \,p$ (在Zp中找碰撞，类似于生日悖论)</p>
+<p>则可通过求 gcd(x-x’ , n)有一定概率求得n的素因子</p>
+<p>我们通过$f(x)=x^2+a$ 产生一系列$x_i$</p>
+<p>$x_1\subseteq Z_n,x_i\equiv f(x_{i-1})\,mod \, n$</p>
+<p>(若$x_i\equiv x_j\,mod\,p\Rightarrow\,f(x_i)\equiv f(x_j)即x_{i+1}\equiv x_{j+1}\,mod\,p\Rightarrow 产生了一个周期序列，周期为j-1$)</p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/E2DDBF1022B742A793EA86BEB293B8E0?method=download&shareKey=ebc5b303bb11a8f8d4afbf62f3762399"></p>
+<p><strong>具体算法实现</strong></p>
+<p>因为一定$\exist \, t\ge i \,且\, t\equiv\,0\,mod\,(j-i)$ ，所$x_t\equiv x_{2t}\,mod \,p$</p>
+<p>所以就有以下算法：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/0DD8E3317F184659B2F4CF6E9C86766A?method=download&shareKey=fc8b429b3428b25670208c8da505b7ff"></p>
+<h3 id="费马分解法"><a href="#费马分解法" class="headerlink" title="费马分解法"></a>费马分解法</h3><p><strong>原理分析</strong></p>
+<p>若能找到$a^2-b^2\equiv 0\,mod \, n$ 则可以通过求$gcd(a\pm b,n)$有一定概率求得n的素因子</p>
+<p><strong>算法具体实现</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C0E50B080780405A94017551D8BDC37D?method=download&shareKey=c2497051c8ce6c760737df2a5c8bf715"></p>
+<p><strong>算法举例</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/6005F833CE6D43BE8C21A3810669EF78?method=download&shareKey=edfbf92e32e09c0aaf50e78645d8fb1c"></p>
+<p><strong>#但是存在一个难点，如何求得平滑数呢？</strong></p>
+<p><strong>使用二次筛法</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/CD5C54935B544AC6BE2ED39FD5BC9053?method=download&shareKey=9f2b0243c3d02689bf208854b9f6cd2a"></p>
+<h2 id="求解离散对数算法"><a href="#求解离散对数算法" class="headerlink" title="求解离散对数算法"></a>求解离散对数算法</h2><h3 id="Shanks算法"><a href="#Shanks算法" class="headerlink" title="Shanks算法"></a>Shanks算法</h3><p>Shanks算法采用大段小段法（是一种时间-存储折中的算法）</p>
+<p><strong>原理分析</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/2AF4CF09D1CB44FBA6B8074EC7815FFC?method=download&shareKey=a7fa71a0c30534f6ff5537bec4d851ce"></p>
+<p><strong>算法实现</strong>      将计算规模降到了$n^{\frac{1}{2}}$</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/47A81555C4C6416495D5A94C8BE23FAA?method=download&shareKey=7e4d85eca68ccaae4a9cf05b52028f51"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/8256FC5E6ACD49D29582837D93A52972?method=download&shareKey=6f7cbfefbf7b38d1b5b6bf4861675131"></p>
+<h3 id="Pollard-ρ离散对数算法"><a href="#Pollard-ρ离散对数算法" class="headerlink" title="Pollard ρ离散对数算法"></a>Pollard ρ离散对数算法</h3><p>和Pollard ρ大整数分解算法类似，也是通过函数迭代构造碰撞，从而求得离散对数，因而也是一个概率算法</p>
+<p><strong>算法分析</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/03873F56F5F2494D8A85938012E661C4?method=download&shareKey=c9eda354c406645be67247fcbdd5d22b"></p>
+<p><strong>算法描述</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C0D0DA7E389F4BE3A32D3DFAA445F7F1?method=download&shareKey=fd6dbf8d1ef2b0a438f4e4e97263b801"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/CE4381C0B0DD42A7B4FA477899FFD293?method=download&shareKey=da86922e9ba4a9610a61f9e3c6e312da"></p>
+<h3 id="Pohlig-Hellman算法"><a href="#Pohlig-Hellman算法" class="headerlink" title="Pohlig-Hellman算法"></a>Pohlig-Hellman算法</h3><p>有待更新…</p>
+<h3 id="指数演算法（Index-Calculus算法）"><a href="#指数演算法（Index-Calculus算法）" class="headerlink" title="指数演算法（Index-Calculus算法）"></a>指数演算法（Index-Calculus算法）</h3><p><strong>算法分析</strong></p>
+<p>通过计算因子基的离散对数（预计算），来计算所需元素的离散对数，是最高效的一种算法，下面是具体说明：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/DDB917AC827649EB9A71B0591E7F502E?method=download&shareKey=4c1f474d925d11d91f6034ad2ef1472d"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/7245E9404B55454B9A4BBCE92E37B1D0?method=download&shareKey=1ac17c268222f716247cbcbbb0c7986a"></p>
+<h2 id="公钥密码体制"><a href="#公钥密码体制" class="headerlink" title="公钥密码体制"></a>公钥密码体制</h2><h3 id="对称密码的一些不足"><a href="#对称密码的一些不足" class="headerlink" title="对称密码的一些不足"></a>对称密码的一些不足</h3><p><strong>第一个问题（最大的问题）：密钥的交换</strong><br>通信双方需要用同一个密钥进行加密和解密，因此就涉及到了密钥的交换，然而交换过程中需要的安全信道又很难保障。</p>
+<p><strong>第二个问题：密钥管理</strong><br>N个用户之间相互通信，每人需要保存N-1个密钥，系统需要完成N×(N-1)/2次密钥的交换。<br>举个栗子：一个5000用户的网络，要保证每个用户能相互加密通信，总共需要完成12,497,500次密钥交换</p>
+<p><strong>第三个问题：抵赖</strong><br>密钥协商和加密过程是双方行为，无法防止其中一方否认自己曾经发送过某条消息</p>
+<h3 id="公钥密码体制的一些介绍"><a href="#公钥密码体制的一些介绍" class="headerlink" title="公钥密码体制的一些介绍"></a>公钥密码体制的一些介绍</h3><p><strong>单向陷门函数</strong></p>
+<p>如果存在一个单向函数，该函数在具有特定知识（称为陷门）后容易求逆。公钥密码体制就是在这样的单陷门函数下，私钥拥有者就是拥有这样的特定知识。这样的 单陷门函数一般是基于一些数学难题：大整数的分解、离散对数问题等等</p>
+<p><strong>一些用途</strong></p>
+<p><strong>①用于加密</strong> </p>
+<p>公钥加密、私钥解密，不需要交换密钥</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/E77431190AC140D7AFBAE0D4D8187AC4?method=download&shareKey=e2b765dff87438966442e4eca47da7c5"></p>
+<p><strong>②数字签名</strong></p>
+<p>私钥签名，公钥验证，可防抵赖</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/3E3620DB64834B72BE3DC36C6858886B?method=download&shareKey=7543b30167372e895c1f8bb6f5c54d65"></p>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><h3 id="RSA算法的简要介绍"><a href="#RSA算法的简要介绍" class="headerlink" title="RSA算法的简要介绍"></a>RSA算法的简要介绍</h3><p>这里只做了简要介绍，具体数学原理不过多阐述。</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/4425E09296964F6A9A47F8A789BAE826?method=download&shareKey=0bb85b2898417050a9a7b698683e91ce"></p>
+<h3 id="加解密过程的快速实现"><a href="#加解密过程的快速实现" class="headerlink" title="加解密过程的快速实现"></a>加解密过程的快速实现</h3><h4 id="平方乘算法"><a href="#平方乘算法" class="headerlink" title="平方乘算法"></a>平方乘算法</h4><p><strong>算法分析</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C670016533954CD489DECD6BF4FFD5C1?method=download&shareKey=8cded1afc81d459b0faf7c52e6fbf814"></p>
+<p><strong>算法描述</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/73A8C408BAE24E7EA5A77518BE0500A1?method=download&shareKey=1fdc32db26cbe2bb942602fd3a4e154c"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/0BDAF174D04F4BDD95DA3A453B3A41E4?method=download&shareKey=294b5bec22eaf1323eccfddbc1a0a65e"></p>
+<h4 id="Montgomery算法"><a href="#Montgomery算法" class="headerlink" title="Montgomery算法"></a>Montgomery算法</h4><p><strong>算法分析</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/69263B99693F48EF8E190E53EC3A0D29?method=download&shareKey=0fdac6748f29f3000f950fcf93575403"></p>
+<p><strong>结合使用平方乘算法</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/A465CCB2E72F4B1BB9BE668F49A7C36C?method=download&shareKey=d17625ca4c60707df3abde879edc0a0f"></p>
+<h4 id="使用中国剩余定理加速RSA解密"><a href="#使用中国剩余定理加速RSA解密" class="headerlink" title="使用中国剩余定理加速RSA解密"></a>使用中国剩余定理加速RSA解密</h4><p>由于解密过程已知p q，所以可以大大降低复杂度</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/0D6C8145A0C9450885E8E9B632753F14?method=download&shareKey=f37d2e33b0870d7dd908d7bf7ba6028a"></p>
+<h3 id="素性检测"><a href="#素性检测" class="headerlink" title="素性检测"></a>素性检测</h3><h4 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h4><p><strong>由于RSA实现过程中需要用到p q两个素数，所以就需要素性检测算法</strong></p>
+<p>其实素性检测问题就是因式分解问题，不过目前不存在多项式时间内能完成的因式分解算法，所以目前使用的素性检测算法大多是概率算法。</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/6233A99757634B91A1FAAA8F2B2BEAA9?method=download&shareKey=35886c010bd5f6b5e0896a402c29f1dc"></p>
+<h4 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h4><h5 id="检测理论一"><a href="#检测理论一" class="headerlink" title="检测理论一"></a>检测理论一</h5><p><img src="https://note.youdao.com/yws/api/personal/file/2380AD2A5F604ED8B881EAC21D34D119?method=download&shareKey=5f95f53dc962c8ed4186457001af5475"></p>
+<h5 id="检测理论二"><a href="#检测理论二" class="headerlink" title="检测理论二"></a>检测理论二</h5><p><img src="https://note.youdao.com/yws/api/personal/file/F755D31299C741869D84023C3901D6AD?method=download&shareKey=c63c83ab6ef2b00078c4566fde3e62ad"></p>
+<h5 id="检测理论三"><a href="#检测理论三" class="headerlink" title="检测理论三"></a>检测理论三</h5><p><img src="https://note.youdao.com/yws/api/personal/file/21C3610E85594C88941718BB6BAE5F00?method=download&shareKey=9a85880b821e3e65bbad16967d99c32a"></p>
+<h5 id="检测理论四"><a href="#检测理论四" class="headerlink" title="检测理论四"></a>检测理论四</h5><p><img src="https://note.youdao.com/yws/api/personal/file/C1BDB73CAF7A438F9812F008D5495F80?method=download&shareKey=8e2d38a5067477ac442ac6ea85e72ab4"></p>
+<h4 id="具体的算法"><a href="#具体的算法" class="headerlink" title="具体的算法"></a>具体的算法</h4><h5 id="Solovay-Strassen算法"><a href="#Solovay-Strassen算法" class="headerlink" title="Solovay-Strassen算法"></a>Solovay-Strassen算法</h5><p>基于上文的理论二</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/961A00FA59D24A73916A760D7E4816CC?method=download&shareKey=2cf7191764b128bea5f3df8ffc8d867b"></p>
+<h5 id="Miller-Rabin算法"><a href="#Miller-Rabin算法" class="headerlink" title="Miller-Rabin算法"></a>Miller-Rabin算法</h5><p>基于上文的理论三</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/20F571B754BC4B409898551D35C4686C?method=download&shareKey=afb04deaa1287d54a25cfe2f0c2e10bc"></p>
+<h5 id="AKS算法"><a href="#AKS算法" class="headerlink" title="AKS算法"></a>AKS算法</h5><p>基于上文的理论四</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/59579F0F8BE448939C3FC284AEF95EEE?method=download&shareKey=7b575e4cf6f97d834addd80ef43fe97e"></p>
+<h4 id="RSA算法的安全性"><a href="#RSA算法的安全性" class="headerlink" title="RSA算法的安全性"></a>RSA算法的安全性</h4><h5 id="间接分解模数n"><a href="#间接分解模数n" class="headerlink" title="间接分解模数n"></a>间接分解模数n</h5><h6 id="p或q不是大整数-Pollard-p-1-算法"><a href="#p或q不是大整数-Pollard-p-1-算法" class="headerlink" title="p或q不是大整数(Pollard p-1 算法)"></a>p或q不是大整数(Pollard p-1 算法)</h6><p>因为RSA其实就是大整数分解问题，这也提醒我们在要使得p q也都是大整数</p>
+<h6 id="已知φ-n"><a href="#已知φ-n" class="headerlink" title="已知φ(n)"></a>已知φ(n)</h6><p>这就很容易求出p q</p>
+<h6 id="已知解密指数d"><a href="#已知解密指数d" class="headerlink" title="已知解密指数d"></a>已知解密指数d</h6><p><img src="https://note.youdao.com/yws/api/personal/file/C9F266A4723645C69BC15E592C618101?method=download&shareKey=8014b1af4e96a8db565c6be93f87a8ad"></p>
+<h5 id="共模攻击"><a href="#共模攻击" class="headerlink" title="共模攻击"></a>共模攻击</h5><p>RSA实现是给群组中每个人相同的<em>n</em>，但指数<em>e</em>和<em>d</em>不同的情况下，会出现的一些问题</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/1369243C80EA46589A7F14AEF03A2468?method=download&shareKey=fac6b0d54f157f7809d28ff163f31834"></p>
+<h5 id="小加密指数攻击"><a href="#小加密指数攻击" class="headerlink" title="小加密指数攻击"></a>小加密指数攻击</h5><p>为了获得更快的速度，而使用较小的加密指数会导致的一些问题</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/8CE51CAD3FE1469AA6C7A3C694682282?method=download&shareKey=f35d4f416dbedbb8c005d4e4068d5d6b"></p>
+<h5 id="OAEP：最优非对称加密填充（Optimal-Asymmetric-Encryption-Padding）"><a href="#OAEP：最优非对称加密填充（Optimal-Asymmetric-Encryption-Padding）" class="headerlink" title="OAEP：最优非对称加密填充（Optimal Asymmetric Encryption Padding）"></a>OAEP：最优非对称加密填充（Optimal Asymmetric Encryption Padding）</h5><p><img src="https://note.youdao.com/yws/api/personal/file/58C9565AF19E4B87B0BDA1768AD7307D?method=download&shareKey=7bd23b7bcc47300a0c78d42a3b572d67"></p>
+<h5 id="小解密指数的Wiener攻击"><a href="#小解密指数的Wiener攻击" class="headerlink" title="小解密指数的Wiener攻击"></a>小解密指数的Wiener攻击</h5><h6 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h6><p><img src="https://note.youdao.com/yws/api/personal/file/F7D3BEF7535342FB91F4ED9D4BAEF944?method=download&shareKey=95049baf7eadfb7f68704cad0fea7fb4"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/DB3528FFA6E94897B340E8F08F63DDAC?method=download&shareKey=c9563718cd7854878b01d2caf28fe6f8"></p>
+<h6 id="实践部分"><a href="#实践部分" class="headerlink" title="实践部分"></a>实践部分</h6><p><img src="https://note.youdao.com/yws/api/personal/file/BA834D0F3F754733BEBC28C10F8B219B?method=download&shareKey=bb9c802c5949226b132f8345bf5b23a2"></p>
+<p><strong>举个栗子</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/1545446ED0B74BD98095DE07EA264942?method=download&shareKey=19caafb16068c77a01d205bad113d12f"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/panfengblog/tags/RSA/" rel="tag"><i class="fa fa-tag"></i> RSA</a>
+          
+            <a href="/panfengblog/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 非对称密码体制</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/panfengblog/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/" rel="next" title="JavaScript学习">
+                <i class="fa fa-chevron-left"></i> JavaScript学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/07/04/RSA密码体制和整数因子分解/"
+           data-title="RSA密码体制和整数因子分解" data-url="http://coolguo.gitee.io/2020/07/04/RSA%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E5%92%8C%E6%95%B4%E6%95%B0%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/panfengblog/archives">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/panfengblog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/panfengblog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA密码体制和整数因子分解"><span class="nav-number">1.</span> <span class="nav-text">RSA密码体制和整数因子分解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大整数分解算法"><span class="nav-number">1.1.</span> <span class="nav-text">大整数分解算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pollard-p-1-算法"><span class="nav-number">1.1.1.</span> <span class="nav-text">Pollard p-1 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pollard-ρ-算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">Pollard ρ 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费马分解法"><span class="nav-number">1.1.3.</span> <span class="nav-text">费马分解法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解离散对数算法"><span class="nav-number">1.2.</span> <span class="nav-text">求解离散对数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shanks算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">Shanks算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pollard-ρ离散对数算法"><span class="nav-number">1.2.2.</span> <span class="nav-text">Pollard ρ离散对数算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pohlig-Hellman算法"><span class="nav-number">1.2.3.</span> <span class="nav-text">Pohlig-Hellman算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指数演算法（Index-Calculus算法）"><span class="nav-number">1.2.4.</span> <span class="nav-text">指数演算法（Index-Calculus算法）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥密码体制"><span class="nav-number">1.3.</span> <span class="nav-text">公钥密码体制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对称密码的一些不足"><span class="nav-number">1.3.1.</span> <span class="nav-text">对称密码的一些不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公钥密码体制的一些介绍"><span class="nav-number">1.3.2.</span> <span class="nav-text">公钥密码体制的一些介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法"><span class="nav-number">1.4.</span> <span class="nav-text">RSA算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA算法的简要介绍"><span class="nav-number">1.4.1.</span> <span class="nav-text">RSA算法的简要介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加解密过程的快速实现"><span class="nav-number">1.4.2.</span> <span class="nav-text">加解密过程的快速实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#平方乘算法"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">平方乘算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Montgomery算法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">Montgomery算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用中国剩余定理加速RSA解密"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">使用中国剩余定理加速RSA解密</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#素性检测"><span class="nav-number">1.4.3.</span> <span class="nav-text">素性检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">简要介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#理论部分"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">理论部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检测理论一"><span class="nav-number">1.4.3.2.1.</span> <span class="nav-text">检测理论一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测理论二"><span class="nav-number">1.4.3.2.2.</span> <span class="nav-text">检测理论二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测理论三"><span class="nav-number">1.4.3.2.3.</span> <span class="nav-text">检测理论三</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测理论四"><span class="nav-number">1.4.3.2.4.</span> <span class="nav-text">检测理论四</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的算法"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">具体的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solovay-Strassen算法"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">Solovay-Strassen算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Miller-Rabin算法"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">Miller-Rabin算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AKS算法"><span class="nav-number">1.4.3.3.3.</span> <span class="nav-text">AKS算法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA算法的安全性"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">RSA算法的安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#间接分解模数n"><span class="nav-number">1.4.3.4.1.</span> <span class="nav-text">间接分解模数n</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#p或q不是大整数-Pollard-p-1-算法"><span class="nav-number">1.4.3.4.1.1.</span> <span class="nav-text">p或q不是大整数(Pollard p-1 算法)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#已知φ-n"><span class="nav-number">1.4.3.4.1.2.</span> <span class="nav-text">已知φ(n)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#已知解密指数d"><span class="nav-number">1.4.3.4.1.3.</span> <span class="nav-text">已知解密指数d</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共模攻击"><span class="nav-number">1.4.3.4.2.</span> <span class="nav-text">共模攻击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小加密指数攻击"><span class="nav-number">1.4.3.4.3.</span> <span class="nav-text">小加密指数攻击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OAEP：最优非对称加密填充（Optimal-Asymmetric-Encryption-Padding）"><span class="nav-number">1.4.3.4.4.</span> <span class="nav-text">OAEP：最优非对称加密填充（Optimal Asymmetric Encryption Padding）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小解密指数的Wiener攻击"><span class="nav-number">1.4.3.4.5.</span> <span class="nav-text">小解密指数的Wiener攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#理论基础"><span class="nav-number">1.4.3.4.5.1.</span> <span class="nav-text">理论基础</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实践部分"><span class="nav-number">1.4.3.4.5.2.</span> <span class="nav-text">实践部分</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.5k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/panfengblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/panfengblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/panfengblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
