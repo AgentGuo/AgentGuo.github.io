@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="算法,降维,sklearn," />
 
 
 
@@ -80,14 +80,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://coolguo.gitee.io/tags/index.html">
+<meta name="description" content="sklearn中PCA使用方法1.函数原型1sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False) 返回一个PCA对象，以下是三个参数的填写说明：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sklearn中PCA使用方法">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="sklearn中PCA使用方法1.函数原型1sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False) 返回一个PCA对象，以下是三个参数的填写说明：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-03T09:41:58.000Z">
-<meta property="article:modified_time" content="2020-07-03T09:44:28.102Z">
+<meta property="article:published_time" content="2020-07-08T11:32:12.846Z">
+<meta property="article:modified_time" content="2020-07-08T11:34:33.952Z">
 <meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="降维">
+<meta property="article:tag" content="sklearn">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/tags/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/08/sklearn中PCA使用方法/"/>
 
 
 
 
 
-  <title>tags | panfengblog</title>
+  <title>sklearn中PCA使用方法 | panfengblog</title>
   
 
 
@@ -229,40 +234,276 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                29 tags in total
+          <h1 class="post-title" itemprop="name headline">sklearn中PCA使用方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-08T19:32:12+08:00">
+                2020-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/panfengblog/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/panfengblog/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/08/sklearn中PCA使用方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  272
+                </span>
+              
+
+              
+
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/panfengblog/tags/C/" style="font-size: 12px; color: #ccc">C</a> <a href="/panfengblog/tags/C/" style="font-size: 25.5px; color: #404040">C++</a> <a href="/panfengblog/tags/QT/" style="font-size: 21px; color: #6f6f6f">QT</a> <a href="/panfengblog/tags/RSA/" style="font-size: 12px; color: #ccc">RSA</a> <a href="/panfengblog/tags/STL/" style="font-size: 12px; color: #ccc">STL</a> <a href="/panfengblog/tags/conda/" style="font-size: 12px; color: #ccc">conda</a> <a href="/panfengblog/tags/css/" style="font-size: 12px; color: #ccc">css</a> <a href="/panfengblog/tags/flask/" style="font-size: 12px; color: #ccc">flask</a> <a href="/panfengblog/tags/git/" style="font-size: 12px; color: #ccc">git</a> <a href="/panfengblog/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/panfengblog/tags/html/" style="font-size: 12px; color: #ccc">html</a> <a href="/panfengblog/tags/http/" style="font-size: 12px; color: #ccc">http</a> <a href="/panfengblog/tags/js/" style="font-size: 12px; color: #ccc">js</a> <a href="/panfengblog/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/panfengblog/tags/python/" style="font-size: 30px; color: #111">python</a> <a href="/panfengblog/tags/sagemath/" style="font-size: 12px; color: #ccc">sagemath</a> <a href="/panfengblog/tags/sklearn/" style="font-size: 12px; color: #ccc">sklearn</a> <a href="/panfengblog/tags/typroa/" style="font-size: 12px; color: #ccc">typroa</a> <a href="/panfengblog/tags/web/" style="font-size: 16.5px; color: #9d9d9d">web</a> <a href="/panfengblog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 16.5px; color: #9d9d9d">前端</a> <a href="/panfengblog/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 12px; color: #ccc">密码学</a> <a href="/panfengblog/tags/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" style="font-size: 12px; color: #ccc">数字电路</a> <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 25.5px; color: #404040">算法</a> <a href="/panfengblog/tags/%E8%81%9A%E7%B1%BB/" style="font-size: 12px; color: #ccc">聚类</a> <a href="/panfengblog/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 12px; color: #ccc">脚本</a> <a href="/panfengblog/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" style="font-size: 12px; color: #ccc">虚拟环境</a> <a href="/panfengblog/tags/%E9%99%8D%E7%BB%B4/" style="font-size: 12px; color: #ccc">降维</a> <a href="/panfengblog/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6/" style="font-size: 12px; color: #ccc">非对称密码体制</a> <a href="/panfengblog/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" style="font-size: 12px; color: #ccc">项目管理</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="sklearn中PCA使用方法"><a href="#sklearn中PCA使用方法" class="headerlink" title="sklearn中PCA使用方法"></a>sklearn中PCA使用方法</h1><h2 id="1-函数原型"><a href="#1-函数原型" class="headerlink" title="1.函数原型"></a>1.函数原型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.decomposition.PCA(n_components=<span class="literal">None</span>, copy=<span class="literal">True</span>, whiten=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>返回一个PCA对象，以下是三个参数的填写说明：</p>
+<a id="more"></a>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n_components</td>
+<td>①<code>int</code>：PCA算法中所要保留主成分的个数；②<code>float</code>：重构阈值；③<code>none</code>：特征个数不变（但是数据本身会变）</td>
+</tr>
+<tr>
+<td>copy</td>
+<td><code>True</code>或<code>False</code>，是否复制原始数据</td>
+</tr>
+<tr>
+<td>whiten</td>
+<td><code>True</code>或<code>False</code>，是否白化，使得每个特征具有相同的方差</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-PCA对象的属性"><a href="#2-PCA对象的属性" class="headerlink" title="2.PCA对象的属性"></a>2.PCA对象的属性</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>explained_variance_ratio_</td>
+<td>重构的阈值</td>
+</tr>
+<tr>
+<td>n_components_</td>
+<td>保留的特征个数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-PCA对象的常用方法"><a href="#3-PCA对象的常用方法" class="headerlink" title="3.PCA对象的常用方法"></a>3.PCA对象的常用方法</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fit(x)</td>
+<td>用数据X来训练PCA模型</td>
+</tr>
+<tr>
+<td>fit_transform(x)</td>
+<td>用数据X来训练PCA模型同时返回降维后的数据</td>
+</tr>
+<tr>
+<td>inverse_transform(y)</td>
+<td>将降维后的数据y转回原始数据x</td>
+</tr>
+<tr>
+<td>transform(x)</td>
+<td>在PCA模型已经训练好的情况下，将x进行降维</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="4-简单使用"><a href="#4-简单使用" class="headerlink" title="4.简单使用"></a>4.简单使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'输入前矩阵'</span>,iris_data.shape)</span><br><span class="line">irisPca = PCA(n_components=<span class="number">2</span>)</span><br><span class="line">pcaDate = irisPca.fit_transform(iris_data)</span><br><span class="line">print(<span class="string">'输入后矩阵'</span>,pcaDate.shape)</span><br></pre></td></tr></table></figure>
+<p>输出结果，成功的降到了二维：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入前矩阵 (150, 5)</span><br><span class="line">输入后矩阵 (150, 2)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/panfengblog/tags/%E9%99%8D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
+          
+            <a href="/panfengblog/tags/sklearn/" rel="tag"><i class="fa fa-tag"></i> sklearn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/panfengblog/2020/07/08/k-means%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5/" rel="next" title="k-means算法原理分析与实践">
+                <i class="fa fa-chevron-left"></i> k-means算法原理分析与实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -274,8 +515,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="tags/index.html"
-           data-title="tags" data-url="http://coolguo.gitee.io/tags/index.html">
+      <div class="ds-thread" data-thread-key="2020/07/08/sklearn中PCA使用方法/"
+           data-title="sklearn中PCA使用方法" data-url="http://coolguo.gitee.io/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
       </div>
     </div>
 
@@ -302,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -383,6 +633,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sklearn中PCA使用方法"><span class="nav-number">1.</span> <span class="nav-text">sklearn中PCA使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-函数原型"><span class="nav-number">1.1.</span> <span class="nav-text">1.函数原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-PCA对象的属性"><span class="nav-number">1.2.</span> <span class="nav-text">2.PCA对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-PCA对象的常用方法"><span class="nav-number">1.3.</span> <span class="nav-text">3.PCA对象的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-简单使用"><span class="nav-number">1.4.</span> <span class="nav-text">4.简单使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
