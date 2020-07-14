@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="算法,降维,sklearn," />
+  <meta name="keywords" content="算法,python,目标检测," />
 
 
 
@@ -80,20 +80,26 @@
 
 
 
-<meta name="description" content="sklearn中PCA使用方法1.函数原型1sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False) 返回一个PCA对象，以下是三个参数的填写说明：">
+<meta name="description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sklearn中PCA使用方法">
-<meta property="og:url" content="http://coolguo.gitee.io/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="RCNN详解">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/14/RCNN%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="sklearn中PCA使用方法1.函数原型1sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False) 返回一个PCA对象，以下是三个参数的填写说明：">
+<meta property="og:description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-08T11:32:12.846Z">
-<meta property="article:modified_time" content="2020-07-08T11:34:33.952Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUEjF1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUa5QS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUdAW6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UU0i26.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUc9mV.png">
+<meta property="article:published_time" content="2020-07-14T09:40:11.130Z">
+<meta property="article:modified_time" content="2020-07-14T09:40:46.830Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="降维">
-<meta property="article:tag" content="sklearn">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="目标检测">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/14/UUEjF1.png">
 
 
 
@@ -123,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/08/sklearn中PCA使用方法/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/14/RCNN详解/"/>
 
 
 
 
 
-  <title>sklearn中PCA使用方法 | panfengblog</title>
+  <title>RCNN详解 | panfengblog</title>
   
 
 
@@ -246,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/14/RCNN%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -263,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sklearn中PCA使用方法</h1>
+          <h1 class="post-title" itemprop="name headline">RCNN详解</h1>
         
 
         <div class="post-meta">
@@ -275,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-08T19:32:12+08:00">
-                2020-07-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-14T17:40:11+08:00">
+                2020-07-14
               </time>
             
 
@@ -298,8 +304,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/panfengblog/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/panfengblog/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
                   </a>
                 </span>
 
@@ -316,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/panfengblog/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/08/sklearn中PCA使用方法/" itemprop="commentCount"></span>
+                <a href="/panfengblog/2020/07/14/RCNN%E8%AF%A6%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/14/RCNN详解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -339,7 +345,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  272
+                  1.4k
                 </span>
               
 
@@ -364,84 +370,37 @@
       
 
       
-        <h1 id="sklearn中PCA使用方法"><a href="#sklearn中PCA使用方法" class="headerlink" title="sklearn中PCA使用方法"></a>sklearn中PCA使用方法</h1><h2 id="1-函数原型"><a href="#1-函数原型" class="headerlink" title="1.函数原型"></a>1.函数原型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.decomposition.PCA(n_components=<span class="literal">None</span>, copy=<span class="literal">True</span>, whiten=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p>返回一个PCA对象，以下是三个参数的填写说明：</p>
+        <h1 id="RCNN详解"><a href="#RCNN详解" class="headerlink" title="RCNN详解"></a>RCNN详解</h1><p>RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。</p>
+<p>下文按照RCNN的工作过程依次介绍</p>
 <a id="more"></a>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>n_components</td>
-<td>①<code>int</code>：PCA算法中所要保留主成分的个数；②<code>float</code>：重构阈值；③<code>none</code>：特征个数不变（但是数据本身会变）</td>
-</tr>
-<tr>
-<td>copy</td>
-<td><code>True</code>或<code>False</code>，是否复制原始数据</td>
-</tr>
-<tr>
-<td>whiten</td>
-<td><code>True</code>或<code>False</code>，是否白化，使得每个特征具有相同的方差</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="2-PCA对象的属性"><a href="#2-PCA对象的属性" class="headerlink" title="2.PCA对象的属性"></a>2.PCA对象的属性</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>explained_variance_ratio_</td>
-<td>重构的阈值</td>
-</tr>
-<tr>
-<td>n_components_</td>
-<td>保留的特征个数</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="3-PCA对象的常用方法"><a href="#3-PCA对象的常用方法" class="headerlink" title="3.PCA对象的常用方法"></a>3.PCA对象的常用方法</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>fit(x)</td>
-<td>用数据X来训练PCA模型</td>
-</tr>
-<tr>
-<td>fit_transform(x)</td>
-<td>用数据X来训练PCA模型同时返回降维后的数据</td>
-</tr>
-<tr>
-<td>inverse_transform(y)</td>
-<td>将降维后的数据y转回原始数据x</td>
-</tr>
-<tr>
-<td>transform(x)</td>
-<td>在PCA模型已经训练好的情况下，将x进行降维</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="4-简单使用"><a href="#4-简单使用" class="headerlink" title="4.简单使用"></a>4.简单使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'输入前矩阵'</span>,iris_data.shape)</span><br><span class="line">irisPca = PCA(n_components=<span class="number">2</span>)</span><br><span class="line">pcaDate = irisPca.fit_transform(iris_data)</span><br><span class="line">print(<span class="string">'输入后矩阵'</span>,pcaDate.shape)</span><br></pre></td></tr></table></figure>
-<p>输出结果，成功的降到了二维：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入前矩阵 (150, 5)</span><br><span class="line">输入后矩阵 (150, 2)</span><br></pre></td></tr></table></figure>
+<h2 id="1-生成候选区域"><a href="#1-生成候选区域" class="headerlink" title="1. 生成候选区域"></a>1. 生成候选区域</h2><p>获取候选区域最直接的方式就是<strong>滑窗法</strong>了，但是滑窗法需要用一个固定大小的<strong>小窗口</strong>遍历<strong>整张图片</strong>，因此其有很多的局限性。</p>
+<p>所以一般都是使用一些<strong>候选区域（Region Proposal）算法</strong>，候选区域算法使用一些图像分割的算法来识别潜在的物体，然后合并一些相似（可能颜色或者纹理相近）的小区域，然后就能获得许多的候选区域，虽然可能这些候选区域和实际物体重合度不是很高，但是<strong>只要有一个候选区域</strong>符合要求即可，生成候选区域的算法一个重要的要求就是：要求较高的<strong>召回率（也叫查准率）</strong>。</p>
+<p>目前已经有很多成熟的产生候选区域算法了，<strong>Selective Search（选择性搜索）</strong>就是其中一个高效的算法。</p>
+<p><img src="https://s1.ax1x.com/2020/07/14/UUEjF1.png" alt="UUEjF1.png"></p>
+<p>Selective Search（选择性搜索）的伪代码如下<strong>（伪代码可以联系上图更容易理解）</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">输入：图片<span class="built_in">image</span></span><br><span class="line">输出：物体可能的位置集合L</span><br><span class="line">-------------------------------------</span><br><span class="line">使用图像分割算法获取初始候选区域R=&#123;r1,r2,...,rn&#125;（**如图一**）</span><br><span class="line">定义相似度集合S=&#123;&#125;</span><br><span class="line"><span class="keyword">for</span> earch 相邻区域(ri,rj) in R:</span><br><span class="line">	计算相似度s(ri,rj)</span><br><span class="line">	S = S ∪ s(ri,rj)</span><br><span class="line"><span class="built_in">end</span> <span class="keyword">for</span></span><br><span class="line"><span class="keyword">while</span> S ≠ Ø：(**如图二**)</span><br><span class="line">	获取S中的最大相似度，s_max(ri,rj) = <span class="built_in">max</span>(S)</span><br><span class="line">	合并该这两个区域 rt = ri ∪ rj</span><br><span class="line">	删除所有与ri和rj有关的相似度 s(ri,r*),s(rj,r*)</span><br><span class="line">	计算所有与rt相邻区域的相似度，并添加到集合S，S = S ∪ s(rt,r*)</span><br><span class="line">	将新生成的区域rt添加到候选区域R, R = R ∪ rt</span><br><span class="line"><span class="built_in">end</span> <span class="keyword">while</span></span><br><span class="line">从候选区域R获取所有可能的Bounding Boxes集合L</span><br><span class="line"><span class="keyword">return</span> L</span><br><span class="line">-------------------------------------</span><br></pre></td></tr></table></figure>
+<p>当然这里只是非常简单的介绍了选择性搜索，详细的介绍和代码可以参考这两篇文章（上述两张图片也是来自该文章，无意冒犯）：<a href="https://blog.csdn.net/yuanlulu/article/details/82157071" target="_blank" rel="noopener">文章1</a>，<a href="https://zhuanlan.zhihu.com/p/39927488" target="_blank" rel="noopener">文章2</a></p>
+<h2 id="2-特征提取"><a href="#2-特征提取" class="headerlink" title="2. 特征提取"></a>2. 特征提取</h2><p>我们通过上述的生成候选区域算法得到了2000个左右的候选框，然后我们想要通过CNN获取其中的特征，但是许多的CNN网络对于输入图片的尺寸都是有固定的要求的，而我们获取的图片大小却不是固定的，这就需要我们对图片进行<strong>缩放处理</strong>。</p>
+<h3 id="2-1缩放处理"><a href="#2-1缩放处理" class="headerlink" title="2.1缩放处理"></a>2.1缩放处理</h3><p>缩放处理有以下几种方法：</p>
+<ol>
+<li><strong>各项异性缩放</strong></li>
+</ol>
+<p>直接按照需要的尺寸强行缩放就是了</p>
+<p><img src="https://s1.ax1x.com/2020/07/14/UUa5QS.png" alt="UUa5QS.png"></p>
+<ol>
+<li><strong>各项同性缩放</strong></li>
+</ol>
+<p>有时图片扭曲后会对CNN的训练精度有影响，这时也可以考虑各项同性缩放，其中又分为两种：</p>
+<p>A. 先扩充后后裁剪：在原图上将bounding box扩充到所需要的尺寸，然后在输入到CNN中</p>
+<p><img src="https://s1.ax1x.com/2020/07/14/UUdAW6.png" alt="UUdAW6.png"></p>
+<p>B.先裁剪后扩充：先把bounding box图片裁剪处理，然后再使用bounding box中的颜色均值进行填充</p>
+<p><img src="https://s1.ax1x.com/2020/07/14/UU0i26.png" alt="UU0i26.png"></p>
+<h3 id="2-2-CNN提取特征"><a href="#2-2-CNN提取特征" class="headerlink" title="2.2 CNN提取特征"></a>2.2 CNN提取特征</h3><p>假设我们采用结构比较简单的AlexNet，但是考虑到训练数据少，如果随机初始化参数从头开始训练，由于数据不够，最终的检测效果会比较差。所以我们使用已经训练好了的AlexNet进行<strong>迁移学习</strong>，进行<strong>fine-tuning训练</strong>，只需将最后一层替换掉即可，替换为<strong>N+1个输出的神经元</strong>（假设需要检测的物体有N类，还有一类表示背景，这一层参数使用随机初始化），然后我们就能对其进行训练了。</p>
+<p><img src="https://s1.ax1x.com/2020/07/14/UUc9mV.png" alt="UUc9mV.png"></p>
+<p>训练过程中我们需要一些正样本和一些负样本，人工标注的数据中标注了正确的bounding box，我们前面使用selective search算法挑选出了2000个左右的候选框，然后我我们将候选框中与人工标注的矩形框的重叠区域<strong>IoU</strong>大于0.5的标记为正样本，否则就标记为负样本。然后使用这些样本对CNN网络进行训练即可。</p>
+<h2 id="3-类别判断"><a href="#3-类别判断" class="headerlink" title="3. 类别判断"></a>3. 类别判断</h2><p>上述CNN训练完成后就已经能够对矩形框中的物体做出<strong>类别判断</strong>了，这里我们还需要使用<strong>SVM</strong>进行类别判断？这不是多此一举吗？原因是CNN需要大量的训练数据，训练数据过少容易出现<strong>过拟合</strong>的现象，而传统的SVM适用于<strong>少样本的训练</strong>，所以这里的类别判断才使用SVM。</p>
+<p>我们前面训练的AlexNet最后一层在这里也是不需要使用的，我们只使用上一层输出的4096维的特征向量作为输入（其实就是将前面训练的神经网络当作特征提取器，而不直接使用其用于分类），我们为每个物体类训练一个svm分类器，然后将上述特征输入到SVM中即可。</p>
+<h2 id="4-位置精修"><a href="#4-位置精修" class="headerlink" title="4.位置精修"></a>4.位置精修</h2><p>最后我们使用一个线性回归器对候选框进行精修，认为IoU大于0.6的为正样本，否则为负样本。</p>
 
       
     </div>
@@ -461,9 +420,9 @@
           
             <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
-            <a href="/panfengblog/tags/%E9%99%8D%E7%BB%B4/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
+            <a href="/panfengblog/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
           
-            <a href="/panfengblog/tags/sklearn/" rel="tag"><i class="fa fa-tag"></i> sklearn</a>
+            <a href="/panfengblog/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
           
         </div>
       
@@ -476,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/panfengblog/2020/07/08/k-means%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5/" rel="next" title="k-means算法原理分析与实践">
-                <i class="fa fa-chevron-left"></i> k-means算法原理分析与实践
+              <a href="/panfengblog/2020/07/13/%E5%86%B3%E7%AD%96%E6%A0%91%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E8%B7%B5/" rel="next" title="决策树原理分析与实践">
+                <i class="fa fa-chevron-left"></i> 决策树原理分析与实践
               </a>
             
           </div>
@@ -485,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/panfengblog/2020/07/13/Logistic%E5%9B%9E%E5%BD%92%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E5%92%8C%E5%AE%9E%E8%B7%B5/" rel="prev" title="Logistic回归原理分析和实践">
-                Logistic回归原理分析和实践 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,8 +474,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/07/08/sklearn中PCA使用方法/"
-           data-title="sklearn中PCA使用方法" data-url="http://coolguo.gitee.io/2020/07/08/sklearn%E4%B8%ADPCA%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+      <div class="ds-thread" data-thread-key="2020/07/14/RCNN详解/"
+           data-title="RCNN详解" data-url="http://coolguo.gitee.io/2020/07/14/RCNN%E8%AF%A6%E8%A7%A3/">
       </div>
     </div>
 
@@ -647,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sklearn中PCA使用方法"><span class="nav-number">1.</span> <span class="nav-text">sklearn中PCA使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-函数原型"><span class="nav-number">1.1.</span> <span class="nav-text">1.函数原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-PCA对象的属性"><span class="nav-number">1.2.</span> <span class="nav-text">2.PCA对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-PCA对象的常用方法"><span class="nav-number">1.3.</span> <span class="nav-text">3.PCA对象的常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-简单使用"><span class="nav-number">1.4.</span> <span class="nav-text">4.简单使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RCNN详解"><span class="nav-number">1.</span> <span class="nav-text">RCNN详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-生成候选区域"><span class="nav-number">1.1.</span> <span class="nav-text">1. 生成候选区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-特征提取"><span class="nav-number">1.2.</span> <span class="nav-text">2. 特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1缩放处理"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1缩放处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-CNN提取特征"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 CNN提取特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-类别判断"><span class="nav-number">1.3.</span> <span class="nav-text">3. 类别判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-位置精修"><span class="nav-number">1.4.</span> <span class="nav-text">4.位置精修</span></a></li></ol></li></ol></div>
             
 
           </div>
