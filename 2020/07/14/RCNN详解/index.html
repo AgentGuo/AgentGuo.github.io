@@ -80,12 +80,12 @@
 
 
 
-<meta name="description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
+<meta name="description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2013年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RCNN详解">
 <meta property="og:url" content="http://coolguo.gitee.io/2020/07/14/RCNN%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
+<meta property="og:description" content="RCNN详解RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2013年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。 下文按照RCNN的工作过程依次介绍">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUEjF1.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUa5QS.png">
@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UU0i26.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/14/UUc9mV.png">
 <meta property="article:published_time" content="2020-07-14T09:40:11.130Z">
-<meta property="article:modified_time" content="2020-07-14T09:40:46.830Z">
+<meta property="article:modified_time" content="2020-07-15T09:46:57.435Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="python">
@@ -370,7 +370,7 @@
       
 
       
-        <h1 id="RCNN详解"><a href="#RCNN详解" class="headerlink" title="RCNN详解"></a>RCNN详解</h1><p>RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2014年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。</p>
+        <h1 id="RCNN详解"><a href="#RCNN详解" class="headerlink" title="RCNN详解"></a>RCNN详解</h1><p>RCNN即region proposals（候选区域） + CNN，是将CNN引入目标检测领域的开山之作（2013年），大大提高了目标检测的效果，在其后也是出现了更优异的变体Fast RCNN, Faster RCNN。</p>
 <p>下文按照RCNN的工作过程依次介绍</p>
 <a id="more"></a>
 <h2 id="1-生成候选区域"><a href="#1-生成候选区域" class="headerlink" title="1. 生成候选区域"></a>1. 生成候选区域</h2><p>获取候选区域最直接的方式就是<strong>滑窗法</strong>了，但是滑窗法需要用一个固定大小的<strong>小窗口</strong>遍历<strong>整张图片</strong>，因此其有很多的局限性。</p>
@@ -444,6 +444,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/panfengblog/2020/07/19/python%E4%B8%AD%E7%9A%84%5Bnm%5D/" rel="prev" title="python中的[nm]">
+                python中的[nm] <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -531,7 +535,7 @@
               
                 <a href="/panfengblog/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -553,7 +557,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/panfengblog/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -647,7 +651,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共40.9k字</span>
+  <span class="post-count">博客全站共41.2k字</span>
 </div>
         
 
