@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="web,http," />
+  <meta name="keywords" content="算法,python,目标检测," />
 
 
 
@@ -80,19 +80,29 @@
 
 
 
-<meta name="description" content="HTTP请求方法根据 HTTP 标准，HTTP 请求可以使用多种请求方法。 HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD方法。 HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。">
+<meta name="description" content="Faster-RCNN详解1. 向前传播过程1.1 CNN提取特征就是将图片输入到预训练好的CNN网络中获取特征图feature map。 以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w&#x2F;16, h&#x2F;16, 512）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP请求方法">
-<meta property="og:url" content="http://coolguo.gitee.io/2020/07/04/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="Faster-RCNN详解">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="HTTP请求方法根据 HTTP 标准，HTTP 请求可以使用多种请求方法。 HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD方法。 HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。">
+<meta property="og:description" content="Faster-RCNN详解1. 向前传播过程1.1 CNN提取特征就是将图片输入到预训练好的CNN网络中获取特征图feature map。 以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w&#x2F;16, h&#x2F;16, 512）">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-04T13:52:30.777Z">
-<meta property="article:modified_time" content="2020-07-04T13:55:28.450Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhIcnO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhbhlR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4p2bd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/18/Ug4Zd0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhzEIP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhztRU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4SB6g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4S4cF.png">
+<meta property="article:published_time" content="2020-07-20T07:30:19.353Z">
+<meta property="article:modified_time" content="2020-07-20T14:14:45.476Z">
 <meta property="article:author" content="panfeng&#39;s blog">
-<meta property="article:tag" content="web">
-<meta property="article:tag" content="http">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="目标检测">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/20/UhIcnO.png">
 
 
 
@@ -122,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/04/HTTP请求方法/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/20/Faster-RCNN详解/"/>
 
 
 
 
 
-  <title>HTTP请求方法 | panfengblog</title>
+  <title>Faster-RCNN详解 | panfengblog</title>
   
 
 
@@ -245,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/04/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -262,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTTP请求方法</h1>
+          <h1 class="post-title" itemprop="name headline">Faster-RCNN详解</h1>
         
 
         <div class="post-meta">
@@ -274,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-04T21:52:30+08:00">
-                2020-07-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-20T15:30:19+08:00">
+                2020-07-20
               </time>
             
 
@@ -297,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/panfengblog/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
+                  <a href="/panfengblog/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
                   </a>
                 </span>
 
@@ -315,8 +325,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/panfengblog/2020/07/04/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/04/HTTP请求方法/" itemprop="commentCount"></span>
+                <a href="/panfengblog/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/20/Faster-RCNN详解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -338,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  708
+                  1.3k
                 </span>
               
 
@@ -363,124 +373,59 @@
       
 
       
-        <h2 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h2><p>根据 HTTP 标准，HTTP 请求可以使用多种请求方法。</p>
-<p>HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD方法。</p>
-<p>HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。</p>
+        <h1 id="Faster-RCNN详解"><a href="#Faster-RCNN详解" class="headerlink" title="Faster-RCNN详解"></a>Faster-RCNN详解</h1><h2 id="1-向前传播过程"><a href="#1-向前传播过程" class="headerlink" title="1. 向前传播过程"></a>1. 向前传播过程</h2><h3 id="1-1-CNN提取特征"><a href="#1-1-CNN提取特征" class="headerlink" title="1.1 CNN提取特征"></a>1.1 CNN提取特征</h3><p>就是将图片输入到预训练好的CNN网络中获取特征图feature map。</p>
+<p>以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w/16, h/16, 512）</p>
 <a id="more"></a>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">序号</th>
-<th style="text-align:left">方法</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">GET</td>
-<td style="text-align:left">（请求资源）请求指定的页面信息，并返回实体主体。</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">HEAD</td>
-<td style="text-align:left">（获取响应头）类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">POST</td>
-<td style="text-align:left">（提交资源）向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">PUT</td>
-<td style="text-align:left">（替换资源）从客户端向服务器传送的数据取代指定的文档的内容。</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">DELETE</td>
-<td style="text-align:left">（删除资源）请求服务器删除指定的页面。</td>
-</tr>
-<tr>
-<td style="text-align:left">6</td>
-<td style="text-align:left">CONNECT</td>
-<td style="text-align:left">HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</td>
-</tr>
-<tr>
-<td style="text-align:left">7</td>
-<td style="text-align:left">OPTIONS</td>
-<td style="text-align:left">允许客户端查看服务器的性能。</td>
-</tr>
-<tr>
-<td style="text-align:left">8</td>
-<td style="text-align:left">TRACE</td>
-<td style="text-align:left">回显服务器收到的请求，主要用于测试或诊断。</td>
-</tr>
-<tr>
-<td style="text-align:left">9</td>
-<td style="text-align:left">PATCH</td>
-<td style="text-align:left">是对 PUT 方法的补充，用来对已知资源进行局部更新 。</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="HTTP请求头"><a href="#HTTP请求头" class="headerlink" title="HTTP请求头"></a>HTTP请求头</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</td>
-<td style="text-align:center">告诉服务器，当前客户端可以接收的文档类型，其实这里包含了<em>/</em>，就表示什么都可以接收</td>
-</tr>
-<tr>
-<td style="text-align:center">Accept-Encoding: gzip, deflate</td>
-<td style="text-align:center">支持的压缩格式。数据在网络上传递时，可能服务器会把数据压缩后再发送</td>
-</tr>
-<tr>
-<td style="text-align:center">Accept-Language: zh-cn,zh;q=0.5</td>
-<td style="text-align:center">当前客户端支持的语言，可以在浏览器的工具选项中找到语言相关信息</td>
-</tr>
-<tr>
-<td style="text-align:center">Cache-Control:no-cache</td>
-<td style="text-align:center">告诉浏览器不要缓存的响应头</td>
-</tr>
-<tr>
-<td style="text-align:center">Connection: keep-alive</td>
-<td style="text-align:center">客户端支持的链接方式，保持一段时间链接，默认为3000ms</td>
-</tr>
-<tr>
-<td style="text-align:center">Referer: <a href="http://localhost:8080/hello/index.jsp" target="_blank" rel="noopener">http://localhost:8080/hello/index.jsp</a></td>
-<td style="text-align:center">请求来自哪个页面</td>
-</tr>
-<tr>
-<td style="text-align:center">Content-Type: application/x-www-form-urlencoded</td>
-<td style="text-align:center">表单的数据类型，说明会使用url格式编码数据；url编码的数据都是以“%”为前缀，后面跟随两位的16进制</td>
-</tr>
-<tr>
-<td style="text-align:center">Content-Length:13</td>
-<td style="text-align:center">请求体的长度，这里表示13个字节</td>
-</tr>
-<tr>
-<td style="text-align:center">Cookie: JSESSIONID=xxxxx</td>
-<td style="text-align:center">因为不是第一次访问这个地址，所以会在请求中把上一次服务器响应中发送过来的Cookie在请求中一并发送去过；这个Cookie的名字为JSESSIONID。</td>
-</tr>
-<tr>
-<td style="text-align:center">Host:localhost</td>
-<td style="text-align:center">请求的主机名为localhost</td>
-</tr>
-<tr>
-<td style="text-align:center">User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0</td>
-<td style="text-align:center">与浏览器和OS相关的信息。有些网站会显示用户的系统版本和浏览器版本信息，这都是通过获取User-Agent头信息而来的</td>
-</tr>
-</tbody>
-</table>
-</div>
+<h3 id="1-2-RPN网络"><a href="#1-2-RPN网络" class="headerlink" title="1.2 RPN网络"></a>1.2 RPN网络</h3><p>Faster-RCNN一个重要的变化就是抛弃了前代RCNN使用SS(Selective Search)方法生成检测框，而是使用RPN网络。</p>
+<h4 id="1-2-1-生成anchor-base"><a href="#1-2-1-生成anchor-base" class="headerlink" title="1.2.1 生成anchor base"></a>1.2.1 生成anchor base</h4><p>anchor base就是由两个参数<code>scale=[8,16,32]</code>和<code>ratio=[0.5,1,2]</code>两个参数生成的生成的，<code>scale</code>指anchor的长，<code>ratio</code>指anchor的长宽比，有这两个参数进行组合就能得到9个anchor base，anchor base用四个坐标<code>(x,y,w,h)</code>保存（分别表示中心点的坐标和长宽）。如下图所示</p>
+<p><img src="https://s1.ax1x.com/2020/07/20/UhIcnO.png" alt="UhIcnO.png"></p>
+<h4 id="1-2-2-获得所有anchor-box"><a href="#1-2-2-获得所有anchor-box" class="headerlink" title="1.2.2 获得所有anchor box"></a>1.2.2 获得所有anchor box</h4><p>然后让anchor base在特征图feature map（w/16, h/16, 512）的每一个像素点上移动，由此就能得到$k = 9<em>\cfrac{w}{16}</em>\cfrac{h}{16}$个anchor。就是下图画圈部分的操作。</p>
+<p>（注意anchor的坐标是相对与原图上的坐标，而不是特征图上的，所以在特征图上移动时需要将坐标映射会原图，在这里直接x,y坐标乘以16即可，因为特征图相对于原图缩小了16倍）</p>
+<p><img src="https://s1.ax1x.com/2020/07/20/UhbhlR.png" alt="UhbhlR.png"></p>
+<p><img src="https://s1.ax1x.com/2020/07/20/U4p2bd.png" alt="U4p2bd.png"></p>
+<h4 id="1-2-3-边框回归获得ROIs"><a href="#1-2-3-边框回归获得ROIs" class="headerlink" title="1.2.3 边框回归获得ROIs"></a>1.2.3 边框回归获得ROIs</h4><ol>
+<li>先使用<code>Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))</code>对特征图进行处理，得到图中的中间层（intermediate layer）</li>
+<li>使用<code>Conv2d(512, 9*2, kernel_size=(1, 1), stride=(1, 1), padding=(1, 1))</code>对中间层进行处理得到anchor box的分类参数（用于判断anchor box中的<strong>是否含有检测目标</strong>，即前景和背景）</li>
+<li>使用<code>Conv2d(512, 9*4, kernel_size=(1, 1), stride=(1, 1), padding=(1, 1))</code>对中间层进行处理得到anchor box的<strong>位置修正参数</strong>，然后将参数带入坐标回归公式就能得到<code>ROIs</code>的坐标。</li>
+</ol>
+<p>坐标回归公式如下（ $d(P)$为该卷积网络输出的参数， $P$为anchor的坐标，$\hat{G}$为回归后的预测坐标 ）：</p>
+<p><img src="https://s1.ax1x.com/2020/07/18/Ug4Zd0.png" alt="Ug4Zd0.png"></p>
+<h4 id="1-2-4-筛选去掉一部分ROIs"><a href="#1-2-4-筛选去掉一部分ROIs" class="headerlink" title="1.2.4 筛选去掉一部分ROIs"></a>1.2.4 筛选去掉一部分ROIs</h4><p>上一步对anchor box使用边框回归获得了所有的<code>ROIs</code>，但是数量太多了，直接进行后续计算会增大计算量，所需需要筛选去掉一些。</p>
+<ol>
+<li>将上述边框回归过程中得到的分类参数（用于判断前景和后景）输入到softmax，在其中选择<strong>得分大于给定得分阈值</strong>的那部分<code>ROIs</code>。</li>
+<li>在上述基础上再进行<code>nms</code>（非最大抑制），进一步筛选掉一部分<code>ROIs</code>。</li>
+<li>最后再剩余的<code>ROIs</code>随机抽取R个（训练时抽取2000个，测试时抽取300个）</li>
+</ol>
+<p>通过以上步骤就完成了<code>ROIs</code>的筛选。</p>
+<h3 id="1-3-ROIPooling"><a href="#1-3-ROIPooling" class="headerlink" title="1.3 ROIPooling"></a>1.3 ROIPooling</h3><p>ROIPooling起始就是简化版的金字塔池化（SSPNet），这里参考了<a href="https://blog.deepsense.ai/region-of-interest-pooling-explained/" target="_blank" rel="noopener">这篇文章</a></p>
+<ol>
+<li>假设下图就是我们的特征图</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/07/20/UhzEIP.png" alt="UhzEIP.png"></p>
+<ol>
+<li>然后我们需要将<code>ROIs</code>（是原图上的坐标）映射到特征图上，如下图所示：</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/07/20/UhztRU.png" alt="UhztRU.png"></p>
+<ol>
+<li>由于不同的<code>ROI</code>的大小和形状都不相同，但是我们却希望得到相同的输出怎么办呢？ 这就是ROIPooling的核心部分，假设我们想得到一个<code>2*2</code>的输出，那么我们就能将上述<code>ROI</code>对应的特征图划分为如下图所示的<code>2*2</code>的矩阵，然后再每个小矩阵上分别使用maxpool即可。</li>
+</ol>
+<p>划分~</p>
+<p><img src="https://s1.ax1x.com/2020/07/20/U4SB6g.png" alt="U4SB6g.png"></p>
+<p>分别使用maxpool</p>
+<p><img src="https://s1.ax1x.com/2020/07/20/U4S4cF.png" alt="U4S4cF.png"></p>
+<h3 id="1-4-获得最后的预测结果"><a href="#1-4-获得最后的预测结果" class="headerlink" title="1.4 获得最后的预测结果"></a>1.4 获得最后的预测结果</h3><ol>
+<li>将上述ROIPooling后得到所有<code>ROIs</code>相同大小的输出特征输入到全连接层中，假设最后获得一个<code>4096</code>的一个输出向量。</li>
+<li>将上述<code>4096</code>向量输入到用于<strong>边框回归</strong>的全连接网络，再使用上述的边框回归计算公式得到<strong>最终的边框</strong>。</li>
+<li>将上述<code>4096</code>向量输入到<strong>种类回归</strong>（共n_class +1 种，n_class种物体，还有一种表示背景）的全连接网络，得到各个边框的<strong>物体种类</strong>和相应的<strong>置信概率</strong>。</li>
+</ol>
+<h2 id="2-反向传播过程"><a href="#2-反向传播过程" class="headerlink" title="2. 反向传播过程"></a>2. 反向传播过程</h2><h3 id="2-1-RPN网络的训练"><a href="#2-1-RPN网络的训练" class="headerlink" title="2.1 RPN网络的训练"></a>2.1 RPN网络的训练</h3><p>RPN网络需要训练的部分就是<strong>位置修正参数</strong>和<strong>种类参数</strong>（前景和背景）的卷积网络。</p>
+<p>对于位置修正参数，我们只需要根据人工标定的<strong>bounding box</strong>，然后结合生成的<strong>anchor box</strong>就能获得推得<strong>位置修正参数的ground truth</strong>（其实就是由anchor box和和位置修正参数推到ROI的逆过程），然后计算Smooth L1 Loss(探测边框回归)</p>
+<p>对于种类参数，计算Softmax Loss(探测分类概率)</p>
+<p>得到上述的两个损失值，然后根据下列的损失函数就能得到最终的损失函数：</p>
+<script type="math/tex; mode=display">L(\left\{ p_i \right\},\left\{ t_i \right\})=\cfrac{1}{N_{cls}}\underset{i}{\sum}L_{cls}(p_i,p_i^*)+\lambda \cfrac{1}{N_{cls}}\underset{i}{\sum}p_i^*L_{reg}(t_i,t_i^*)</script><h3 id="2-2-最后预测网络的训练"><a href="#2-2-最后预测网络的训练" class="headerlink" title="2.2 最后预测网络的训练"></a>2.2 最后预测网络的训练</h3><p>和RPN网络的训练十分类似，就是一个<strong>位置修正参数</strong>和<strong>种类参数</strong>（n_class+1种）的全连接网络的回归。</p>
+<p>对于位置修正参数，根据人工标注的<strong>bounding box</strong>结合输入的<strong>ROIs</strong>就能得到位置修正参数，然后计算Smooth L1 Loss(探测边框回归)</p>
+<p>对于种类参数，计算Softmax Loss(探测分类概率)</p>
+<p>同上计算最后的损失值</p>
 
       
     </div>
@@ -498,9 +443,11 @@
       
         <div class="post-tags">
           
-            <a href="/panfengblog/tags/web/" rel="tag"><i class="fa fa-tag"></i> web</a>
+            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
-            <a href="/panfengblog/tags/http/" rel="tag"><i class="fa fa-tag"></i> http</a>
+            <a href="/panfengblog/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/panfengblog/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
           
         </div>
       
@@ -513,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/panfengblog/2020/07/04/HTML&CSS%E5%AD%A6%E4%B9%A0/" rel="next" title="HTML&CSS学习">
-                <i class="fa fa-chevron-left"></i> HTML&CSS学习
+              <a href="/panfengblog/2020/07/19/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%8F%AA%E8%BF%9B%E8%A1%8C%E9%83%A8%E5%88%86%E5%B1%82%E7%9A%84%E8%AE%AD%E7%BB%83/" rel="next" title="迁移学习只进行部分层的训练">
+                <i class="fa fa-chevron-left"></i> 迁移学习只进行部分层的训练
               </a>
             
           </div>
@@ -522,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/panfengblog/2020/07/04/JavaScript%E5%AD%A6%E4%B9%A0/" rel="prev" title="JavaScript学习">
-                JavaScript学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,8 +499,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/07/04/HTTP请求方法/"
-           data-title="HTTP请求方法" data-url="http://coolguo.gitee.io/2020/07/04/HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95/">
+      <div class="ds-thread" data-thread-key="2020/07/20/Faster-RCNN详解/"
+           data-title="Faster-RCNN详解" data-url="http://coolguo.gitee.io/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/">
       </div>
     </div>
 
@@ -684,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求方法"><span class="nav-number">1.</span> <span class="nav-text">HTTP请求方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求头"><span class="nav-number">2.</span> <span class="nav-text">HTTP请求头</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-RCNN详解"><span class="nav-number">1.</span> <span class="nav-text">Faster-RCNN详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-向前传播过程"><span class="nav-number">1.1.</span> <span class="nav-text">1. 向前传播过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-CNN提取特征"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 CNN提取特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-RPN网络"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 RPN网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-生成anchor-base"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 生成anchor base</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-获得所有anchor-box"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 获得所有anchor box</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-边框回归获得ROIs"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.2.3 边框回归获得ROIs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-筛选去掉一部分ROIs"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">1.2.4 筛选去掉一部分ROIs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-ROIPooling"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 ROIPooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-获得最后的预测结果"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 获得最后的预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-反向传播过程"><span class="nav-number">1.2.</span> <span class="nav-text">2. 反向传播过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-RPN网络的训练"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 RPN网络的训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-最后预测网络的训练"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 最后预测网络的训练</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -869,7 +812,62 @@
     
     
     <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/panfengblog/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -887,41 +885,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
   
 
 
