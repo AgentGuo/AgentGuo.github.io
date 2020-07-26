@@ -114,7 +114,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/24/Uxlamd.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/07/24/Uxlrff.png">
 <meta property="article:published_time" content="2020-07-24T15:53:07.640Z">
-<meta property="article:modified_time" content="2020-07-24T15:54:12.128Z">
+<meta property="article:modified_time" content="2020-07-25T09:38:40.590Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Pandas">
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.5k
+                  2.6k
                 </span>
               
 
@@ -489,7 +489,7 @@
 <p><img src="https://s1.ax1x.com/2020/07/24/UxnoE6.png" alt="UxnoE6.png"></p>
 <p>删除空行默认是删除含有缺失数据的行，当然也可以指定<strong>某列中的含有缺失数据</strong>的行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.dropna(subset=[<span class="string">'客单价'</span>])  <span class="comment"># 当然也可以指定参数</span></span><br></pre></td></tr></table></figure>
-<h3 id="7-2-行去重"><a href="#7-2-行去重" class="headerlink" title="7.2 行去重"></a>7.2 行去重</h3><p>将DataFrame中重复的行去掉</p>
+<h3 id="7-2-行去重"><a href="#7-2-行去重" class="headerlink" title="7.2 行去重"></a>7.2 行去重</h3><p>将DataFrame中重复的行去掉（当然也可以指定列进行去重，设置subset=[]即可）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repeat = pd.concat([df, df])</span><br><span class="line">print(len(repeat), len(df))</span><br><span class="line"><span class="comment"># 将一个DataFrame重复两遍</span></span><br><span class="line">unique = repeat.drop_duplicates()  <span class="comment"># 去重</span></span><br><span class="line">print(len(unique))</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">30 15</span><br><span class="line">15</span><br></pre></td></tr></table></figure>
@@ -678,7 +678,7 @@
               
                 <a href="/panfengblog/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -700,7 +700,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/panfengblog/tags/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -794,7 +794,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共54k字</span>
+  <span class="post-count">博客全站共56.1k字</span>
 </div>
         
 

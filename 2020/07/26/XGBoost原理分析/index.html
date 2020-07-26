@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="算法,python,目标检测," />
+  <meta name="keywords" content="python,xgboost,boosting," />
 
 
 
@@ -80,29 +80,25 @@
 
 
 
-<meta name="description" content="Faster-RCNN详解1. 向前传播过程1.1 CNN提取特征就是将图片输入到预训练好的CNN网络中获取特征图feature map。 以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w&#x2F;16, h&#x2F;16, 512）">
+<meta name="description" content="XGBoost原理分析与快速实践1. Boosting树模型XGBoost是Boosting树模型的一种（当然XGBoost也可以使用除树之外的其他的线性模型），其他还有许多的Boosting树模型，下面首先对Boosting树模型做一些简要的介绍。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Faster-RCNN详解">
-<meta property="og:url" content="http://coolguo.gitee.io/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="XGBoost原理分析">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/07/26/XGBoost%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="Faster-RCNN详解1. 向前传播过程1.1 CNN提取特征就是将图片输入到预训练好的CNN网络中获取特征图feature map。 以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w&#x2F;16, h&#x2F;16, 512）">
+<meta property="og:description" content="XGBoost原理分析与快速实践1. Boosting树模型XGBoost是Boosting树模型的一种（当然XGBoost也可以使用除树之外的其他的线性模型），其他还有许多的Boosting树模型，下面首先对Boosting树模型做一些简要的介绍。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhIcnO.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhbhlR.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4p2bd.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/18/Ug4Zd0.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhzEIP.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/UhztRU.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4SB6g.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/07/20/U4S4cF.png">
-<meta property="article:published_time" content="2020-07-20T07:30:19.353Z">
-<meta property="article:modified_time" content="2020-07-20T14:14:45.476Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/25/UzPSnU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/25/Uz3R41.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/25/UzJNAH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/07/25/UzJxv6.png">
+<meta property="article:published_time" content="2020-07-26T12:54:31.275Z">
+<meta property="article:modified_time" content="2020-07-26T12:56:23.340Z">
 <meta property="article:author" content="panfeng&#39;s blog">
-<meta property="article:tag" content="算法">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="目标检测">
+<meta property="article:tag" content="xgboost">
+<meta property="article:tag" content="boosting">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/20/UhIcnO.png">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/07/25/UzPSnU.png">
 
 
 
@@ -132,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/20/Faster-RCNN详解/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/07/26/XGBoost原理分析/"/>
 
 
 
 
 
-  <title>Faster-RCNN详解 | panfengblog</title>
+  <title>XGBoost原理分析 | panfengblog</title>
   
 
 
@@ -255,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/07/26/XGBoost%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -272,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Faster-RCNN详解</h1>
+          <h1 class="post-title" itemprop="name headline">XGBoost原理分析</h1>
         
 
         <div class="post-meta">
@@ -284,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-20T15:30:19+08:00">
-                2020-07-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-26T20:54:31+08:00">
+                2020-07-26
               </time>
             
 
@@ -307,8 +303,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/panfengblog/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/panfengblog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -325,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/panfengblog/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/20/Faster-RCNN详解/" itemprop="commentCount"></span>
+                <a href="/panfengblog/2020/07/26/XGBoost%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/07/26/XGBoost原理分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -348,7 +344,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  2.1k
                 </span>
               
 
@@ -373,59 +369,81 @@
       
 
       
-        <h1 id="Faster-RCNN详解"><a href="#Faster-RCNN详解" class="headerlink" title="Faster-RCNN详解"></a>Faster-RCNN详解</h1><h2 id="1-向前传播过程"><a href="#1-向前传播过程" class="headerlink" title="1. 向前传播过程"></a>1. 向前传播过程</h2><h3 id="1-1-CNN提取特征"><a href="#1-1-CNN提取特征" class="headerlink" title="1.1 CNN提取特征"></a>1.1 CNN提取特征</h3><p>就是将图片输入到预训练好的CNN网络中获取特征图feature map。</p>
-<p>以含有四层maxpool的vgg网络为例，输入图片大小为（w,h,3）,则输出特征图的大小为（w/16, h/16, 512）</p>
+        <h1 id="XGBoost原理分析与快速实践"><a href="#XGBoost原理分析与快速实践" class="headerlink" title="XGBoost原理分析与快速实践"></a>XGBoost原理分析与快速实践</h1><h2 id="1-Boosting树模型"><a href="#1-Boosting树模型" class="headerlink" title="1. Boosting树模型"></a>1. Boosting树模型</h2><p>XGBoost是Boosting树模型的一种（当然XGBoost也可以使用除树之外的其他的线性模型），其他还有许多的Boosting树模型，下面首先对Boosting树模型做一些简要的介绍。</p>
 <a id="more"></a>
-<h3 id="1-2-RPN网络"><a href="#1-2-RPN网络" class="headerlink" title="1.2 RPN网络"></a>1.2 RPN网络</h3><p>Faster-RCNN一个重要的变化就是抛弃了前代RCNN使用SS(Selective Search)方法生成检测框，而是使用RPN网络。</p>
-<h4 id="1-2-1-生成anchor-base"><a href="#1-2-1-生成anchor-base" class="headerlink" title="1.2.1 生成anchor base"></a>1.2.1 生成anchor base</h4><p>anchor base就是由两个参数<code>scale=[8,16,32]</code>和<code>ratio=[0.5,1,2]</code>两个参数生成的生成的，<code>scale</code>指anchor的长，<code>ratio</code>指anchor的长宽比，有这两个参数进行组合就能得到9个anchor base，anchor base用四个坐标<code>(x,y,w,h)</code>保存（分别表示中心点的坐标和长宽）。如下图所示</p>
-<p><img src="https://s1.ax1x.com/2020/07/20/UhIcnO.png" alt="UhIcnO.png"></p>
-<h4 id="1-2-2-获得所有anchor-box"><a href="#1-2-2-获得所有anchor-box" class="headerlink" title="1.2.2 获得所有anchor box"></a>1.2.2 获得所有anchor box</h4><p>然后让anchor base在特征图feature map（w/16, h/16, 512）的每一个像素点上移动，由此就能得到$k = 9<em>\cfrac{w}{16}</em>\cfrac{h}{16}$个anchor。就是下图画圈部分的操作。</p>
-<p>（注意anchor的坐标是相对与原图上的坐标，而不是特征图上的，所以在特征图上移动时需要将坐标映射会原图，在这里直接x,y坐标乘以16即可，因为特征图相对于原图缩小了16倍）</p>
-<p><img src="https://s1.ax1x.com/2020/07/20/UhbhlR.png" alt="UhbhlR.png"></p>
-<p><img src="https://s1.ax1x.com/2020/07/20/U4p2bd.png" alt="U4p2bd.png"></p>
-<h4 id="1-2-3-边框回归获得ROIs"><a href="#1-2-3-边框回归获得ROIs" class="headerlink" title="1.2.3 边框回归获得ROIs"></a>1.2.3 边框回归获得ROIs</h4><ol>
-<li>先使用<code>Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))</code>对特征图进行处理，得到图中的中间层（intermediate layer）</li>
-<li>使用<code>Conv2d(512, 9*2, kernel_size=(1, 1), stride=(1, 1), padding=(1, 1))</code>对中间层进行处理得到anchor box的分类参数（用于判断anchor box中的<strong>是否含有检测目标</strong>，即前景和背景）</li>
-<li>使用<code>Conv2d(512, 9*4, kernel_size=(1, 1), stride=(1, 1), padding=(1, 1))</code>对中间层进行处理得到anchor box的<strong>位置修正参数</strong>，然后将参数带入坐标回归公式就能得到<code>ROIs</code>的坐标。</li>
-</ol>
-<p>坐标回归公式如下（ $d(P)$为该卷积网络输出的参数， $P$为anchor的坐标，$\hat{G}$为回归后的预测坐标 ）：</p>
-<p><img src="https://s1.ax1x.com/2020/07/18/Ug4Zd0.png" alt="Ug4Zd0.png"></p>
-<h4 id="1-2-4-筛选去掉一部分ROIs"><a href="#1-2-4-筛选去掉一部分ROIs" class="headerlink" title="1.2.4 筛选去掉一部分ROIs"></a>1.2.4 筛选去掉一部分ROIs</h4><p>上一步对anchor box使用边框回归获得了所有的<code>ROIs</code>，但是数量太多了，直接进行后续计算会增大计算量，所需需要筛选去掉一些。</p>
+<hr>
+<p>给定n个样本，m个特征的数据集$D=\left\{  (X_i, y_i) \right\}(|D|=n,X_i \in R^M , y_i \in R)$，提升树模型采用K次迭代的结果做为输出结果。对于输入$X_i$，输出$\hat{y}_i$的表达式为：</p>
+<script type="math/tex; mode=display">\hat{y}_i = \phi (X_i) = \sum_{k=1}^{K} f_k(X_i),f_k \in F</script><p>其中$F={f(X)=\left\{  w_{q(X)} \right\}} (q:R^T \rightarrow T, w \in R^T)$，表示提升树的空间集，各个变量的含义如下：</p>
+<ul>
+<li>$q$ 表示树的结构，可以将样本映射到对应的叶子节点</li>
+<li>$w$ 表示树节点的权重</li>
+<li>$T$ 表示树叶子结点的数量</li>
+<li>每个$f_k$都是一颗树，对应独立的树的结构 $q$ 和权重 $w$</li>
+</ul>
+<hr>
+<p>有了上面的数学表达，我们可以通过下面这个图<strong>直观理解</strong>一下，图中就是有两个树，然后输入数据的输出是两个树的<strong>预测结果之和</strong><br><img src="https://s1.ax1x.com/2020/07/25/UzPSnU.png" alt="UzPSnU.png"></p>
+<h2 id="2-目标函数"><a href="#2-目标函数" class="headerlink" title="2. 目标函数"></a>2. 目标函数</h2><p>XGBoost的目标函数如下（生成第 t 棵新的树时）：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^{n} l( y_i, \hat{y}_i^t) +\Omega(f_t)</script><p><strong>符号说明</strong>：</p>
+<ul>
+<li>$l$ 为损失函数</li>
+<li>$\Omega$ 为正则项</li>
+<li>$\hat{y_i}$ 为预测标签</li>
+<li>$y_i$ 为真实标签</li>
+<li>$n$ 为样本数</li>
+</ul>
+<hr>
+<p>目标函数包含两个部分，第一部分是损失函数，第二部分是正则项，首先介绍<strong>正则项</strong>，表达式如下：</p>
+<script type="math/tex; mode=display">\Omega (f) = \gamma T + \cfrac{1}{2} \lambda ||w||^2</script><p><strong>符号说明</strong>：</p>
+<ul>
+<li>其中 $T$ 为叶子结点的数量（<strong>加入该项可以控制树的复杂度</strong>，让叶子结点尽可能的少）</li>
+<li>$w$ 为叶子结点的权重</li>
+<li>$\gamma$ 和 $\lambda$ 为超参数，用于控制这两部分的权重</li>
+</ul>
+<hr>
+<p>对于<strong>损失函数</strong>，当我们每次生成第 t 棵新的树时，我们会计算下面的目标函数：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^{n} l( y_i, \hat{y}_i^{t-1} + f_t(x_i)) +\Omega(f_t)</script><p>然后进来<strong>泰勒展开</strong>（$f(x+\Delta x) \approx f(x) + f’(x) \Delta x + \cfrac{1}{2}f’’(x) \Delta x^2$）：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^{n} [ l( y_i, \hat{y}_i^{t-1}) + g_i f_t(x_i) + \cfrac{1}{2} h_i f^2_i(x_i) ] +\Omega(f_t)</script><p>其中$g_i = \cfrac{\partial l(y_i, \hat{y}_i^{t-1})}{\partial \hat{y}_i^{t-1}}$， $h_i = \cfrac{\partial^2 l(y_i, \hat{y}_i^{t-1})}{\partial ({\hat{y}_i^{t-1}})^2}$（分别为一阶导数和二阶导数）</p>
+<p>由于在生成第 t 棵树时，前 t-1 课树已经确定，所以$l(y_i, \hat{y}_i^{t-1})$是一个常数，所以上式又可以<strong>化简</strong>为：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{i=1}^{n} [ g_i f_t(x_i) + \cfrac{1}{2} h_i f^2_i(x_i) ] + \Omega(f_t) + constant</script><p>更加<strong>具体一点</strong>，当我们做分类时，我们使用<strong>logloss</strong>（当然也有其他的损失函数，取决于你的用途），如下：</p>
+<script type="math/tex; mode=display">l(\hat{y}_i, y_i) = y_i ln(1 + e^{-\hat{y}_i})+ (1- y_i) ln(1+ e^{-\hat{y}_i})</script><p>其中$g_i = \hat{y}_i - y_i$，$h_i = \hat{y}_i * (1 - \hat{y}_i)$</p>
+<h2 id="3-求解过程"><a href="#3-求解过程" class="headerlink" title="3. 求解过程"></a>3. 求解过程</h2><p>我们得到了上述的目标函数，我们需要对目标函数进行进一步的化简（这里使用的符号含义同上，没有做任何修改）：</p>
+<p>$Obj^{(t)} \approx \sum_{i=1}^{n}[ g_i f_t(x_i) + \cfrac{1}{2} h_i f^2_i(x_i) ] + \Omega(f_t) + constant \,\,\,\, \mbox{(这里的常数项对结果没有影响，所以后面就去掉了)}$</p>
+<p>$=\sum_{i=1}^{n} [g_i w_{q(x_i) } + \cfrac{1}{2} h_i w^2_{q(x_i)}] + \gamma T + \cfrac{1}{2} \lambda \sum_{j=1}^{T} w_j^2$</p>
+<p>$= \sum_{j=1}^{T} [(\sum_{i \in I_j} g_i) w_j + \cfrac{1}{2}(\sum_{i \in I_j}h_i + \lambda) w_j^2] + \gamma T$</p>
+<p>然后我们可以定义：</p>
+<script type="math/tex; mode=display">G_j = \sum_{i \in I_j} g_i \,\,\,\, H_j = \sum_{i \in I_j}h_i</script><p>所以上述公式可以进一步化简为：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = \sum_{j=1}^{T} [G_J w_j + \cfrac{1}{2}(H_j + \lambda) w_j^2] + \gamma T</script><p>其中 $w_j$ 为我们待求解的权重，我们只需对 $w_j$ 求导等于0， 可以解得：</p>
+<script type="math/tex; mode=display">w_j^* = - \cfrac{G_j}{H_j+ \lambda}</script><p>然后将 $w_j$ 的最优解打入目标函数可以得到：</p>
+<script type="math/tex; mode=display">Obj^{(t)} = - \cfrac{1}{2} \sum_{j=1}^{T} \cfrac{G_j^2}{H_j + \lambda} + \gamma T</script><hr>
+<p>最后就是说，目标函数是用来衡量第 t 棵树结构的好坏的，而与叶子结点的值是没有关系的，可以从最后的公式中看出，Obj 只与 $G_j$ 、 $H_j$ 和 $T$ 有关，而他们又只与树的结构有关，和叶子结点的值无关，可以通过下图直观的理解：</p>
+<p><img src="https://s1.ax1x.com/2020/07/25/Uz3R41.png" alt="Uz3R41.png"></p>
+<h2 id="4-寻找最佳分裂点"><a href="#4-寻找最佳分裂点" class="headerlink" title="4. 寻找最佳分裂点"></a>4. 寻找最佳分裂点</h2><p>我们通过定义增益值来确定分裂点（和许多其他树的模型相同），以下是增益值的定义：</p>
+<script type="math/tex; mode=display">Gain = \cfrac{G_L^2}{H_L + \lambda} + \cfrac{G_R^2}{H_R + \lambda} - \cfrac{(G_L+ G_R)^2}{H_L + H_R + \lambda} - \gamma</script><p>符号说明：</p>
+<ul>
+<li>$G_L$ 表示划分点左边数据的一阶导数之和（$H_L \, G_R \,H_R$ 也都是类似的）</li>
+<li>$\gamma$ 是增加一个分支造成的复杂度增加的损失值</li>
+</ul>
+<p>基于上述公式我们就有很多方案来确定最佳分裂点了</p>
 <ol>
-<li>将上述边框回归过程中得到的分类参数（用于判断前景和后景）输入到softmax，在其中选择<strong>得分大于给定得分阈值</strong>的那部分<code>ROIs</code>。</li>
-<li>在上述基础上再进行<code>nms</code>（非最大抑制），进一步筛选掉一部分<code>ROIs</code>。</li>
-<li>最后再剩余的<code>ROIs</code>随机抽取R个（训练时抽取2000个，测试时抽取300个）</li>
+<li>贪心法：顾名思义，就是遍历所有的分割点，分别计算损失值，然后选择增益值最大的分割点（但是计算量过于巨大）</li>
+<li>近似算法：比如说三等分法，就是将数据分为三份 ，然后就会出现两个分割点，然后在这连个分割点中选择最佳分割点</li>
+<li>XGBoost采用的分裂方式：使用样本的二阶导数值 $h_i$ 作为每个样本的权重，然后按照样本的权重作为依据，使用上述的三等分法，然后选择最后分割点，</li>
 </ol>
-<p>通过以上步骤就完成了<code>ROIs</code>的筛选。</p>
-<h3 id="1-3-ROIPooling"><a href="#1-3-ROIPooling" class="headerlink" title="1.3 ROIPooling"></a>1.3 ROIPooling</h3><p>ROIPooling起始就是简化版的金字塔池化（SSPNet），这里参考了<a href="https://blog.deepsense.ai/region-of-interest-pooling-explained/" target="_blank" rel="noopener">这篇文章</a></p>
-<ol>
-<li>假设下图就是我们的特征图</li>
-</ol>
-<p><img src="https://s1.ax1x.com/2020/07/20/UhzEIP.png" alt="UhzEIP.png"></p>
-<ol>
-<li>然后我们需要将<code>ROIs</code>（是原图上的坐标）映射到特征图上，如下图所示：</li>
-</ol>
-<p><img src="https://s1.ax1x.com/2020/07/20/UhztRU.png" alt="UhztRU.png"></p>
-<ol>
-<li>由于不同的<code>ROI</code>的大小和形状都不相同，但是我们却希望得到相同的输出怎么办呢？ 这就是ROIPooling的核心部分，假设我们想得到一个<code>2*2</code>的输出，那么我们就能将上述<code>ROI</code>对应的特征图划分为如下图所示的<code>2*2</code>的矩阵，然后再每个小矩阵上分别使用maxpool即可。</li>
-</ol>
-<p>划分~</p>
-<p><img src="https://s1.ax1x.com/2020/07/20/U4SB6g.png" alt="U4SB6g.png"></p>
-<p>分别使用maxpool</p>
-<p><img src="https://s1.ax1x.com/2020/07/20/U4S4cF.png" alt="U4S4cF.png"></p>
-<h3 id="1-4-获得最后的预测结果"><a href="#1-4-获得最后的预测结果" class="headerlink" title="1.4 获得最后的预测结果"></a>1.4 获得最后的预测结果</h3><ol>
-<li>将上述ROIPooling后得到所有<code>ROIs</code>相同大小的输出特征输入到全连接层中，假设最后获得一个<code>4096</code>的一个输出向量。</li>
-<li>将上述<code>4096</code>向量输入到用于<strong>边框回归</strong>的全连接网络，再使用上述的边框回归计算公式得到<strong>最终的边框</strong>。</li>
-<li>将上述<code>4096</code>向量输入到<strong>种类回归</strong>（共n_class +1 种，n_class种物体，还有一种表示背景）的全连接网络，得到各个边框的<strong>物体种类</strong>和相应的<strong>置信概率</strong>。</li>
-</ol>
-<h2 id="2-反向传播过程"><a href="#2-反向传播过程" class="headerlink" title="2. 反向传播过程"></a>2. 反向传播过程</h2><h3 id="2-1-RPN网络的训练"><a href="#2-1-RPN网络的训练" class="headerlink" title="2.1 RPN网络的训练"></a>2.1 RPN网络的训练</h3><p>RPN网络需要训练的部分就是<strong>位置修正参数</strong>和<strong>种类参数</strong>（前景和背景）的卷积网络。</p>
-<p>对于位置修正参数，我们只需要根据人工标定的<strong>bounding box</strong>，然后结合生成的<strong>anchor box</strong>就能获得推得<strong>位置修正参数的ground truth</strong>（其实就是由anchor box和和位置修正参数推到ROI的逆过程），然后计算Smooth L1 Loss(探测边框回归)</p>
-<p>对于种类参数，计算Softmax Loss(探测分类概率)</p>
-<p>得到上述的两个损失值，然后根据下列的损失函数就能得到最终的损失函数：</p>
-<script type="math/tex; mode=display">L(\left\{ p_i \right\},\left\{ t_i \right\})=\cfrac{1}{N_{cls}}\underset{i}{\sum}L_{cls}(p_i,p_i^*)+\lambda \cfrac{1}{N_{cls}}\underset{i}{\sum}p_i^*L_{reg}(t_i,t_i^*)</script><h3 id="2-2-最后预测网络的训练"><a href="#2-2-最后预测网络的训练" class="headerlink" title="2.2 最后预测网络的训练"></a>2.2 最后预测网络的训练</h3><p>和RPN网络的训练十分类似，就是一个<strong>位置修正参数</strong>和<strong>种类参数</strong>（n_class+1种）的全连接网络的回归。</p>
-<p>对于位置修正参数，根据人工标注的<strong>bounding box</strong>结合输入的<strong>ROIs</strong>就能得到位置修正参数，然后计算Smooth L1 Loss(探测边框回归)</p>
-<p>对于种类参数，计算Softmax Loss(探测分类概率)</p>
-<p>同上计算最后的损失值</p>
+<hr>
+<p>对于XGBoost采用的分裂方式这里多说一些，为什么采用 $h_i$ 作为每个样本的权重？可以通过以下式子看到各个样本对目标函数的贡献：</p>
+<p><img src="https://s1.ax1x.com/2020/07/25/UzJNAH.png" alt="UzJNAH.png"></p>
+<hr>
+<p>当然对于选取分裂点时，有的样本会出现<strong>缺失值</strong>，首先是对于<strong>训练情况</strong>下：</p>
+<p>尝试将缺失值样本划分到左节点或者右节点两种情况，然后选择增益率更大的一种情况，可以通过下面伪代码来理解一下：</p>
+<p><img src="https://s1.ax1x.com/2020/07/25/UzJxv6.png" alt="UzJxv6.png"></p>
+<p>然后是对于<strong>预测过程</strong>，如果遇到了缺失值，我们只需要预先制定好该节点的默认分裂方向即可。</p>
+<h2 id="5-直观实践"><a href="#5-直观实践" class="headerlink" title="5. 直观实践"></a>5. 直观实践</h2><p>可能看完理论分析还是会有点懵，不如自己算一遍！可以参考<a href="https://blog.csdn.net/a819825294/article/details/51206410" target="_blank" rel="noopener">这篇博客</a>，这篇文章有很多的推导过程也都是参考的这篇博客，写的非常详细！</p>
+<h2 id="6-代码实践"><a href="#6-代码实践" class="headerlink" title="6. 代码实践"></a>6. 代码实践</h2><p>现在已经有封装好的XGBoost实现了，只需安装一个<code>xgboost</code>库即可，使用的过程也非常简单，因为已经封装好了，所以内部结构对于程序员（<strong>调包侠</strong>）来说是完全透明的，我们只需要想<strong>使用决策树</strong>那样使用xgboost即可，即输入<strong>训练数据的特征</strong>已经对应的标签，然后就给你训练好了，非常的人性化~所以重点可能是在特征工程（提取出重要的特征）。当然xgboost也有许多可以调节的参数，具体可以查看相应文档，<a href="https://xgboost.readthedocs.io/en/latest/python/index.html" target="_blank" rel="noopener">点我就可以了</a></p>
+<p>下面是相应代码，使用的是Pima印第安人数据集，包含8个特征，让你预测患者是否有糖尿病（就是一个二分类）。</p>
+<p>代码的思路非常简单，就是将8个特征和相应的标签丢进去，然后就跑出来训练后的模型，然后就能进行预测了，太方便了吧~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> xgboost</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="comment"># load数据集</span></span><br><span class="line">dataset = numpy.loadtxt(<span class="string">'Pima.csv'</span>, delimiter=<span class="string">","</span>)</span><br><span class="line"><span class="comment"># 把 X Y 分开</span></span><br><span class="line">X = dataset[:,<span class="number">0</span>:<span class="number">8</span>]   <span class="comment"># 特征部分</span></span><br><span class="line">Y = dataset[:,<span class="number">8</span>]     <span class="comment"># 预测结果</span></span><br><span class="line"><span class="comment"># 现在我们分开训练集和测试集</span></span><br><span class="line">seed = <span class="number">7</span></span><br><span class="line">test_size = <span class="number">0.33</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)</span><br><span class="line">print(X.shape, Y.shape, X_train.shape, X_test.shape)</span><br><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line">model = xgboost.XGBClassifier()</span><br><span class="line"><span class="comment"># 这⾥里里参数的设置可以⻅见：https://xgboost.readthedocs.io/en/latest/python/index.html</span></span><br><span class="line">model.fit(X_train, y_train)</span><br><span class="line"><span class="comment"># 做预测</span></span><br><span class="line">y_pred = model.predict(X_test)</span><br><span class="line">predictions = [round(value) <span class="keyword">for</span> value <span class="keyword">in</span> y_pred]</span><br><span class="line"><span class="comment"># 显示准确率</span></span><br><span class="line">accuracy = accuracy_score(y_test, predictions)</span><br><span class="line">print(<span class="string">"Accuracy: %.2f%%"</span> % (accuracy * <span class="number">100.0</span>))</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(768, 8) (768,) (514, 8) (254, 8)</span><br><span class="line">Accuracy: 74.02%</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -443,11 +461,11 @@
       
         <div class="post-tags">
           
-            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
             <a href="/panfengblog/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
           
-            <a href="/panfengblog/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
+            <a href="/panfengblog/tags/xgboost/" rel="tag"><i class="fa fa-tag"></i> xgboost</a>
+          
+            <a href="/panfengblog/tags/boosting/" rel="tag"><i class="fa fa-tag"></i> boosting</a>
           
         </div>
       
@@ -460,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/panfengblog/2020/07/19/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%8F%AA%E8%BF%9B%E8%A1%8C%E9%83%A8%E5%88%86%E5%B1%82%E7%9A%84%E8%AE%AD%E7%BB%83/" rel="next" title="迁移学习只进行部分层的训练">
-                <i class="fa fa-chevron-left"></i> 迁移学习只进行部分层的训练
+              <a href="/panfengblog/2020/07/25/%E7%AE%B1%E7%BA%BF%E5%9B%BE/" rel="next" title="箱线图">
+                <i class="fa fa-chevron-left"></i> 箱线图
               </a>
             
           </div>
@@ -469,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/panfengblog/2020/07/24/Pandas%E5%AD%A6%E4%B9%A0/" rel="prev" title="Pandas学习">
-                Pandas学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,8 +517,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/07/20/Faster-RCNN详解/"
-           data-title="Faster-RCNN详解" data-url="http://coolguo.gitee.io/2020/07/20/Faster-RCNN%E8%AF%A6%E8%A7%A3/">
+      <div class="ds-thread" data-thread-key="2020/07/26/XGBoost原理分析/"
+           data-title="XGBoost原理分析" data-url="http://coolguo.gitee.io/2020/07/26/XGBoost%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
       </div>
     </div>
 
@@ -631,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Faster-RCNN详解"><span class="nav-number">1.</span> <span class="nav-text">Faster-RCNN详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-向前传播过程"><span class="nav-number">1.1.</span> <span class="nav-text">1. 向前传播过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-CNN提取特征"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 CNN提取特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-RPN网络"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 RPN网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-生成anchor-base"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 生成anchor base</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-获得所有anchor-box"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 获得所有anchor box</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-边框回归获得ROIs"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.2.3 边框回归获得ROIs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-筛选去掉一部分ROIs"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">1.2.4 筛选去掉一部分ROIs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-ROIPooling"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 ROIPooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-获得最后的预测结果"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 获得最后的预测结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-反向传播过程"><span class="nav-number">1.2.</span> <span class="nav-text">2. 反向传播过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-RPN网络的训练"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 RPN网络的训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-最后预测网络的训练"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 最后预测网络的训练</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#XGBoost原理分析与快速实践"><span class="nav-number">1.</span> <span class="nav-text">XGBoost原理分析与快速实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Boosting树模型"><span class="nav-number">1.1.</span> <span class="nav-text">1. Boosting树模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-目标函数"><span class="nav-number">1.2.</span> <span class="nav-text">2. 目标函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-求解过程"><span class="nav-number">1.3.</span> <span class="nav-text">3. 求解过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-寻找最佳分裂点"><span class="nav-number">1.4.</span> <span class="nav-text">4. 寻找最佳分裂点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-直观实践"><span class="nav-number">1.5.</span> <span class="nav-text">5. 直观实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-代码实践"><span class="nav-number">1.6.</span> <span class="nav-text">6. 代码实践</span></a></li></ol></li></ol></div>
             
 
           </div>
