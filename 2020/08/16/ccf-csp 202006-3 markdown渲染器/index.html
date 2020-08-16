@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法," />
+  <meta name="keywords" content="C++,算法,csp,字符串," />
 
 
 
@@ -80,21 +80,24 @@
 
 
 
-<meta name="description" content="C&#x2F;C++输入输出加速(算法考试重要!)加上这么一句： 1ios::sync_with_stdio(false);">
+<meta name="description" content="ccf-csp 202006-3 markdown渲染器(c&#x2F;c++)题目就不过多描述了，就是针对markdown的两种格式段落和列表进行行数的计数。这个问题可能处理起来比较麻烦，接下来简要介绍一下我的做法吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++输入输出加速(算法考试重要!)">
-<meta property="og:url" content="http://coolguo.gitee.io/2020/08/14/CC++%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8A%A0%E9%80%9F(%E7%AE%97%E6%B3%95%E8%80%83%E8%AF%95%E9%87%8D%E8%A6%81!)/index.html">
+<meta property="og:title" content="ccf-csp 202006-3 markdown渲染器(c&#x2F;c++)">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="C&#x2F;C++输入输出加速(算法考试重要!)加上这么一句： 1ios::sync_with_stdio(false);">
+<meta property="og:description" content="ccf-csp 202006-3 markdown渲染器(c&#x2F;c++)题目就不过多描述了，就是针对markdown的两种格式段落和列表进行行数的计数。这个问题可能处理起来比较麻烦，接下来简要介绍一下我的做法吧。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s1.ax1x.com/2020/08/14/dPdLLt.png">
-<meta property="article:published_time" content="2020-08-14T10:24:14.672Z">
-<meta property="article:modified_time" content="2020-08-14T10:25:02.858Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/16/dErxnU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/08/16/dEsmHe.png">
+<meta property="article:published_time" content="2020-08-16T07:42:11.872Z">
+<meta property="article:modified_time" content="2020-08-16T07:42:54.823Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="csp">
+<meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/14/dPdLLt.png">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/08/16/dErxnU.png">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/2020/08/14/CC++输入输出加速(算法考试重要!)/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/08/16/ccf-csp 202006-3 markdown渲染器/"/>
 
 
 
 
 
-  <title>C/C++输入输出加速(算法考试重要!) | panfengblog</title>
+  <title>ccf-csp 202006-3 markdown渲染器(c/c++) | panfengblog</title>
   
 
 
@@ -247,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/08/14/CC++%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8A%A0%E9%80%9F(%E7%AE%97%E6%B3%95%E8%80%83%E8%AF%95%E9%87%8D%E8%A6%81!)/">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -264,7 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C/C++输入输出加速(算法考试重要!)</h1>
+          <h1 class="post-title" itemprop="name headline">ccf-csp 202006-3 markdown渲染器(c/c++)</h1>
         
 
         <div class="post-meta">
@@ -276,8 +279,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-14T18:24:14+08:00">
-                2020-08-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-16T15:42:11+08:00">
+                2020-08-16
               </time>
             
 
@@ -317,8 +320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/panfengblog/2020/08/14/CC++%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8A%A0%E9%80%9F(%E7%AE%97%E6%B3%95%E8%80%83%E8%AF%95%E9%87%8D%E8%A6%81!)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/08/14/CC++输入输出加速(算法考试重要!)/" itemprop="commentCount"></span>
+                <a href="/panfengblog/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/08/16/ccf-csp 202006-3 markdown渲染器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -340,7 +343,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  162
+                  594
                 </span>
               
 
@@ -365,12 +368,14 @@
       
 
       
-        <h1 id="C-C-输入输出加速-算法考试重要"><a href="#C-C-输入输出加速-算法考试重要" class="headerlink" title="C/C++输入输出加速(算法考试重要!)"></a>C/C++输入输出加速(算法考试重要!)</h1><p>加上这么一句：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ios::sync_with_stdio(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+        <h1 id="ccf-csp-202006-3-markdown渲染器-c-c"><a href="#ccf-csp-202006-3-markdown渲染器-c-c" class="headerlink" title="ccf-csp 202006-3 markdown渲染器(c/c++)"></a>ccf-csp 202006-3 markdown渲染器(c/c++)</h1><p>题目就不过多描述了，就是针对markdown的两种格式<code>段落</code>和<code>列表</code>进行行数的计数。这个问题可能处理起来比较麻烦，接下来简要介绍一下我的做法吧。</p>
 <a id="more"></a>
-<p>有时候在做一些算法题考试中容易出现超时的情况，如果该算法题有较多的输入输出，问题很有可能就是出在了cin和cout上，因为在C++中，cin和cout要与stdio同步，中间有一个缓冲，所以cin和cout输入输出效率不如scanf和printf（这俩写起来太麻烦了），但是加上了上面这句后，就取消了同步，cin和cout的效率就能提升不少（有的情况下比scanf和printf还要快）</p>
-<p>下面就是一个优化的情况：</p>
-<p><img src="https://s1.ax1x.com/2020/08/14/dPdLLt.png" alt="dPdLLt.png"></p>
+<p>我定义了几个状态，下面就是几个状态的转化关系，在状态转化的过程中就进行计数。</p>
+<p><img src="https://s1.ax1x.com/2020/08/16/dErxnU.png" alt="dErxnU.png"></p>
+<p>下面是代码部分：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eraseSpace</span><span class="params">(<span class="built_in">string</span> &amp;s)</span> </span>&#123;	<span class="comment">// 去除空格 </span></span><br><span class="line">	s.erase(<span class="number">0</span>, s.find_first_not_of(<span class="string">" "</span>));</span><br><span class="line">	s.erase(s.find_last_not_of(<span class="string">" "</span>)+<span class="number">1</span>, s.<span class="built_in">size</span>());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lineCount</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> <span class="built_in">width</span>)</span></span>&#123;		<span class="comment">// 计算行数 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="built_in">width</span>; i &lt; s.<span class="built_in">size</span>(); i+=<span class="built_in">width</span>)&#123;</span><br><span class="line">		<span class="keyword">while</span>(s[i] == <span class="string">' '</span>)&#123;</span><br><span class="line">			s.replace(i, <span class="number">1</span>, <span class="string">""</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">int</span>(s.<span class="built_in">size</span>() - <span class="number">1</span>)/<span class="built_in">width</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">string</span> temp, str;	<span class="comment">// 分别用于存放每次输入的字符串和最终的字符串 </span></span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">width</span>, status = <span class="number">0</span>, count = <span class="number">-1</span>, lastStatus = <span class="number">0</span>;	<span class="comment">// 显示宽度，当前状态，记录行数，上一个状态 </span></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;<span class="built_in">width</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">cin</span>.eof())&#123;</span><br><span class="line">		getline(<span class="built_in">cin</span>, temp);</span><br><span class="line">		lastStatus = status;	<span class="comment">// 记录上一个状态 </span></span><br><span class="line">		<span class="keyword">if</span>(temp.<span class="built_in">size</span>() &gt;= <span class="number">2</span> &amp;&amp; temp[<span class="number">0</span>] == <span class="string">'*'</span> &amp;&amp; temp[<span class="number">1</span>] == <span class="string">' '</span>)&#123;	<span class="comment">// 状态1：列表第一行 </span></span><br><span class="line">			status = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(temp.find_last_not_of(<span class="string">" "</span>) == <span class="number">-1</span>)&#123;		<span class="comment">// 状态0：空行 </span></span><br><span class="line">			status = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((status == <span class="number">1</span> || status == <span class="number">2</span>) &amp;&amp; temp.<span class="built_in">size</span>() &gt;= <span class="number">2</span> &amp;&amp; temp[<span class="number">0</span>] == <span class="string">' '</span> &amp;&amp; temp[<span class="number">1</span>] == <span class="string">' '</span>)&#123;		<span class="comment">// 状态2：列表后续行 </span></span><br><span class="line">			status = <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;	<span class="comment">// 状态4：段落 </span></span><br><span class="line">			status = <span class="number">3</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>((status != <span class="number">0</span> &amp;&amp; lastStatus == <span class="number">0</span>) || ((lastStatus == <span class="number">1</span>||lastStatus == <span class="number">2</span>) &amp;&amp; status == <span class="number">3</span>) || (lastStatus == <span class="number">3</span> &amp;&amp; status == <span class="number">1</span>))&#123;</span><br><span class="line">			count ++;	<span class="comment">// 出现空行时，或者状态在段落和列表之前切换时，要加一行 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(lastStatus == <span class="number">3</span> &amp;&amp; status != lastStatus)&#123;</span><br><span class="line">			count += lineCount(str, <span class="built_in">width</span>);		<span class="comment">// 完成整个段落时进行计数 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((lastStatus == <span class="number">1</span> || lastStatus == <span class="number">2</span>) &amp;&amp; status != <span class="number">2</span>)&#123;</span><br><span class="line">			count += lineCount(str, <span class="built_in">width</span><span class="number">-3</span>);	<span class="comment">// 完成整个列表时计数时进行计数 </span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">switch</span>(status)&#123;		<span class="comment">// 以下是不同状态时对字符串的处理 </span></span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:&#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:&#123;</span><br><span class="line">				str = <span class="string">""</span>;</span><br><span class="line">				temp.erase(<span class="number">0</span>,<span class="number">2</span>);</span><br><span class="line">				eraseSpace(temp);</span><br><span class="line">				str = temp;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:&#123;</span><br><span class="line">				temp.erase(<span class="number">0</span>,<span class="number">2</span>);</span><br><span class="line">				eraseSpace(temp);</span><br><span class="line">				<span class="keyword">if</span>(str.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">					temp = <span class="string">" "</span> + temp;</span><br><span class="line">				&#125;</span><br><span class="line">				str = str + temp;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:&#123;</span><br><span class="line">				<span class="keyword">if</span> (lastStatus != <span class="number">3</span>)&#123;</span><br><span class="line">					str = <span class="string">""</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				eraseSpace(temp);</span><br><span class="line">				<span class="keyword">if</span>(str.<span class="built_in">size</span>() != <span class="number">0</span>)&#123;</span><br><span class="line">					temp = <span class="string">" "</span> + temp;</span><br><span class="line">				&#125;</span><br><span class="line">				str += temp;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">default</span>:&#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 完成整个输入过程后，对最后一次的字符进行计数 </span></span><br><span class="line">	<span class="keyword">if</span>(status == <span class="number">1</span> || status == <span class="number">2</span>)&#123;</span><br><span class="line">		count += lineCount(str, <span class="built_in">width</span><span class="number">-3</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(status == <span class="number">3</span>)&#123;</span><br><span class="line">		count += lineCount(str, <span class="built_in">width</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;count&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上传结果：</p>
+<p><img src="https://s1.ax1x.com/2020/08/16/dEsmHe.png" alt="dEsmHe.png"></p>
 
       
     </div>
@@ -392,6 +397,10 @@
           
             <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
+            <a href="/panfengblog/tags/csp/" rel="tag"><i class="fa fa-tag"></i> csp</a>
+          
+            <a href="/panfengblog/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+          
         </div>
       
 
@@ -403,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/panfengblog/2020/08/13/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%B8%80)----01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="next" title="背包九讲(一)----01背包问题">
-                <i class="fa fa-chevron-left"></i> 背包九讲(一)----01背包问题
+              <a href="/panfengblog/2020/08/14/CC++%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8A%A0%E9%80%9F(%E7%AE%97%E6%B3%95%E8%80%83%E8%AF%95%E9%87%8D%E8%A6%81!)/" rel="next" title="C/C++输入输出加速(算法考试重要!)">
+                <i class="fa fa-chevron-left"></i> C/C++输入输出加速(算法考试重要!)
               </a>
             
           </div>
@@ -412,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/panfengblog/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/" rel="prev" title="ccf-csp 202006-3 markdown渲染器(c/c++)">
-                ccf-csp 202006-3 markdown渲染器(c/c++) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,8 +451,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/08/14/CC++输入输出加速(算法考试重要!)/"
-           data-title="C/C++输入输出加速(算法考试重要!)" data-url="http://coolguo.gitee.io/2020/08/14/CC++%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8A%A0%E9%80%9F(%E7%AE%97%E6%B3%95%E8%80%83%E8%AF%95%E9%87%8D%E8%A6%81!)/">
+      <div class="ds-thread" data-thread-key="2020/08/16/ccf-csp 202006-3 markdown渲染器/"
+           data-title="ccf-csp 202006-3 markdown渲染器(c/c++)" data-url="http://coolguo.gitee.io/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/">
       </div>
     </div>
 
@@ -574,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-输入输出加速-算法考试重要"><span class="nav-number">1.</span> <span class="nav-text">C&#x2F;C++输入输出加速(算法考试重要!)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ccf-csp-202006-3-markdown渲染器-c-c"><span class="nav-number">1.</span> <span class="nav-text">ccf-csp 202006-3 markdown渲染器(c&#x2F;c++)</span></a></li></ol></div>
             
 
           </div>
