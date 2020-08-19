@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="C++,算法," />
 
 
 
@@ -80,17 +80,18 @@
 
 
 
-<meta name="description" content="python修饰器什么是修饰器？修饰器是一个函数，接收的唯一参数也是一个函数或方法，返回一个再输入函数基础上加以修饰的新的函数或方法（就能附带一些额外的功能）">
+<meta name="description" content="【转】序列合并(洛谷P1631)序列合并题目描述 有两个长度都是N的序列A和B，在A和B中各取一个数相加可以得到N^2 个和， 求这N^2 个和中最小的N个。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python修饰器">
-<meta property="og:url" content="http://coolguo.gitee.io/2020/06/29/python%E4%BF%AE%E9%A5%B0%E5%99%A8/index.html">
+<meta property="og:title" content="TopK问题(最大&#x2F;小的k个数)">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/08/19/%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6(%E6%B4%9B%E8%B0%B7P1631)/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="python修饰器什么是修饰器？修饰器是一个函数，接收的唯一参数也是一个函数或方法，返回一个再输入函数基础上加以修饰的新的函数或方法（就能附带一些额外的功能）">
+<meta property="og:description" content="【转】序列合并(洛谷P1631)序列合并题目描述 有两个长度都是N的序列A和B，在A和B中各取一个数相加可以得到N^2 个和， 求这N^2 个和中最小的N个。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-29T09:47:33.812Z">
-<meta property="article:modified_time" content="2020-07-03T11:26:15.643Z">
+<meta property="article:published_time" content="2020-08-19T14:39:37.777Z">
+<meta property="article:modified_time" content="2020-08-19T14:40:07.401Z">
 <meta property="article:author" content="panfeng&#39;s blog">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://coolguo.gitee.io/2020/06/29/python修饰器/"/>
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/08/19/序列合并(洛谷P1631)/"/>
 
 
 
 
 
-  <title>python修饰器 | panfengblog</title>
+  <title>TopK问题(最大/小的k个数) | panfengblog</title>
   
 
 
@@ -244,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/06/29/python%E4%BF%AE%E9%A5%B0%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/08/19/%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6(%E6%B4%9B%E8%B0%B7P1631)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -261,7 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python修饰器</h1>
+          <h1 class="post-title" itemprop="name headline">TopK问题(最大/小的k个数)</h1>
         
 
         <div class="post-meta">
@@ -273,8 +274,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-29T17:47:33+08:00">
-                2020-06-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-19T22:39:37+08:00">
+                2020-08-19
               </time>
             
 
@@ -296,8 +297,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/panfengblog/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/panfengblog/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -314,8 +315,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/panfengblog/2020/06/29/python%E4%BF%AE%E9%A5%B0%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/06/29/python修饰器/" itemprop="commentCount"></span>
+                <a href="/panfengblog/2020/08/19/%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6(%E6%B4%9B%E8%B0%B7P1631)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/08/19/序列合并(洛谷P1631)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -337,7 +338,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  576
+                  414
                 </span>
               
 
@@ -362,26 +363,21 @@
       
 
       
-        <h1 id="python修饰器"><a href="#python修饰器" class="headerlink" title="python修饰器"></a>python修饰器</h1><h2 id="什么是修饰器？"><a href="#什么是修饰器？" class="headerlink" title="什么是修饰器？"></a>什么是修饰器？</h2><p>修饰器是一个函数，接收的唯一参数也是一个函数或方法，返回一个再输入函数基础上加以修饰的新的函数或方法（就能附带一些额外的功能）</p>
+        <h1 id="【转】序列合并-洛谷P1631"><a href="#【转】序列合并-洛谷P1631" class="headerlink" title="【转】序列合并(洛谷P1631)"></a>【转】序列合并(洛谷P1631)</h1><h2 id="序列合并"><a href="#序列合并" class="headerlink" title="序列合并"></a>序列合并</h2><p><strong>题目描述</strong></p>
+<p>有两个长度都是N的序列A和B，在A和B中各取一个数相加可以得到N^2 个和， 求这N^2 个和中最小的N个。</p>
 <a id="more"></a>
-<h2 id="了解一个简单的栗子"><a href="#了解一个简单的栗子" class="headerlink" title="了解一个简单的栗子"></a>了解一个简单的栗子</h2><p>以下就是用代码实现修饰器的功能</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wrapper_func</span><span class="params">(func)</span>:</span><span class="comment">#修饰函数，传入参数为一个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"我是一个修饰"</span>)	<span class="comment">#修饰</span></span><br><span class="line">        func()<span class="comment">#调用函数</span></span><br><span class="line">        print(<span class="string">"我也是一个修饰"</span>)	<span class="comment">#修饰</span></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span><span class="comment">#待传入的函数</span></span><br><span class="line">    print(<span class="string">"我是hello函数！"</span>)</span><br><span class="line">    </span><br><span class="line">test = wrapper_func(hello)<span class="comment">#修饰后的结果</span></span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我是一个修饰</span><br><span class="line">我是hello函数！</span><br><span class="line">我也是一个修饰</span><br></pre></td></tr></table></figure>
-<p>上述代码加上语法糖，代码可以更加简洁：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wrapper_func</span><span class="params">(func)</span>:</span><span class="comment">#修饰函数，传入参数为一个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"我是一个修饰"</span>)<span class="comment">#修饰</span></span><br><span class="line">        func()<span class="comment">#调用函数</span></span><br><span class="line">        print(<span class="string">"我也是一个修饰"</span>)<span class="comment">#修饰</span></span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@wrapper_func	#修饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span><span class="comment">#待传入的函数</span></span><br><span class="line">    print(<span class="string">"我是hello函数！"</span>)</span><br><span class="line">hello()</span><br></pre></td></tr></table></figure>
-<p>输出结果同上</p>
-<h2 id="修饰器的执行顺序"><a href="#修饰器的执行顺序" class="headerlink" title="修饰器的执行顺序"></a>修饰器的执行顺序</h2><p>一个有趣的“汉堡”</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bread</span><span class="params">(func)</span> :</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span> :</span>  </span><br><span class="line">        print(<span class="string">"&lt;/'''       '''\&gt;"</span>)</span><br><span class="line">        func()  </span><br><span class="line">        print(<span class="string">"&lt;\______/&gt;"</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper  </span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ingredients</span><span class="params">(func)</span> :</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span> :</span>  </span><br><span class="line">        print(<span class="string">"#tomatoes#"</span>)</span><br><span class="line">        func()  </span><br><span class="line">        print(<span class="string">"~salad~"</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper  </span><br><span class="line"></span><br><span class="line"><span class="meta">@bread</span></span><br><span class="line"><span class="meta">@ingredients	#等价于bread(ingredients(sandwich))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sandwich</span><span class="params">(food=<span class="string">"--ham--"</span>)</span> :</span>  </span><br><span class="line">    print(food)</span><br><span class="line">sandwich()</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;&#39;&#39;&#39;       &#39;&#39;&#39;\&gt;</span><br><span class="line">#tomatoes#</span><br><span class="line">--ham--</span><br><span class="line">~salad~</span><br><span class="line">&lt;\______&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="万能的修饰器"><a href="#万能的修饰器" class="headerlink" title="万能的修饰器"></a>万能的修饰器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">w_test</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        ret = func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@w_test</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'test called'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@w_test</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'test1 called'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'python'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@w_test</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">(a)</span>:</span></span><br><span class="line">    print(<span class="string">'test2 called and value is %d '</span> % a)</span><br><span class="line"></span><br><span class="line">test()</span><br><span class="line">test1()</span><br><span class="line">test2(<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test called</span><br><span class="line">test1 called</span><br><span class="line">test2 called and value is 9</span><br></pre></td></tr></table></figure>
-<h2 id="修饰器的一些用途"><a href="#修饰器的一些用途" class="headerlink" title="修饰器的一些用途"></a>修饰器的一些用途</h2><p>装饰器是一个很著名的设计模式，经常被用于有切面需求的场景，较为经典的有插入日志、性能测试、事务处理等。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量函数中与函数功能本身无关的雷同代码并继续重用。概括的讲，装饰器的作用就是为已经存在的对象添加额外的功能。</p>
-<p>比如用于计算函数运行实践的修饰器：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timeit</span><span class="params">(func)</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">()</span>:</span>  </span><br><span class="line">        start = time.clock()  </span><br><span class="line">        func()  </span><br><span class="line">        end =time.clock()  </span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Time Elapsed:'</span>, end - start  </span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
-
+<p><strong>输入格式</strong></p>
+<p>第一行一个正整数N；</p>
+<p>第二行N个整数Ai, 满足Ai&lt;Ai+1 ，且Ai&lt;10^9;</p>
+<p>第三行N个整数Bi, 满足Bi&lt;Bi+1 ，且Bi&lt;10^9;</p>
+<p><strong>【数据规模】</strong></p>
+<p>对于50%的数据中，满足1&lt;=N&lt;=1000；</p>
+<p>对于100%的数据中，满足1&lt;=N&lt;=100000。</p>
+<hr>
+<p>这道题的解法很难想到；首先把A序列和B序列都排好序（从小到大），然后把b[1]+a[i]（ i 从1到n）全部入队，还要把i入队（就是a的坐标也入队），显然要用到结构体，STL还有个更加方便的东西pair，作用相当于结构体；然后出n次队，每次出来的数就是最小的和，出来的同时，在把出队那个数的下标后面那一位进队；</p>
+<p><a href="https://www.luogu.org/problem/P2085" target="_blank" rel="noopener"><strong>双倍经验</strong></a></p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100100</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">100100</span>];</span><br><span class="line">priority_queue&lt; pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;,<span class="built_in">vector</span>&lt; pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;,greater&lt; pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; &gt;qu;</span><br><span class="line"><span class="keyword">int</span> to[<span class="number">100100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;b[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) to[i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) qu.push(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(a[i]+b[<span class="number">1</span>],i));</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>,qu.top().first);</span><br><span class="line">		<span class="keyword">int</span> s=qu.top().second;</span><br><span class="line">		qu.pop();</span><br><span class="line">		qu.push(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(a[s]+b[++to[s]],s));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -398,7 +394,9 @@
       
         <div class="post-tags">
           
-            <a href="/panfengblog/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            <a href="/panfengblog/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -411,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/panfengblog/2020/06/28/C++%20STL%E5%AE%B9%E5%99%A8%E8%AF%A6%E7%BB%86%E7%AC%94%E8%AE%B0/" rel="next" title="C++ STL容器详细笔记">
-                <i class="fa fa-chevron-left"></i> C++ STL容器详细笔记
+              <a href="/panfengblog/2020/08/18/TopK%E9%97%AE%E9%A2%98(%E6%9C%80%E5%A4%A7%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0)/" rel="next" title="TopK问题(最大/小的k个数)">
+                <i class="fa fa-chevron-left"></i> TopK问题(最大/小的k个数)
               </a>
             
           </div>
@@ -420,10 +418,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/panfengblog/2020/07/04/Conda%E5%88%9B%E5%BB%BApython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="prev" title="Conda创建python虚拟环境">
-                Conda创建python虚拟环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,8 +448,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/06/29/python修饰器/"
-           data-title="python修饰器" data-url="http://coolguo.gitee.io/2020/06/29/python%E4%BF%AE%E9%A5%B0%E5%99%A8/">
+      <div class="ds-thread" data-thread-key="2020/08/19/序列合并(洛谷P1631)/"
+           data-title="TopK问题(最大/小的k个数)" data-url="http://coolguo.gitee.io/2020/08/19/%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6(%E6%B4%9B%E8%B0%B7P1631)/">
       </div>
     </div>
 
@@ -582,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python修饰器"><span class="nav-number">1.</span> <span class="nav-text">python修饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是修饰器？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是修饰器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解一个简单的栗子"><span class="nav-number">1.2.</span> <span class="nav-text">了解一个简单的栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修饰器的执行顺序"><span class="nav-number">1.3.</span> <span class="nav-text">修饰器的执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万能的修饰器"><span class="nav-number">1.4.</span> <span class="nav-text">万能的修饰器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修饰器的一些用途"><span class="nav-number">1.5.</span> <span class="nav-text">修饰器的一些用途</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【转】序列合并-洛谷P1631"><span class="nav-number">1.</span> <span class="nav-text">【转】序列合并(洛谷P1631)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#序列合并"><span class="nav-number">1.1.</span> <span class="nav-text">序列合并</span></a></li></ol></li></ol></div>
             
 
           </div>
