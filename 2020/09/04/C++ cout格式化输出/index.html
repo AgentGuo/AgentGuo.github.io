@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/panfengblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/panfengblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/panfengblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/panfengblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/panfengblog/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/panfengblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/panfengblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="【转】C++ cout格式化输出转自这里 有时希望按照一定的格式进行输出，如按十六进制输出整数，输出浮点数时保留小数点后面两位，输出整数时按 6 个数字的宽度输出，宽度不足时左边补 0，等等。C语言中的 printf() 函数使用以%开头的格式控制符，例如 %X、%.2f、%6d 等；C++ 中的 cout 对象则使用流操作算子（你也可以叫做格式控制符）或者成员函数进行控制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】C++ cout格式化输出">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/09/04/C++%20cout%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="【转】C++ cout格式化输出转自这里 有时希望按照一定的格式进行输出，如按十六进制输出整数，输出浮点数时保留小数点后面两位，输出整数时按 6 个数字的宽度输出，宽度不足时左边补 0，等等。C语言中的 printf() 函数使用以%开头的格式控制符，例如 %X、%.2f、%6d 等；C++ 中的 cout 对象则使用流操作算子（你也可以叫做格式控制符）或者成员函数进行控制。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-04T12:51:38.960Z">
+<meta property="article:modified_time" content="2020-09-04T12:52:30.013Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/panfengblog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/09/04/C++ cout格式化输出/"/>
+
+
+
+
+
+  <title>【转】C++ cout格式化输出 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/panfengblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/panfengblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/panfengblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/panfengblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/09/04/C++%20cout%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【转】C++ cout格式化输出</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-04T20:51:38+08:00">
+                2020-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/panfengblog/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/panfengblog/2020/09/04/C++%20cout%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/09/04/C++ cout格式化输出/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="【转】C-cout格式化输出"><a href="#【转】C-cout格式化输出" class="headerlink" title="【转】C++ cout格式化输出"></a>【转】C++ cout格式化输出</h1><p>转自<a href="http://c.biancheng.net/view/275.html" target="_blank" rel="noopener">这里</a></p>
+<p>有时希望按照一定的格式进行输出，如按十六进制输出整数，输出浮点数时保留小数点后面两位，输出整数时按 6 个数字的宽度输出，宽度不足时左边补 0，等等。C语言中的 printf() 函数使用以<code>%</code>开头的格式控制符，例如 %X、%.2f、%6d 等；<a href="http://c.biancheng.net/cplus/" target="_blank" rel="noopener">C++</a> 中的 cout 对象则使用流操作算子（你也可以叫做格式控制符）或者成员函数进行控制。</p>
+<a id="more"></a>
+<h2 id="使用流操作算子"><a href="#使用流操作算子" class="headerlink" title="使用流操作算子"></a>使用流操作算子</h2><p>C++ 中常用的输出流操纵算子如表 1 所示，它们都是在头文件 iomanip 中定义的；要使用这些流操纵算子，必须包含该头文件。</p>
+<blockquote>
+<p>注意：“流操纵算子”一栏中的星号<code>*</code>不是算子的一部分，星号表示在没有使用任何算子的情况下，就等效于使用了该算子。例如，在默认情况下，整数是用十进制形式输出的，等效于使用了 dec 算子。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>流操纵算子</th>
+<th>作  用</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*dec</td>
+<td>以十进制形式输出整数</td>
+<td>常用</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>以十六进制形式输出整数</td>
+<td></td>
+</tr>
+<tr>
+<td>oct</td>
+<td>以八进制形式输出整数</td>
+<td></td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>以普通小数形式输出浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>scientific</td>
+<td>以科学计数法形式输出浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>left</td>
+<td>左对齐，即在宽度不足时将填充字符添加到右边</td>
+<td></td>
+</tr>
+<tr>
+<td>*right</td>
+<td>右对齐，即在宽度不足时将填充字符添加到左边</td>
+<td></td>
+</tr>
+<tr>
+<td>setbase(b)</td>
+<td>设置输出整数时的进制，b=8、10 或 16</td>
+<td></td>
+</tr>
+<tr>
+<td>setw(w)</td>
+<td>指定输出宽度为 w 个字符，或输人字符串时读入 w 个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>setfill(c)</td>
+<td>在指定输出宽度的情况下，输出的宽度不足时用字符 c 填充（默认情况是用空格填充）</td>
+<td></td>
+</tr>
+<tr>
+<td>setprecision(n)</td>
+<td>设置输出浮点数的精度为 n。  在使用非 fixed 且非 scientific 方式输出的情况下，n 即为有效数字最多的位数，如果有效数字位数超过 n，则小数部分四舍五人，或自动变为科学计 数法输出并保留一共 n 位有效数字。  在使用 fixed 方式和 scientific 方式输出的情况下，n 是小数点后面应保留的位数。</td>
+<td></td>
+</tr>
+<tr>
+<td>setiosflags(flag)</td>
+<td>将某个输出格式标志置为 1</td>
+<td></td>
+</tr>
+<tr>
+<td>resetiosflags(flag)</td>
+<td>将某个输出格式标志置为 0</td>
+<td></td>
+</tr>
+<tr>
+<td>boolapha</td>
+<td>把 true 和 false 输出为字符串</td>
+<td>不常用</td>
+</tr>
+<tr>
+<td>*noboolalpha</td>
+<td>把 true 和 false 输出为 0、1</td>
+<td></td>
+</tr>
+<tr>
+<td>showbase</td>
+<td>输出表示数值的进制的前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowbase</td>
+<td>不输出表示数值的进制.的前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>showpoint</td>
+<td>总是输出小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowpoint</td>
+<td>只有当小数部分存在时才显示小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>showpos</td>
+<td>在非负数值中显示 +</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowpos</td>
+<td>在非负数值中不显示 +</td>
+<td></td>
+</tr>
+<tr>
+<td>*skipws</td>
+<td>输入时跳过空白字符</td>
+<td></td>
+</tr>
+<tr>
+<td>noskipws</td>
+<td>输入时不跳过空白字符</td>
+<td></td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>十六进制数中使用 A~E。若输出前缀，则前缀输出 0X，科学计数法中输出 E</td>
+<td></td>
+</tr>
+<tr>
+<td>*nouppercase</td>
+<td>十六进制数中使用 a~e。若输出前缀，则前缀输出 0x，科学计数法中输出 e。</td>
+<td></td>
+</tr>
+<tr>
+<td>internal</td>
+<td>数值的符号（正负号）在指定宽度内左对齐，数值右对 齐，中间由填充字符填充。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="流操作算子的使用方法"><a href="#流操作算子的使用方法" class="headerlink" title="流操作算子的使用方法"></a>流操作算子的使用方法</h4><p>使用这些算子的方法是将算子用 &lt;&lt; 和 cout 连用。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; hex &lt;&lt; <span class="number">12</span> &lt;&lt; <span class="string">","</span> &lt;&lt; <span class="number">24</span>;</span><br></pre></td></tr></table></figure>
+<p>这条语句的作用是指定以十六进制形式输出后面两个数，因此输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c, 18</span><br></pre></td></tr></table></figure>
+<h4 id="setiosflags-算子"><a href="#setiosflags-算子" class="headerlink" title="setiosflags() 算子"></a>setiosflags() 算子</h4><p>setiosflags() 算子实际上是一个库函数，它以一些标志作为参数，这些标志可以是在 iostream 头文件中定义的以下几种取值，它们的含义和同名算子一样。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标 志</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ios::left</td>
+<td>输出数据在本域宽范围内向左对齐</td>
+</tr>
+<tr>
+<td>ios::right</td>
+<td>输出数据在本域宽范围内向右对齐</td>
+</tr>
+<tr>
+<td>ios::internal</td>
+<td>数值的符号位在域宽内左对齐，数值右对齐，中间由填充字符填充</td>
+</tr>
+<tr>
+<td>ios::dec</td>
+<td>设置整数的基数为 10</td>
+</tr>
+<tr>
+<td>ios::oct</td>
+<td>设置整数的基数为 8</td>
+</tr>
+<tr>
+<td>ios::hex</td>
+<td>设置整数的基数为 16</td>
+</tr>
+<tr>
+<td>ios::showbase</td>
+<td>强制输出整数的基数（八进制数以 0 开头，十六进制数以 0x 打头）</td>
+</tr>
+<tr>
+<td>ios::showpoint</td>
+<td>强制输出浮点数的小点和尾数 0</td>
+</tr>
+<tr>
+<td>ios::uppercase</td>
+<td>在以科学记数法格式 E 和以十六进制输出字母时以大写表示</td>
+</tr>
+<tr>
+<td>ios::showpos</td>
+<td>对正数显示“+”号</td>
+</tr>
+<tr>
+<td>ios::scientific</td>
+<td>浮点数以科学记数法格式输出</td>
+</tr>
+<tr>
+<td>ios::fixed</td>
+<td>浮点数以定点格式（小数形式）输出</td>
+</tr>
+<tr>
+<td>ios::unitbuf</td>
+<td>每次输出之后刷新所有的流</td>
+</tr>
+<tr>
+<td>ios::stdio</td>
+<td>每次输出之后清除 stdout, stderr</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这些标志实际上都是仅有某比特位为 1，而其他比特位都为 0 的整数。</p>
+<p>多个标志可以用<code>|</code>运算符连接，表示同时设置。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; setiosflags(ios::scientific|ios::showpos) &lt;&lt; <span class="number">12.34</span>;</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+1.234000e+001</span><br></pre></td></tr></table></figure>
+<p>如果两个相互矛盾的标志同时被设置，如先设置 setiosflags(ios::fixed)，然后又设置 setiosflags(ios::scientific)，那么结果可能就是两个标志都不起作用。因此，在设置了某标志，又要设置其他与之矛盾的标志时，就应该用 resetiosflags 清除原先的标志。例如下面三条语句：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; setiosflags(ios::fixed) &lt;&lt; <span class="number">12.34</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; resetiosflags(ios::fixed) &lt;&lt; setiosflags(ios::scientific | ios::showpos) &lt;&lt; <span class="number">12.34</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; resetiosflags(ios::showpos) &lt;&lt; <span class="number">12.34</span> &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">//清除要输出正号的标志</span></span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">12.340000</span><br><span class="line">+1.234000e+001</span><br><span class="line">1.234000e+001</span><br></pre></td></tr></table></figure>
+<h4 id="综合示例"><a href="#综合示例" class="headerlink" title="综合示例"></a>综合示例</h4><p>关于流操纵算子的使用，来看下面的程序。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">141</span>;</span><br><span class="line">    <span class="comment">//1) 分别以十六进制、十进制、八进制先后输出 n</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"1)"</span> &lt;&lt; hex &lt;&lt; n &lt;&lt; <span class="string">" "</span> &lt;&lt; dec &lt;&lt; n &lt;&lt; <span class="string">" "</span> &lt;&lt; oct &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">double</span> x = <span class="number">1234567.89</span>, y = <span class="number">12.34567</span>;</span><br><span class="line">    <span class="comment">//2)保留5位有效数字</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"2)"</span> &lt;&lt; setprecision(<span class="number">5</span>) &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//3)保留小数点后面5位</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"3)"</span> &lt;&lt; fixed &lt;&lt; setprecision(<span class="number">5</span>) &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//4)科学计数法输出，且保留小数点后面5位</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"4)"</span> &lt;&lt; scientific &lt;&lt; setprecision(<span class="number">5</span>) &lt;&lt; x &lt;&lt; <span class="string">" "</span> &lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//5)非负数显示正号，输出宽度为12字符，宽度不足则用 * 填补</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"5)"</span> &lt;&lt; showpos &lt;&lt; fixed &lt;&lt; setw(<span class="number">12</span>) &lt;&lt; setfill(<span class="string">'*'</span>) &lt;&lt; <span class="number">12.1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//6)非负数不显示正号，输出宽度为12字符，宽度不足则右边用填充字符填充</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"6)"</span> &lt;&lt; noshowpos &lt;&lt; setw(<span class="number">12</span>) &lt;&lt; left &lt;&lt; <span class="number">12.1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//7)输出宽度为 12 字符，宽度不足则左边用填充字符填充</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"7)"</span> &lt;&lt; setw(<span class="number">12</span>) &lt;&lt; right &lt;&lt; <span class="number">12.1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//8)宽度不足时，负号和数值分列左右，中间用填充字符填充</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"8)"</span> &lt;&lt; setw(<span class="number">12</span>) &lt;&lt; internal &lt;&lt; <span class="number">-12.1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"9)"</span> &lt;&lt; <span class="number">12.1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序的输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1)8d 141 215</span><br><span class="line">2)1.2346e+06 12.346</span><br><span class="line">3)1234567.89000 12.34567</span><br><span class="line">4)1.23457e+06 1.23457e+01</span><br><span class="line">5)***+12.10000</span><br><span class="line">6)12.10000****</span><br><span class="line">7)****12.10000</span><br><span class="line">8)-***12.10000</span><br><span class="line">9)12.10000</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，setw() 算子所起的作用是一次性的，即只影响下一次输出。每次需要指定输出宽度时都要使用 setw()。因此可以看到，第 9) 行的输出因为没有使用 setw()，输出的宽度就不再是前面指定的 12 个字符。</p>
+<p>在读入字符串时，setw() 还能影响 cin 的行为。例如下面的程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s1, s2;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; setw(<span class="number">4</span>) &gt;&gt; s1 &gt;&gt; setw(<span class="number">3</span>) &gt;&gt; s2;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="string">","</span> &lt;&lt; s2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1234567890↙</span><br></pre></td></tr></table></figure>
+<p>程序的输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1234,567</span><br></pre></td></tr></table></figure>
+<p>说明<code>setw(4)</code>使得读入 s1 时，只读入 4 个字符，其后的<code>setw(3)</code>使得读入 s2 时只读入 3 个字符。</p>
+<p>setw() 用于 cin 时，同样只影响下一次的输入。</p>
+<p>思考题：setw() 究竟是如何实现的，以至于能和 cout 连用来指定输出宽度？自行查看编译器所带的 iomanip 头文件，然后写一个功能和 setw() 完全相同的 mysetw()。</p>
+<h2 id="调用cout的成员函数"><a href="#调用cout的成员函数" class="headerlink" title="调用cout的成员函数"></a>调用cout的成员函数</h2><p>ostream 类有一些成员函数，通过 cout 调用它们也能用于控制输出的格式，其作用和流操纵算子相同，如表 3 所示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>作用相同的流操纵算子</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>precision(n)</td>
+<td>setprecision(n)</td>
+<td>设置输出浮点数的精度为 n。</td>
+</tr>
+<tr>
+<td>width(w)</td>
+<td>setw(w)</td>
+<td>指定输出宽度为 w 个字符。</td>
+</tr>
+<tr>
+<td>fill(c)</td>
+<td>setfill (c)</td>
+<td>在指定输出宽度的情况下，输出的宽度不足时用字符 c 填充（默认情况是用空格填充）。</td>
+</tr>
+<tr>
+<td>setf(flag)</td>
+<td>setiosflags(flag)</td>
+<td>将某个输出格式标志置为 1。</td>
+</tr>
+<tr>
+<td>unsetf(flag)</td>
+<td>resetiosflags(flag)</td>
+<td>将某个输出格式标志置为 0。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>setf 和 unsetf 函数用到的<code>flag</code>，与 setiosflags 和 resetiosflags 用到的完全相同。</p>
+<p>这些成员函数的用法十分简单。例如下面的三行程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>.setf(ios::scientific);</span><br><span class="line"><span class="built_in">cout</span>.precision(<span class="number">8</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="number">12.23</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.22300000e+001</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/panfengblog/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/panfengblog/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/panfengblog/2020/08/21/CC++%E5%8F%96%E6%95%B4/" rel="next" title="C/C++取整">
+                <i class="fa fa-chevron-left"></i> C/C++取整
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/09/04/C++ cout格式化输出/"
+           data-title="【转】C++ cout格式化输出" data-url="http://coolguo.gitee.io/2020/09/04/C++%20cout%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/panfengblog/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/panfengblog/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/panfengblog/tags/index.html">
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【转】C-cout格式化输出"><span class="nav-number">1.</span> <span class="nav-text">【转】C++ cout格式化输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用流操作算子"><span class="nav-number">1.1.</span> <span class="nav-text">使用流操作算子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流操作算子的使用方法"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">流操作算子的使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setiosflags-算子"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">setiosflags() 算子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合示例"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">综合示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用cout的成员函数"><span class="nav-number">1.2.</span> <span class="nav-text">调用cout的成员函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共67.1k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/panfengblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/panfengblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/panfengblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
