@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/panfengblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/panfengblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/panfengblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/panfengblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/panfengblog/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/panfengblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/panfengblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编码字符集,字符编码,Unicode,UTF," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="编码字符集Unicode与字符编码UTF-8,UTF-16,UTF-32 这些名词应该大家都接触过很多次，但是更能没有真正去去了解研究过，今天查了查资料，大概是弄明白了这几个东西的关系  主要参考资料：资料1，资料2  首先我们要明白三个概念：字符集，代码点，编码字符集，字符编码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符集Unicode与字符编码UTF-8,UTF-16,UTF-32">
+<meta property="og:url" content="http://coolguo.gitee.io/2020/09/30/%E5%AD%97%E7%AC%A6%E9%9B%86Unicode%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81UTF-8,UTF-16,UTF-32/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="编码字符集Unicode与字符编码UTF-8,UTF-16,UTF-32 这些名词应该大家都接触过很多次，但是更能没有真正去去了解研究过，今天查了查资料，大概是弄明白了这几个东西的关系  主要参考资料：资料1，资料2  首先我们要明白三个概念：字符集，代码点，编码字符集，字符编码">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-30T02:37:42.836Z">
+<meta property="article:modified_time" content="2020-09-30T02:39:29.344Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="编码字符集">
+<meta property="article:tag" content="字符编码">
+<meta property="article:tag" content="Unicode">
+<meta property="article:tag" content="UTF">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/panfengblog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://coolguo.gitee.io/2020/09/30/字符集Unicode与字符编码UTF-8,UTF-16,UTF-32/"/>
+
+
+
+
+
+  <title>字符集Unicode与字符编码UTF-8,UTF-16,UTF-32 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/panfengblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/panfengblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/panfengblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/panfengblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://coolguo.gitee.io/panfengblog/2020/09/30/%E5%AD%97%E7%AC%A6%E9%9B%86Unicode%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81UTF-8,UTF-16,UTF-32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">字符集Unicode与字符编码UTF-8,UTF-16,UTF-32</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-30T10:37:42+08:00">
+                2020-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/panfengblog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/panfengblog/2020/09/30/%E5%AD%97%E7%AC%A6%E9%9B%86Unicode%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81UTF-8,UTF-16,UTF-32/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/09/30/字符集Unicode与字符编码UTF-8,UTF-16,UTF-32/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="编码字符集Unicode与字符编码UTF-8-UTF-16-UTF-32"><a href="#编码字符集Unicode与字符编码UTF-8-UTF-16-UTF-32" class="headerlink" title="编码字符集Unicode与字符编码UTF-8,UTF-16,UTF-32"></a>编码字符集Unicode与字符编码UTF-8,UTF-16,UTF-32</h1><blockquote>
+<p>这些名词应该大家都接触过很多次，但是更能没有真正去去了解研究过，今天查了查资料，大概是弄明白了这几个东西的关系</p>
+</blockquote>
+<p>主要参考资料：<a href="https://blog.csdn.net/qq_24326765/article/details/82183167" target="_blank" rel="noopener">资料1</a>，<a href="https://blog.csdn.net/longintchar/article/details/51079340?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">资料2</a> </p>
+<p>首先我们要明白三个概念：字符集，代码点，编码字符集，字符编码</p>
+<a id="more"></a>
+<h2 id="1-三个概念"><a href="#1-三个概念" class="headerlink" title="1. 三个概念"></a>1. 三个概念</h2><h3 id="1-1-字符集（character-set）"><a href="#1-1-字符集（character-set）" class="headerlink" title="1.1 字符集（character set）"></a>1.1 字符集（character set）</h3><p>我们选取字符的集合就构成了一个字符集，比如所有的英文字母，所有的汉字就构成了一个字符集。</p>
+<h3 id="1-2-代码点（code-point-or-code-position）"><a href="#1-2-代码点（code-point-or-code-position）" class="headerlink" title="1.2 代码点（code point or code position）"></a>1.2 代码点（code point or code position）</h3><p>对字符集中的每个字符都进行编号，则每个字符对应的编号值就是其代码点</p>
+<h3 id="1-3-编码字符集（coded-character-set）"><a href="#1-3-编码字符集（coded-character-set）" class="headerlink" title="1.3 编码字符集（coded character set）"></a>1.3 编码字符集（coded character set）</h3><p>对字符集中的每个字符都进行编号，则编号之后的字符集就称为编码字符集。比如常见的编码字符集有ASCII，Unicode，GBK等等</p>
+<h3 id="1-4-字符编码（character-encoding-form）"><a href="#1-4-字符编码（character-encoding-form）" class="headerlink" title="1.4 字符编码（character encoding form）"></a>1.4 字符编码（character encoding form）</h3><p>字符编码就是将字符集中的代码点按照某种规则转化为可以在计算机内部存储的二进制比特序列，就是建立一种转化关系或者映射关系。</p>
+<p>那么我们前面的编码字符集不就是一种映射关系吗？确实是的，但是存储在计算机内部时不一定就是按照其序号值（即代码点）直接存储的，甚至一个字符集对应着多种编码方式（如Unicode），当然也有直接将序号值（代码点）直接作为字符编码直接存储的（如ASCII）</p>
+<h2 id="2-具体应用"><a href="#2-具体应用" class="headerlink" title="2. 具体应用"></a>2. 具体应用</h2><h3 id="2-1-Unicode"><a href="#2-1-Unicode" class="headerlink" title="2.1 Unicode"></a>2.1 Unicode</h3><p>Unicode字符集由多语言软件制造商组成的统一码联盟(Unicode Consortium)与国际标准化组织的ISO-10646工作组制订，为各种语言中的<strong>每个字符</strong>指定统一且<strong>唯一的代码点</strong>，以满足跨语言、跨平台转换和处理文本的要求。</p>
+<p>Unicode代码点范围为0x0~0x10FFFF，共计1114112个代码点，划分为编号0~16的<strong>17个字符平面</strong>，每个平面包含<strong>65536个代码点（即两个字节）</strong>。其中编号为0的平面最为常用，称为<strong>基本多语种平面</strong>(Basic Multilingual Plane, BMP)；其他平面则称为辅助语言平面。</p>
+<p>Unicode通常用 <code>U+xxxx</code> 表示（x为16进制）</p>
+<p>编码字符集有了，我们就需要将字符存入计算机了，Unicode存入计算机的具体字符编码方案UTF(unicode transformation format)就有三种：</p>
+<ul>
+<li>UTF-8（变长编码）</li>
+<li>UTF-16（变长编码）</li>
+<li>UTF-32（等长编码）</li>
+</ul>
+<h3 id="2-2-UTF-32"><a href="#2-2-UTF-32" class="headerlink" title="2.2 UTF-32"></a>2.2 UTF-32</h3><p>如何将Unicode保存在计算机呢？</p>
+<p>当然最直接的想法就是等职转化，每个字符就用其<strong>代码点数值完整的保存在计算机中</strong>（就像ASCII那样），于是就有了UTF-32（表示全部1114112个代码点需要4个字节），但是其空间效率较低（许多字符使用较少），因此应用不是十分广泛。</p>
+<h3 id="2-3-UTF-16"><a href="#2-3-UTF-16" class="headerlink" title="2.3 UTF-16"></a>2.3 UTF-16</h3><p>前面我们提到了Unicode基本多语种平面（最常用）包含65536个代码点，只需要2个字节就能存放，于是就诞生了变长编码UTF-16，采用1个或者2个代码单元表示</p>
+<ol>
+<li>对于从<code>U+0000</code>~<code>U+D7FF</code>以及从<code>U+E000</code>~<code>U+FFFF</code>的代码点：直接将代码点等值转化为16比特的二进制序列</li>
+<li>对于从<code>U+10000</code>~<code>U+10FFFF</code>的代码点，先减去 <code>0x10000</code> 得到 <code>0x00000</code> ~ <code>0xfffff</code> 的20bit长的序列，然后分为高 10bit 和低 10bit ，于是，第一个编码单元 = 高10bit + 0xD800， 第二个编码单元 = 低10bit + 0xDC00（其实就是在高 10bit 和 低 10bit 之前添加一个前缀）</li>
+</ol>
+<h3 id="2-4-UTF-8"><a href="#2-4-UTF-8" class="headerlink" title="2.4 UTF-8"></a>2.4 UTF-8</h3><p>对于一些欧美地区以英语为母语的国家，使用的大多数字符在ASCII码中都能找到，于是UTF-16对于他们来说显得过于臃肿（空间利用率不高），于是就有了UTF-8，UTF-8的第一个字节与ASCII码兼容。</p>
+<p>UTF-8编码单元为一个字节，有三种变长形态</p>
+<ul>
+<li>0xxxxxxx,如果是这样的01串,也就是以0开头后面是啥就不用管了XX代表任意bit.就表示把一个字节做为一个单元.就跟ASCII完全一样</li>
+<li>110xxxxx 10xxxxxx.如果是这样的格式,则把两个字节当一个单元</li>
+<li>1110xxxx 10xxxxxx 10xxxxxx 如果是这种格式则是三个字节当一个单元</li>
+</ul>
+<p>对于欧美人民来说，会毫不犹豫的选择UTF-8，而我们却会犹豫一会，我们可能很多字符都需要占到3个字节（相较于UTF-16存储效率反而下降了），另一方面由于其变长字节表示，在计算字符数和执行索引时效率并不高，所有我们可能更常用UTF-16或UTF-32.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/panfengblog/tags/%E7%BC%96%E7%A0%81%E5%AD%97%E7%AC%A6%E9%9B%86/" rel="tag"><i class="fa fa-tag"></i> 编码字符集</a>
+          
+            <a href="/panfengblog/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" rel="tag"><i class="fa fa-tag"></i> 字符编码</a>
+          
+            <a href="/panfengblog/tags/Unicode/" rel="tag"><i class="fa fa-tag"></i> Unicode</a>
+          
+            <a href="/panfengblog/tags/UTF/" rel="tag"><i class="fa fa-tag"></i> UTF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/panfengblog/2020/09/29/%E6%95%B0%E6%A5%BC%E6%A2%AF/" rel="next" title="数楼梯">
+                <i class="fa fa-chevron-left"></i> 数楼梯
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/09/30/字符集Unicode与字符编码UTF-8,UTF-16,UTF-32/"
+           data-title="字符集Unicode与字符编码UTF-8,UTF-16,UTF-32" data-url="http://coolguo.gitee.io/2020/09/30/%E5%AD%97%E7%AC%A6%E9%9B%86Unicode%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81UTF-8,UTF-16,UTF-32/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/panfengblog/archives">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/panfengblog/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/panfengblog/tags/index.html">
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编码字符集Unicode与字符编码UTF-8-UTF-16-UTF-32"><span class="nav-number">1.</span> <span class="nav-text">编码字符集Unicode与字符编码UTF-8,UTF-16,UTF-32</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-三个概念"><span class="nav-number">1.1.</span> <span class="nav-text">1. 三个概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-字符集（character-set）"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 字符集（character set）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-代码点（code-point-or-code-position）"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 代码点（code point or code position）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-编码字符集（coded-character-set）"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 编码字符集（coded character set）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-字符编码（character-encoding-form）"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 字符编码（character encoding form）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-具体应用"><span class="nav-number">1.2.</span> <span class="nav-text">2. 具体应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Unicode"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Unicode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-UTF-32"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 UTF-32</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-UTF-16"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 UTF-16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-UTF-8"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 UTF-8</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共82.6k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/panfengblog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/panfengblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/panfengblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/panfengblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/panfengblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/panfengblog/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/panfengblog/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
