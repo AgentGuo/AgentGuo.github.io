@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法,STL," />
+  <meta name="keywords" content="C++,STL,算法," />
 
 
 
@@ -90,11 +90,11 @@
 <meta property="og:description" content="C++ STL容器详细笔记C++ 对模板（Template）支持得很好，STL 就是借助模板把常用的数据结构及其算法都实现了一遍，并且做到了数据结构和算法的分离。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-28T15:47:44.000Z">
-<meta property="article:modified_time" content="2020-09-27T13:33:46.054Z">
+<meta property="article:modified_time" content="2020-10-10T15:12:12.809Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="C++">
-<meta property="article:tag" content="算法">
 <meta property="article:tag" content="STL">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
 
@@ -352,7 +352,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  8.4k
+                  8.5k
                 </span>
               
 
@@ -551,6 +551,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a 40</span><br><span class="line">m 20</span><br><span class="line">r 30</span><br></pre></td></tr></table></figure>
 <p><strong>map会以键从小到大的顺序自动排序</strong>， 即按a&lt;m&lt;r的顺序排列这三对映射</p>
 <h3 id="map常用函数"><a href="#map常用函数" class="headerlink" title="map常用函数"></a>map常用函数</h3><h4 id="1-find"><a href="#1-find" class="headerlink" title="1. find()"></a>1. find()</h4><p>find(key)返回键位key的映射的迭代器（未找到返回end()），时间复杂度位O(logN)，N位map中映射的个数。示例代码：</p>
+<p><strong>值得注意的是，访问不存在的map元素时最好先进行<code>find</code>，否则放回会返回默认值并且会创建该键值对！</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">	mp[<span class="string">'m'</span>] = <span class="number">20</span>;</span><br><span class="line">	mp[<span class="string">'r'</span>] = <span class="number">30</span>;</span><br><span class="line">	mp[<span class="string">'a'</span>] = <span class="number">40</span>;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it = mp.find(<span class="string">'a'</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%c %d\n"</span>, it -&gt;first, it -&gt; second);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a 40</span><br></pre></td></tr></table></figure>
@@ -718,6 +719,7 @@
 <h3 id="7-lower-bound-和upper-bound"><a href="#7-lower-bound-和upper-bound" class="headerlink" title="7. lower_bound()和upper_bound()"></a>7. lower_bound()和upper_bound()</h3><p>lower_bound()和upper_bound()需要用在一个有序的数组或者容器中。</p>
 <p>lower_bound(first, last, val)用来寻找在数组或者容器中在[fisrt, last)范围内<strong>第一个值大于等于val</strong>的元素的位置，如果是数组，则返回该位置的指针；如果是容器，则返回该位置的迭代器。</p>
 <p>upper_bound(first, last, val)用来寻找在数组或者容器中在[fisrt, last)范围内<strong>第一个值大于val</strong>的元素的位置，如果是数组，则返回该位置的指针；如果是容器，则返回该位置的迭代器。</p>
+<p>（如果需要小于可以最后添加一个 <code>greater&lt;int&gt;()</code> 参数，对于结构体可以自定义cmp函数）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> * lowerPos = lower_bound(a, a+<span class="number">10</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">int</span> * upperPos = upper_bound(a, a+<span class="number">10</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, lowerPos - a, upperPos - a);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 6</span><br></pre></td></tr></table></figure>
@@ -740,9 +742,9 @@
           
             <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
             <a href="/tags/STL/" rel="tag"><i class="fa fa-tag"></i> STL</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -855,7 +857,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -877,7 +879,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -971,7 +973,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共89.2k字</span>
+  <span class="post-count">博客全站共92.3k字</span>
 </div>
         
 
@@ -1242,7 +1244,26 @@
         showTime(Counter);
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1259,24 +1280,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>
