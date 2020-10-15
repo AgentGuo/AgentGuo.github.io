@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="C++,算法," />
+  <meta name="keywords" content="C++,算法,动态规划,背包问题," />
 
 
 
@@ -82,19 +82,24 @@
 
 
 
-<meta name="description" content="C&#x2F;C++中各种类型的最大最小值需要导入#include&lt;limits.h&gt;和#include&lt;float.h&gt;两个库，下面是个各个常量的说明。">
+<meta name="description" content="背包九讲(二)——完全背包问题参考了著名的背包九讲，可以在这里下载，绪前一篇的01背包问题 1.1 问题有N种物品和一个容量为V的背包，每种物品都有无限件可用，放入第i件物品的费用是$C_i$，得到的价值是$W_i$。求解将哪些物品装入背包可使价值综合最大。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++中各种类型的最大最小值">
-<meta property="og:url" content="http://yoursite.com/2020/08/17/CC++%E4%B8%AD%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC/index.html">
+<meta property="og:title" content="背包九讲(二)——完全背包问题">
+<meta property="og:url" content="http://yoursite.com/2020/10/15/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%BA%8C)%E2%80%94%E2%80%94%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="C&#x2F;C++中各种类型的最大最小值需要导入#include&lt;limits.h&gt;和#include&lt;float.h&gt;两个库，下面是个各个常量的说明。">
+<meta property="og:description" content="背包九讲(二)——完全背包问题参考了著名的背包九讲，可以在这里下载，绪前一篇的01背包问题 1.1 问题有N种物品和一个容量为V的背包，每种物品都有无限件可用，放入第i件物品的费用是$C_i$，得到的价值是$W_i$。求解将哪些物品装入背包可使价值综合最大。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-17T03:13:03.425Z">
-<meta property="article:modified_time" content="2020-08-17T03:13:41.580Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/15/07Kye1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/15/07KWWD.png">
+<meta property="article:published_time" content="2020-10-15T13:32:07.619Z">
+<meta property="article:modified_time" content="2020-10-15T13:32:46.534Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="背包问题">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/10/15/07Kye1.png">
 
 
 
@@ -124,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/17/CC++中各种类型的最大最小值/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/10/15/背包九讲(二)——完全背包问题/"/>
 
 
 
 
 
-  <title>C/C++中各种类型的最大最小值 | panfengblog</title>
+  <title>背包九讲(二)——完全背包问题 | panfengblog</title>
   
 
 
@@ -247,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/CC++%E4%B8%AD%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/15/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%BA%8C)%E2%80%94%E2%80%94%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -264,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C/C++中各种类型的最大最小值</h1>
+          <h1 class="post-title" itemprop="name headline">背包九讲(二)——完全背包问题</h1>
         
 
         <div class="post-meta">
@@ -276,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-17T11:13:03+08:00">
-                2020-08-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-15T21:32:07+08:00">
+                2020-10-15
               </time>
             
 
@@ -317,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/CC++%E4%B8%AD%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/08/17/CC++中各种类型的最大最小值/" itemprop="commentCount"></span>
+                <a href="/2020/10/15/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%BA%8C)%E2%80%94%E2%80%94%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/10/15/背包九讲(二)——完全背包问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,7 +331,7 @@
 
           
           
-             <span id="/2020/08/17/CC++%E4%B8%AD%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC/" class="leancloud_visitors" data-flag-title="C/C++中各种类型的最大最小值">
+             <span id="/2020/10/15/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%BA%8C)%E2%80%94%E2%80%94%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="背包九讲(二)——完全背包问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +356,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  158
+                  1.3k
                 </span>
               
 
@@ -376,57 +381,39 @@
       
 
       
-        <h1 id="C-C-中各种类型的最大最小值"><a href="#C-C-中各种类型的最大最小值" class="headerlink" title="C/C++中各种类型的最大最小值"></a>C/C++中各种类型的最大最小值</h1><p>需要导入<code>#include&lt;limits.h&gt;</code>和<code>#include&lt;float.h&gt;</code>两个库，下面是个各个常量的说明。</p>
+        <h1 id="背包九讲-二-——完全背包问题"><a href="#背包九讲-二-——完全背包问题" class="headerlink" title="背包九讲(二)——完全背包问题"></a>背包九讲(二)——完全背包问题</h1><p>参考了著名的背包九讲，可以在这里<a href="https://github.com/tianyicui/pack" target="_blank" rel="noopener">下载</a>，绪前一篇的<a href="https://blog.csdn.net/weixin_44338712/article/details/107972730" target="_blank" rel="noopener">01背包问题</a></p>
+<h3 id="1-1-问题"><a href="#1-1-问题" class="headerlink" title="1.1 问题"></a>1.1 问题</h3><p>有<code>N</code>种物品和一个容量为<code>V</code>的背包，每种物品都有<strong>无限件可用</strong>，放入第<code>i</code>件物品的费用是$C_i$，得到的价值是$W_i$。求解将哪些物品装入背包可使价值综合最大。</p>
 <a id="more"></a>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>常量</th>
-<th>说明</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CHAR_MIN,  CHAR_MAX</td>
-<td>字符最大/小值</td>
-<td>-128 127</td>
-</tr>
-<tr>
-<td>SHRT_MIN， SHRT_MAX</td>
-<td>短整型最大/最小值</td>
-<td>-32768, 32767</td>
-</tr>
-<tr>
-<td>INT_MIN, INT_MAX</td>
-<td>整型最大/最小值</td>
-<td>-2147483648, 2147483647</td>
-</tr>
-<tr>
-<td>LONG_MIN, LONG_MAX</td>
-<td>长整型最大/最小值</td>
-<td>-2147483648, 2147483647</td>
-</tr>
-<tr>
-<td>LONG_LONG_MIN,  LONG_LONG_MAX</td>
-<td>超长整型最大/最小值</td>
-<td>-9223372036854775808, 9223372036854775807</td>
-</tr>
-<tr>
-<td>FLT_MIN, FLT_MAX</td>
-<td>单精度浮点数最大/最小值</td>
-<td>1.17549e-038, 3.40282e+038</td>
-</tr>
-<tr>
-<td>DBL_MIN, DBL_MAX</td>
-<td>双精度浮点数最大/最小值</td>
-<td>2.22507e-308, 1.79769e+308</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这些在一些算法考试中都是能用的~</p>
+<h3 id="1-2-解题思路"><a href="#1-2-解题思路" class="headerlink" title="1.2 解题思路"></a>1.2 解题思路</h3><p>完全背包和01背包唯一的区别就在于一件物品是否能多次选择？</p>
+<p>知道这个区别，其实仔细一想，就能完全背包问题转化为01背包，因为容量V是有限的，对于单个物品$C_i$来说，最多只能放如$\left \lfloor V/C_i\right \rfloor$件，所以我们只需要将完全背包问题看成是有$\left \lfloor V/C_1\right \rfloor$件物品$C_1$、有$\left \lfloor V/C_2\right \rfloor$件物品$C_2$、…、$\left \lfloor V/C_N\right \rfloor$件物品$C_N$的01背包问题就可以了。但是此时总的复杂度可以认为是$O(NV\sum \cfrac{V}{C_i})$，这个复杂度有点高了~</p>
+<p>更进一步，我们其实有更加高效的转化方法，用二进制的思想，我们可以将第 i 种物品拆解为费用为$C_i2^K$，价值为$W_i2^k$的若干件物品，其中k取1至$C_i2^k \le V$的最大整数（其实k可以取所有i种物品费用和小于V的整数），然后时间复杂度就可以优化为$O(NVlog(\left \lfloor V/C_2\right \rfloor))$了。相比之前低了不少~</p>
+<p>当然，最nb的解法都不是上面说的hhh，在求解01背包问题时需要要求 $v$ 按照递减的顺序从 $V,V-1,..,0$ 计算 $dp[v]$ ，让 v 递减计算是为了保证状态$dp[v]$是由<strong>上一轮递推而来</strong>的，其实也就是<strong>保证一件物品只被选择一次</strong>，但是现在允许选择多次了，岂不美哉~  非常简单，让 v 递增计算dp[v]即可，请参考下面伪代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">0.</span>..V] ← <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i ← <span class="number">1</span> to N  <span class="comment">// 依次遍历N件物品</span></span><br><span class="line">	<span class="keyword">for</span> v ← Ci to V <span class="comment">// 能装下当前物品的背包使用状态方程</span></span><br><span class="line">		dp[v] ← max&#123;dp[v], dp[v-Ci]+Wi&#125;</span><br></pre></td></tr></table></figure>
+<p>所以此时问题的时间复杂度已经降到了$O(NV)$了，秒啊~</p>
+<p>但是完全背包就不存在01背包里的那个常数优化了~</p>
+<p>一个简单有效的优化，若两件物品 i，j 满足$C_i \lt C_j$并且$W_i \ge W_j$，那么可以直接将物品 j 直接去掉，这个过程可以在$O(N^2)$的时间复杂度内实现，并不是很高，如果被卡时间了，可以试试这个简单的优化~</p>
+<h3 id="1-3-示例代码"><a href="#1-3-示例代码" class="headerlink" title="1.3 示例代码"></a>1.3 示例代码</h3><p>懒得写了~还得自己造数据，和01背包问题代码类似的</p>
+<h3 id="1-4-实战阶段"><a href="#1-4-实战阶段" class="headerlink" title="1.4 实战阶段"></a>1.4 实战阶段</h3><p>做几道题就清楚辣！！</p>
+<p><a href="https://www.luogu.com.cn/problem/P1616" target="_blank" rel="noopener">洛谷P1616 疯狂的采药</a></p>
+<p><strong>题目描述</strong>：</p>
+<p>LiYuxiang 是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同种类的草药，采每一种都需要一些时间，每一种也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”</p>
+<p>如果你是 LiYuxiang，你能完成这个任务吗？</p>
+<p>此题和原题的不同点：</p>
+<ol>
+<li><p>每种草药可以<strong>无限制</strong>地疯狂采摘。</p>
+</li>
+<li><p>药的种类眼花缭乱，采药时间好长好长啊！师傅等得菊花都谢了！</p>
+</li>
+</ol>
+<p>具体输入输出格式以及样例请参考原题网站~</p>
+<hr>
+<p>这就是一个典型的完全背包问题，直接按照上面的思路写就可以，但是这题的数据量是比较大的，注意dp数组使用<code>long long</code>类型，以及动态生成数组防止内存爆炸，还有就是STL是在太慢了~用malloc吧~</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>), <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</span><br><span class="line">	<span class="comment">// 静态数组会爆内存</span></span><br><span class="line">	<span class="comment">//int V[N] = &#123; 0 &#125;, C[N] = &#123; 0 &#125;, t, m;</span></span><br><span class="line">	<span class="comment">//long long dp[N] = &#123; 0 &#125;;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> t, m;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; t &gt;&gt; m;</span><br><span class="line">	<span class="keyword">int</span>* V = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(m * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">int</span>* C = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(m * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span>* dp = (<span class="keyword">long</span> <span class="keyword">long</span>*)<span class="built_in">malloc</span>((t+<span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">long</span>));</span><br><span class="line">	<span class="comment">// STL太慢了</span></span><br><span class="line">	<span class="comment">//vector&lt;int&gt; V(m);</span></span><br><span class="line">	<span class="comment">//vector&lt;int&gt; C(m);</span></span><br><span class="line">	<span class="comment">//vector&lt;long long&gt; dp(t+1);</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; C[i] &gt;&gt; V[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = C[i]; j &lt;= t; j++) &#123;</span><br><span class="line">			dp[j] = max(dp[j], dp[j - C[i]] + V[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; dp[t] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">free</span>(V);</span><br><span class="line">	<span class="built_in">free</span>(C);</span><br><span class="line">	<span class="built_in">free</span>(dp);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>提交结果：</p>
+<p><img src="https://s1.ax1x.com/2020/10/15/07Kye1.png" alt="07Kye1.png"></p>
+<p>如果使用STL。。。。</p>
+<p><img src="https://s1.ax1x.com/2020/10/15/07KWWD.png" alt="07KWWD.png"></p>
+<p>STL是malloc的两倍了~当然这里不卡时间没有啥影响</p>
 
       
     </div>
@@ -448,6 +435,10 @@
           
             <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
           
+            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
+          
+            <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 背包问题</a>
+          
         </div>
       
 
@@ -459,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/16/ccf-csp%20202006-3%20markdown%E6%B8%B2%E6%9F%93%E5%99%A8/" rel="next" title="ccf-csp 202006-3 markdown渲染器(c/c++)">
-                <i class="fa fa-chevron-left"></i> ccf-csp 202006-3 markdown渲染器(c/c++)
+              <a href="/2020/10/15/%E6%A0%A1%E6%8B%9B%E7%BD%91%E5%9D%80/" rel="next" title="校招网址">
+                <i class="fa fa-chevron-left"></i> 校招网址
               </a>
             
           </div>
@@ -468,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/17/%E3%80%90%E8%BD%AC%E3%80%91stringstream(sstream)%E5%B8%B8%E7%94%A8%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" rel="prev" title="【转】stringstream(sstream)常用用法介绍">
-                【转】stringstream(sstream)常用用法介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -502,8 +489,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/08/17/CC++中各种类型的最大最小值/"
-           data-title="C/C++中各种类型的最大最小值" data-url="http://yoursite.com/2020/08/17/CC++%E4%B8%AD%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC/">
+      <div class="ds-thread" data-thread-key="2020/10/15/背包九讲(二)——完全背包问题/"
+           data-title="背包九讲(二)——完全背包问题" data-url="http://yoursite.com/2020/10/15/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2(%E4%BA%8C)%E2%80%94%E2%80%94%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
       </div>
     </div>
 
@@ -630,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-中各种类型的最大最小值"><span class="nav-text">C&#x2F;C++中各种类型的最大最小值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背包九讲-二-——完全背包问题"><span class="nav-text">背包九讲(二)——完全背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-问题"><span class="nav-text">1.1 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-解题思路"><span class="nav-text">1.2 解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-示例代码"><span class="nav-text">1.3 示例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-实战阶段"><span class="nav-text">1.4 实战阶段</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -958,6 +945,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
