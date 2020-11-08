@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="数字电路," />
+  <meta name="keywords" content="mysql,数据库,安全," />
 
 
 
@@ -82,23 +82,30 @@
 
 
 
-<meta name="description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce]">
+<meta name="description" content="Mysql用户、权限和角色管理 数据库安全最重要的一点就是确保只授权给有资格的用户访问数据库的权限，同时令所有未被授权的人员无法接近数据，这主要通过数据库系统的存区控制机制实现 : )">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logisim复用器库">
-<meta property="og:url" content="http://yoursite.com/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/index.html">
+<meta property="og:title" content="Mysql用户、权限和角色管理">
+<meta property="og:url" content="http://yoursite.com/2020/11/08/Mysql%E7%94%A8%E6%88%B7%E3%80%81%E6%9D%83%E9%99%90%E5%92%8C%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="logisim复用器库介绍【注】：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][https:&#x2F;&#x2F;www.icourse163.org&#x2F;learn&#x2F;HUST-1207043813?tid&#x3D;1450221478#&#x2F;learn&#x2F;announce]">
+<meta property="og:description" content="Mysql用户、权限和角色管理 数据库安全最重要的一点就是确保只授权给有资格的用户访问数据库的权限，同时令所有未被授权的人员无法接近数据，这主要通过数据库系统的存区控制机制实现 : )">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&amp;shareKey=a77e8ca6fcb28c799376424797e333ae">
-<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DFB45A30FDA746F28F09B0039FFE9C03?method=download&amp;shareKey=3878e9590dca28f078b6bce7438125ab">
-<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/2CA41B71412649B582AE9AF54F3978DD?method=download&amp;shareKey=2d7d38a3e10fd9363d41d933395854c9">
-<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/BD2E3EAEFA28491DAB06523BDC44C3CE?method=download&amp;shareKey=448bd7e48c29b212e7f7e92b7bc8e6a5">
-<meta property="article:published_time" content="2020-03-26T10:13:52.368Z">
-<meta property="article:modified_time" content="2020-07-03T11:23:00.550Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BodzU1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BowEbd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BoweUI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BofR76.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/Boyqij.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BofCTK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/BoyaGR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/Bohm34.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/11/08/Bohza6.png">
+<meta property="article:published_time" content="2020-11-08T09:39:39.402Z">
+<meta property="article:modified_time" content="2020-11-08T09:40:07.422Z">
 <meta property="article:author" content="panfeng&#39;s blog">
-<meta property="article:tag" content="数字电路">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&amp;shareKey=a77e8ca6fcb28c799376424797e333ae">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/11/08/BodzU1.png">
 
 
 
@@ -128,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/26/Logisim复用器库/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/11/08/Mysql用户、权限和角色管理/"/>
 
 
 
 
 
-  <title>Logisim复用器库 | panfengblog</title>
+  <title>Mysql用户、权限和角色管理 | panfengblog</title>
   
 
 
@@ -251,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/08/Mysql%E7%94%A8%E6%88%B7%E3%80%81%E6%9D%83%E9%99%90%E5%92%8C%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="panfeng's blog">
@@ -268,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Logisim复用器库</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql用户、权限和角色管理</h1>
         
 
         <div class="post-meta">
@@ -280,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-26T18:13:52+08:00">
-                2020-03-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-08T17:39:39+08:00">
+                2020-11-08
               </time>
             
 
@@ -303,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -321,8 +328,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/03/26/Logisim复用器库/" itemprop="commentCount"></span>
+                <a href="/2020/11/08/Mysql%E7%94%A8%E6%88%B7%E3%80%81%E6%9D%83%E9%99%90%E5%92%8C%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/11/08/Mysql用户、权限和角色管理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -330,7 +337,7 @@
 
           
           
-             <span id="/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/" class="leancloud_visitors" data-flag-title="Logisim复用器库">
+             <span id="/2020/11/08/Mysql%E7%94%A8%E6%88%B7%E3%80%81%E6%9D%83%E9%99%90%E5%92%8C%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="Mysql用户、权限和角色管理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,7 +362,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  313
+                  852
                 </span>
               
 
@@ -380,18 +387,105 @@
       
 
       
-        <h1 id="logisim复用器库介绍"><a href="#logisim复用器库介绍" class="headerlink" title="logisim复用器库介绍"></a>logisim复用器库介绍</h1><p><strong>【注】</strong>：本博客图片均采自mooc，作为学习记录，也可供大家查询，[慕课链接][<a href="https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce" target="_blank" rel="noopener">https://www.icourse163.org/learn/HUST-1207043813?tid=1450221478#/learn/announce</a>]</p>
+        <h1 id="Mysql用户、权限和角色管理"><a href="#Mysql用户、权限和角色管理" class="headerlink" title="Mysql用户、权限和角色管理"></a>Mysql用户、权限和角色管理</h1><blockquote>
+<p>数据库安全最重要的一点就是确保只授权给有资格的用户访问数据库的权限，同时令所有未被授权的人员无法接近数据，这主要通过数据库系统的存区控制机制实现 : )</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="多路选择器MUX"><a href="#多路选择器MUX" class="headerlink" title="多路选择器MUX"></a>多路选择器MUX</h2><p><img src="https://note.youdao.com/yws/api/personal/file/9BAE2431A8E24473825170B34221F852?method=download&amp;shareKey=a77e8ca6fcb28c799376424797e333ae" alt="多路选择器"></p>
-<p>就是从多个输入端中选择一个输出，通过选择端来控制，如图所示选择端[11]表示选择第三个输入（二进制表示），使能端控制是否输出（1表示输出，0表示不输出，输出呈高阻态）。</p>
-<p><strong>注意</strong>：不要滥用多路选择器，比如说将其当做if-else结构使用，不符合实际！</p>
-<h2 id="解复用器DMX"><a href="#解复用器DMX" class="headerlink" title="解复用器DMX"></a>解复用器DMX</h2><p><img src="https://note.youdao.com/yws/api/personal/file/DFB45A30FDA746F28F09B0039FFE9C03?method=download&amp;shareKey=3878e9590dca28f078b6bce7438125ab" alt="解复用器"></p>
-<p>一个输入多个输出，通过选择端来控制在哪一路输出，如图所示[10]表示在第二路输出，是能端控制是否输出。</p>
-<h2 id="解码器Decoder"><a href="#解码器Decoder" class="headerlink" title="解码器Decoder"></a>解码器Decoder</h2><p><img src="https://note.youdao.com/yws/api/personal/file/2CA41B71412649B582AE9AF54F3978DD?method=download&amp;shareKey=2d7d38a3e10fd9363d41d933395854c9" alt="解码器"></p>
-<p>输出2<sup><a href="#fn_n" id="reffn_n">n</a></sup> 个一位的输出，由选择端控制，使能端控制是否输出</p>
-<h2 id="优先编码器Priority-Encoder"><a href="#优先编码器Priority-Encoder" class="headerlink" title="优先编码器Priority Encoder"></a>优先编码器Priority Encoder</h2><p><img src="https://note.youdao.com/yws/api/personal/file/BD2E3EAEFA28491DAB06523BDC44C3CE?method=download&amp;shareKey=448bd7e48c29b212e7f7e92b7bc8e6a5" alt="优先编码器"></p>
-<p>使能输入和使能输出控制优先编码器是否输入和输出。</p>
-<p>当使能输入和使能输出全打开时（最左边一张图），输出的请求为优先级最高的请求（如图编号为[110]，即6号请求），并且有请求输出端为1.</p>
+<h2 id="1-用户管理"><a href="#1-用户管理" class="headerlink" title="1. 用户管理"></a>1. 用户管理</h2><h3 id="1-1-创建用户"><a href="#1-1-创建用户" class="headerlink" title="1.1 创建用户"></a>1.1 创建用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER [IF NOT EXISTS]</span><br><span class="line">    user [auth_option] [, user [auth_option]] ...</span><br><span class="line">    DEFAULT ROLE role [, role ] ...</span><br><span class="line">    [REQUIRE &#123;NONE | tls_option [[AND] tls_option] ...&#125;]</span><br><span class="line">    [WITH resource_option [resource_option] ...]</span><br><span class="line">    [password_option | lock_option] ...</span><br><span class="line">    [COMMENT &#39;comment_string&#39; | ATTRIBUTE &#39;json_object&#39;]</span><br></pre></td></tr></table></figure>
+<p>常用命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'用户名'</span>@<span class="string">'登录地址'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'密码'</span></span><br></pre></td></tr></table></figure>
+<p>举个栗子：</p>
+<p>我们创建一个localhost使用的panfeng用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'panfeng'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BodzU1" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BodzU1.png" alt="BodzU1.png"></a></p>
+<h3 id="1-2-查看用户"><a href="#1-2-查看用户" class="headerlink" title="1.2 查看用户"></a>1.2 查看用户</h3><p>使用root用户登录，查看用户信息：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">user</span>, host <span class="keyword">from</span> mysql.user</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BowEbd" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BowEbd.png" alt="BowEbd.png"></a></p>
+<h3 id="1-3-删除用户"><a href="#1-3-删除用户" class="headerlink" title="1.3 删除用户"></a>1.3 删除用户</h3><p>常用命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> <span class="string">'用户名'</span>@<span class="string">'登录地址'</span></span><br></pre></td></tr></table></figure>
+<p>举个栗子：</p>
+<p>删除刚刚创建的panfeng用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user &#39;panfeng&#39;@&#39;localhost&#39;;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BoweUI" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BoweUI.png" alt="BoweUI.png"></a></p>
+<h3 id="1-4-修改用户密码"><a href="#1-4-修改用户密码" class="headerlink" title="1.4 修改用户密码"></a>1.4 修改用户密码</h3><p>再root用户或这修改用户下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'用户名'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'新密码'</span>;</span><br></pre></td></tr></table></figure>
+<p>举个栗子：<br>修改panfeng用户的密码为pasword</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'panfeng'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BofR76" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BofR76.png" alt="BofR76.png"></a></p>
+<h2 id="2-权限管理"><a href="#2-权限管理" class="headerlink" title="2. 权限管理"></a>2. 权限管理</h2><h3 id="2-1-权限说明"><a href="#2-1-权限说明" class="headerlink" title="2.1 权限说明"></a>2.1 权限说明</h3><p>数据库的存取权限主要有如下几种：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>权限类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库</td>
+<td>create database</td>
+</tr>
+<tr>
+<td>基本表</td>
+<td>create table, alter table</td>
+</tr>
+<tr>
+<td>视图</td>
+<td>create view</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>create index</td>
+</tr>
+<tr>
+<td>基本表数据</td>
+<td>select, insert, update, delete, references, all privileges</td>
+</tr>
+<tr>
+<td>属性列数据</td>
+<td>select, insert, update, references, all privileges</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-2-授予权限"><a href="#2-2-授予权限" class="headerlink" title="2.2 授予权限"></a>2.2 授予权限</h3><p>我们使用<code>GRANT</code>命令授予权限，通用格式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;权限&gt;,...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;,...</span><br><span class="line"><span class="keyword">TO</span> &lt;用户&gt;,...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
+<p><strong>说明</strong>：如果指定了<code>WITH GRANT OPTION</code>子句，那么获得该权限的用户还可以将这种权限再授予其他用户。</p>
+<p>举个栗子：<br>给panfeng用户授予Student表的查询权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> <span class="keyword">table</span> Student <span class="keyword">to</span> <span class="string">'panfeng'</span>@<span class="string">'localhost'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Boyqij" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/Boyqij.png" alt="Boyqij.png"></a></p>
+<h3 id="2-3-收回权限"><a href="#2-3-收回权限" class="headerlink" title="2.3 收回权限"></a>2.3 收回权限</h3><p>我们使用<code>REVOKE</code>命令收回用户权限，命令通用格式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> &lt;权限&gt;,...</span><br><span class="line"><span class="keyword">ON</span> &lt;对象类型&gt; &lt;对象名&gt;,...</span><br><span class="line"><span class="keyword">FROM</span> &lt;用户&gt;,...[<span class="keyword">CASCADE</span>|RESTRICT]</span><br></pre></td></tr></table></figure>
+<p><strong>说明</strong>：CASCADE表示级联回收权限， RESTRICT表示当一个用户作为父授权时，不允许直接删除（需先删除子授权）</p>
+<p>举个栗子：<br>收回panfeng用户Student表的查询权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke select on table Student from &#39;panfeng&#39;@&#39;localhost&#39;;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BofCTK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BofCTK.png" alt="BofCTK.png"></a></p>
+<h3 id="2-4-查看用户-角色权限"><a href="#2-4-查看用户-角色权限" class="headerlink" title="2.4 查看用户/角色权限"></a>2.4 查看用户/角色权限</h3><p>查看所有权限情况：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GRANTS</span>;</span><br></pre></td></tr></table></figure>
+<p>查看特定用户权限情况：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GRANTS</span> <span class="keyword">FOR</span> <span class="string">'用户名'</span>@<span class="string">'登录地址'</span>;</span><br></pre></td></tr></table></figure>
+<p>举个栗子：</p>
+<p>查看panfeng用户的权限：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> <span class="string">'panfeng'</span>@<span class="string">'localhost'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/BoyaGR" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/BoyaGR.png" alt="BoyaGR.png"></a></p>
+<h2 id="3-数据库角色"><a href="#3-数据库角色" class="headerlink" title="3. 数据库角色"></a>3. 数据库角色</h2><blockquote>
+<p> 数据库角色时被命名的一组与数据库操作相关的权限，<strong>角色是权限的集合</strong>。</p>
+</blockquote>
+<h3 id="3-1-创建角色"><a href="#3-1-创建角色" class="headerlink" title="3.1 创建角色"></a>3.1 创建角色</h3><p>使用<code>CREATE ROLE</code>命令创建角色，通用命令格式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
+<p>举个栗子：<br>创建角色r1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">role</span> r1;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Bohm34" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/Bohm34.png" alt="Bohm34.png"></a></p>
+<h3 id="3-2-给角色授权"><a href="#3-2-给角色授权" class="headerlink" title="3.2 给角色授权"></a>3.2 给角色授权</h3><p>与给用户授权相同，这里就不赘述了 : )</p>
+<h3 id="3-3-将一个角色授予其他的角色或用户"><a href="#3-3-将一个角色授予其他的角色或用户" class="headerlink" title="3.3 将一个角色授予其他的角色或用户"></a>3.3 将一个角色授予其他的角色或用户</h3><p>命令通用格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &lt;角色&gt;,...</span><br><span class="line"><span class="keyword">TO</span> &lt;角色或用户&gt;,...</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">ADMIN</span> <span class="keyword">OPTION</span>];</span><br></pre></td></tr></table></figure>
+<p><strong>说明</strong>：如果指定了WITH ADMIN OPTION子句，则获得权限的角色或用户还能将该权限再授予其他的角色。</p>
+<p>举个栗子：</p>
+<p>将r1角色的权限授予panfeng用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> r1 <span class="keyword">to</span> <span class="string">'panfeng'</span>@<span class="string">'localhost'</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Bohza6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/11/08/Bohza6.png" alt="Bohza6.png"></a></p>
+<h3 id="3-4-角色权限的回收"><a href="#3-4-角色权限的回收" class="headerlink" title="3.4 角色权限的回收"></a>3.4 角色权限的回收</h3><p>同用户权限的回收~~</p>
 
       
     </div>
@@ -409,7 +503,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" rel="tag"><i class="fa fa-tag"></i> 数字电路</a>
+            <a href="/tags/mysql/" rel="tag"><i class="fa fa-tag"></i> mysql</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          
+            <a href="/tags/%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 安全</a>
           
         </div>
       
@@ -422,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/17/Typroa%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" rel="next" title="Typroa入门笔记">
-                <i class="fa fa-chevron-left"></i> Typroa入门笔记
+              <a href="/2020/11/08/ROS%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" rel="next" title="ROS命令行工具">
+                <i class="fa fa-chevron-left"></i> ROS命令行工具
               </a>
             
           </div>
@@ -431,10 +529,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/05/sagemath%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" rel="prev" title="sagemath常用函数">
-                sagemath常用函数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +559,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2020/03/26/Logisim复用器库/"
-           data-title="Logisim复用器库" data-url="http://yoursite.com/2020/03/26/Logisim%E5%A4%8D%E7%94%A8%E5%99%A8%E5%BA%93/">
+      <div class="ds-thread" data-thread-key="2020/11/08/Mysql用户、权限和角色管理/"
+           data-title="Mysql用户、权限和角色管理" data-url="http://yoursite.com/2020/11/08/Mysql%E7%94%A8%E6%88%B7%E3%80%81%E6%9D%83%E9%99%90%E5%92%8C%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86/">
       </div>
     </div>
 
@@ -593,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#logisim复用器库介绍"><span class="nav-text">logisim复用器库介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多路选择器MUX"><span class="nav-text">多路选择器MUX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解复用器DMX"><span class="nav-text">解复用器DMX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解码器Decoder"><span class="nav-text">解码器Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先编码器Priority-Encoder"><span class="nav-text">优先编码器Priority Encoder</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql用户、权限和角色管理"><span class="nav-text">Mysql用户、权限和角色管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-用户管理"><span class="nav-text">1. 用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-创建用户"><span class="nav-text">1.1 创建用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-查看用户"><span class="nav-text">1.2 查看用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-删除用户"><span class="nav-text">1.3 删除用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-修改用户密码"><span class="nav-text">1.4 修改用户密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-权限管理"><span class="nav-text">2. 权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-权限说明"><span class="nav-text">2.1 权限说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-授予权限"><span class="nav-text">2.2 授予权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-收回权限"><span class="nav-text">2.3 收回权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-查看用户-角色权限"><span class="nav-text">2.4 查看用户&#x2F;角色权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据库角色"><span class="nav-text">3. 数据库角色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-创建角色"><span class="nav-text">3.1 创建角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-给角色授权"><span class="nav-text">3.2 给角色授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-将一个角色授予其他的角色或用户"><span class="nav-text">3.3 将一个角色授予其他的角色或用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-角色权限的回收"><span class="nav-text">3.4 角色权限的回收</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
