@@ -82,17 +82,17 @@
 
 
 
-<meta name="description" content="Ubuntu18.04的ROS安装 ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。 不同的Ubuntu 版本安装过程会有点小区别哟 : )">
+<meta name="description" content="Ubuntu18.04&amp;16.04的ROS安装 ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。 不同的Ubuntu 版本安装过程会有点小区别哟 : )">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS安装">
 <meta property="og:url" content="http://yoursite.com/2020/11/07/ROS%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="Ubuntu18.04的ROS安装 ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。 不同的Ubuntu 版本安装过程会有点小区别哟 : )">
+<meta property="og:description" content="Ubuntu18.04&amp;16.04的ROS安装 ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。 不同的Ubuntu 版本安装过程会有点小区别哟 : )">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2020/11/07/B44f4e.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/11/07/B4O9Kg.png">
 <meta property="article:published_time" content="2020-11-07T09:37:42.401Z">
-<meta property="article:modified_time" content="2020-11-07T09:38:29.367Z">
+<meta property="article:modified_time" content="2020-11-14T13:25:42.010Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="ros">
@@ -354,7 +354,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  523
+                  571
                 </span>
               
 
@@ -379,7 +379,7 @@
       
 
       
-        <h1 id="Ubuntu18-04的ROS安装"><a href="#Ubuntu18-04的ROS安装" class="headerlink" title="Ubuntu18.04的ROS安装"></a>Ubuntu18.04的ROS安装</h1><blockquote>
+        <h1 id="Ubuntu18-04-amp-16-04的ROS安装"><a href="#Ubuntu18-04-amp-16-04的ROS安装" class="headerlink" title="Ubuntu18.04&amp;16.04的ROS安装"></a>Ubuntu18.04&amp;16.04的ROS安装</h1><blockquote>
 <p>ROS (Robot Operating System, 机器人操作系统) 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件。它提供了硬件抽象、设备驱动、函数库、可视化工具、消息传递和软件包管理等诸多功能。ROS遵循BSD开源许可协议。</p>
 <p>不同的Ubuntu 版本安装过程会有点小区别哟 : )</p>
 </blockquote>
@@ -401,7 +401,11 @@
 <li>安装ROS（注意这里不同的ubuntu版本安装命令可能不一样）</li>
 </ol>
 <p><strong>出错记录</strong>：执行<code>sudo apt update</code> 更新软件源时可能会失败，一般都是网络问题，多尝试几次或者切换网络后再尝试一下即可。</p>
+<p><strong>对于ubuntu18.04</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install ros-melodic-desktop-full</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>对于ubuntu16.04</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install ros-kinetic-desktop-full</span><br></pre></td></tr></table></figure>
 <ol>
 <li>初始化 rosdep</li>
 </ol>
@@ -410,8 +414,12 @@
 <ol>
 <li>设置环境变量</li>
 </ol>
+<p><strong>对于ubuntu18.04</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source &#x2F;opt&#x2F;ros&#x2F;melodic&#x2F;setup.bash&quot; &gt;&gt; ~&#x2F;.bashrc</span><br><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
 <p>检查环境变量是否安装成功，输入ros，按两下tab键，出现命令提示信息即可~</p>
+<hr>
+<p><strong>对于ubuntu16.04</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;source &#x2F;opt&#x2F;ros&#x2F;kinetic&#x2F;setup.bash&quot; &gt;&gt; ~&#x2F;.bashrc</span><br><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
 <ol>
 <li>安装rosInstall</li>
 </ol>
@@ -564,7 +572,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -586,7 +594,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -635,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu18-04的ROS安装"><span class="nav-text">Ubuntu18.04的ROS安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程-amp-出错记录"><span class="nav-text">安装过程&amp;出错记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HelloWorld-turtle（小海龟）"><span class="nav-text">HelloWorld: turtle（小海龟）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ubuntu18-04-amp-16-04的ROS安装"><span class="nav-text">Ubuntu18.04&amp;16.04的ROS安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装过程-amp-出错记录"><span class="nav-text">安装过程&amp;出错记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HelloWorld-turtle（小海龟）"><span class="nav-text">HelloWorld: turtle（小海龟）</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -680,7 +688,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共118.9k字</span>
+  <span class="post-count">博客全站共119.5k字</span>
 </div>
         
 
