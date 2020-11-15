@@ -82,30 +82,30 @@
 
 
 
-<meta name="description" content="Linux添加系统调用函数并编译 操作系统实验鸭">
+<meta name="description" content="Linux添加系统调用函数并编译1. 修改Linux内核 操作系统实验鸭">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux添加系统调用函数并编译">
 <meta property="og:url" content="http://yoursite.com/2020/11/15/Linux%E6%B7%BB%E5%8A%A0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%B9%B6%E7%BC%96%E8%AF%91/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="Linux添加系统调用函数并编译 操作系统实验鸭">
+<meta property="og:description" content="Linux添加系统调用函数并编译1. 修改Linux内核 操作系统实验鸭">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DPO1pj.png">
-<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DPOKAS.png">
-<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DPOQhQ.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DFKBE6.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/Dixw7t.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/Dize4f.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiVeR1.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiiIne.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiFPNn.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiFI2V.png">
 <meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiEMNj.png">
-<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiE7Kf.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DFK1EV.png">
 <meta property="article:published_time" content="2020-11-15T02:30:05.539Z">
-<meta property="article:modified_time" content="2020-11-15T02:31:09.153Z">
+<meta property="article:modified_time" content="2020-11-15T10:21:29.297Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="Linux内核">
 <meta property="article:tag" content="系统调用">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.ax1x.com/2020/11/15/DPO1pj.png">
+<meta name="twitter:image" content="https://s3.ax1x.com/2020/11/15/DFKBE6.png">
 
 
 
@@ -310,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
 
@@ -362,7 +362,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  547
+                  577
                 </span>
               
 
@@ -387,20 +387,20 @@
       
 
       
-        <h1 id="Linux添加系统调用函数并编译"><a href="#Linux添加系统调用函数并编译" class="headerlink" title="Linux添加系统调用函数并编译"></a>Linux添加系统调用函数并编译</h1><blockquote>
+        <h1 id="Linux添加系统调用函数并编译"><a href="#Linux添加系统调用函数并编译" class="headerlink" title="Linux添加系统调用函数并编译"></a>Linux添加系统调用函数并编译</h1><h2 id="1-修改Linux内核"><a href="#1-修改Linux内核" class="headerlink" title="1. 修改Linux内核"></a>1. 修改Linux内核</h2><blockquote>
 <p>操作系统实验鸭</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-修改Linux内核"><a href="#1-修改Linux内核" class="headerlink" title="1. 修改Linux内核"></a>1. 修改Linux内核</h2><h3 id="1-1-添加系统调用号"><a href="#1-1-添加系统调用号" class="headerlink" title="1.1 添加系统调用号"></a>1.1 添加系统调用号</h3><p>在<code>./arch/x86/entry/syscalls/syscall_64.tbl</code>中加入系统调用号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">333     64      helloworld              sys_helloworld</span><br></pre></td></tr></table></figure>
+<h3 id="1-1-添加系统调用号"><a href="#1-1-添加系统调用号" class="headerlink" title="1.1 添加系统调用号"></a>1.1 添加系统调用号</h3><p>在<code>./arch/x86/entry/syscalls/syscall_64.tbl</code>中加入系统调用号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">333     64      helloworld              sys_helloworld</span><br><span class="line">334     64      two                     sys_two</span><br><span class="line">335     64      three                   sys_three</span><br></pre></td></tr></table></figure>
 <p>（333表示调用号，64代表64位程序）</p>
-<p><a href="https://imgchr.com/i/DPO1pj" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DPO1pj.png" alt="DPO1pj.png" style="zoom:67%;" /></a></p>
+<p><a href="https://imgchr.com/i/DFKBE6" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DFKBE6.png" alt="DFKBE6.png"></a></p>
 <h3 id="1-2-添加系统调用声明"><a href="#1-2-添加系统调用声明" class="headerlink" title="1.2 添加系统调用声明"></a>1.2 添加系统调用声明</h3><p>在<code>./arch/x86/include/asm/syscalls.h</code>文件中加入调用函数声明</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_helloworld</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p><a href="https://imgchr.com/i/DPOKAS" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DPOKAS.png" alt="DPOKAS.png" style="zoom:67%;" /></a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_helloworld</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_three</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_two</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Dixw7t" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/Dixw7t.png" alt="Dixw7t.png"></a></p>
 <h3 id="1-3-添加系统调用函数"><a href="#1-3-添加系统调用函数" class="headerlink" title="1.3 添加系统调用函数"></a>1.3 添加系统调用函数</h3><p>在<code>/kernel/sys.c</code>中添加系统调用函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_helloworld</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        printk(<span class="string">"helloworld\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://imgchr.com/i/DPOQhQ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DPOQhQ.png" alt="DPOQhQ.png" style="zoom:67%;" /></a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_helloworld</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        printk(<span class="string">"helloworld\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_two</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        printk(<span class="string">"it's my second function\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">asmlinkage <span class="keyword">void</span> <span class="title">sys_three</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">        printk(<span class="string">"it's my thrid function\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Dize4f" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/Dize4f.png" alt="Dize4f.png"></a></p>
 <h2 id="2-编译内核并安装内核"><a href="#2-编译内核并安装内核" class="headerlink" title="2. 编译内核并安装内核"></a>2. 编译内核并安装内核</h2><p>启动内核控制程序</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libncurses5-dev libncursesw5-dev</span><br><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
 <p><a href="https://imgchr.com/i/DiVeR1" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiVeR1.png" alt="DiVeR1.png" style="zoom:67%;" /></a></p>
@@ -426,10 +426,10 @@
 <p>这里我直接选择这个内核就会卡在开机画面，进不去，枯了，看到网上也有同学是一样的情况，可能是前面的步骤哪里有点问题，但是使用<code>4.14.200</code>的恢复模式就能进入系统（选择恢复模式后，选择<code>resume</code>），进入恢复模式后系统内核也重新更改了，那就这样叭 :-(</p>
 </blockquote>
 <p>更改内核成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uanme -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
 <p><a href="https://imgchr.com/i/DiFI2V" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiFI2V.png" alt="DiFI2V.png"></a></p>
 <h2 id="3-使用系统调用"><a href="#3-使用系统调用" class="headerlink" title="3. 使用系统调用"></a>3. 使用系统调用</h2><p>编辑一个C语言程序：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        syscall(<span class="number">333</span>);           <span class="comment">//上面自己定义的系统调用编&gt;号</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        syscall(<span class="number">333</span>);</span><br><span class="line">        syscall(<span class="number">334</span>);</span><br><span class="line">        syscall(<span class="number">335</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后编译一下~</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc test.c</span><br></pre></td></tr></table></figure>
 <p><a href="https://imgchr.com/i/DiEMNj" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiEMNj.png" alt="DiEMNj.png"></a></p>
@@ -439,7 +439,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;a.out</span><br></pre></td></tr></table></figure>
 <p>再查看日志</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmesg</span><br></pre></td></tr></table></figure>
-<p><a href="https://imgchr.com/i/DiE7Kf" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiE7Kf.png" alt="DiE7Kf.png"></a></p>
+<p><a href="https://imgchr.com/i/DFK1EV" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DFK1EV.png" alt="DFK1EV.png"></a></p>
 <p>大功告成 :-)</p>
 
       
@@ -484,6 +484,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="windows批处理(bat)程序常用命令">
+                windows批处理(bat)程序常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -571,7 +575,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -582,7 +586,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -687,7 +691,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共119.5k字</span>
+  <span class="post-count">博客全站共125.6k字</span>
 </div>
         
 
@@ -958,26 +962,7 @@
         showTime(Counter);
       }
     });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -994,5 +979,24 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

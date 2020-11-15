@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="code-o4T2nkcjRx" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统,Linux内核,系统调用," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="windows批处理(bat)程序常用命令 开始之前先简单说明下cmd文件和bat文件的区别：在本质上两者没有区别，都是简单的文本编码方式，都可以用记事本创建、编辑和查看。两者所用的命令行代码也是共用的，只是cmd文件中允许使用的命令要比bat文件多。cmd文件只有在windows2000以上的系统中才能运行，而bat文件则没有这个限制。从它们的文件描述中也可以看出以上的区别：cmd文件的描述是“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows批处理(bat)程序常用命令">
+<meta property="og:url" content="http://yoursite.com/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="windows批处理(bat)程序常用命令 开始之前先简单说明下cmd文件和bat文件的区别：在本质上两者没有区别，都是简单的文本编码方式，都可以用记事本创建、编辑和查看。两者所用的命令行代码也是共用的，只是cmd文件中允许使用的命令要比bat文件多。cmd文件只有在windows2000以上的系统中才能运行，而bat文件则没有这个限制。从它们的文件描述中也可以看出以上的区别：cmd文件的描述是“">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/Di01jx.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/Di0HVU.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiBnqf.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiDATU.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DisvFO.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiLOxA.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DiOlRJ.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DibrMq.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DijyUf.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/DijR2Q.png">
+<meta property="og:image" content="https://s3.ax1x.com/2020/11/15/Dij75T.png">
+<meta property="article:published_time" content="2020-11-15T10:20:51.639Z">
+<meta property="article:modified_time" content="2020-11-15T10:21:25.416Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="Linux内核">
+<meta property="article:tag" content="系统调用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2020/11/15/Di01jx.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/11/15/windows批处理(bat)程序常用命令/"/>
+
+
+
+
+
+  <title>windows批处理(bat)程序常用命令 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows批处理(bat)程序常用命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-15T18:20:51+08:00">
+                2020-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/11/15/windows批处理(bat)程序常用命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="windows批处理(bat)程序常用命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="windows批处理-bat-程序常用命令"><a href="#windows批处理-bat-程序常用命令" class="headerlink" title="windows批处理(bat)程序常用命令"></a>windows批处理(bat)程序常用命令</h1><blockquote>
+<p>开始之前先简单说明下cmd文件和bat文件的区别：在本质上两者没有区别，都是简单的文本编码方式，都可以用记事本创建、编辑和查看。两者所用的命令行代码也是共用的，只是cmd文件中允许使用的命令要比bat文件多。cmd文件只有在windows2000以上的系统中才能运行，而bat文件则没有这个限制。从它们的文件描述中也可以看出以上的区别：cmd文件的描述是“windows nt命令脚本”， bat文件的描述是“ms dos批处理文件”</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-简单批处理内部命令简介"><a href="#1-简单批处理内部命令简介" class="headerlink" title="1. 简单批处理内部命令简介"></a>1. 简单批处理内部命令简介</h2><blockquote>
+<p>说在前面，bat批处理程序注释方式非常多~</p>
+<ol>
+<li><strong>::</strong> <strong>注释内容</strong>（第一个冒号后也可以跟任何一个非字母数字的字符）</li>
+<li><strong>rem</strong> <strong>注释内容</strong>（不能出现重定向符号和管道符号）</li>
+<li>echo 注释内容（不能出现重定向符号和管道符号）〉nul</li>
+<li>if not exist nul 注释内容（不能出现重定向符号和管道符号）</li>
+<li>:注释内容（注释文本不能与已有标签重名）</li>
+<li><strong>%注释内容%</strong>（可以用作行间注释，不能出现重定向符号和管道符号）</li>
+<li>goto 标签 注释内容（可以用作说明goto的条件和执行内容）</li>
+<li>:标签 注释内容（可以用作标签下方段的执行内容）</li>
+</ol>
+</blockquote>
+<h3 id="1-1-echo-命令"><a href="#1-1-echo-命令" class="headerlink" title="1.1 echo 命令"></a>1.1 echo 命令</h3><p>打开回显或关闭请求回显功能，或显示消息。如果没有任何参数，echo 命令将显示当前回显设置。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [&#123; on|off &#125;] [message]</span><br></pre></td></tr></table></figure>
+<p><strong>举个栗子</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello world	<span class="variable">%打印出helloworld%</span></span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Di01jx" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/Di01jx.png" alt="Di01jx.png"></a></p>
+<hr>
+<p>当然我们也可以关闭请求回显功能</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off	<span class="variable">%关闭请求回显%</span></span><br><span class="line"><span class="built_in">echo</span> hello world</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>可以看到<code>echo hello world</code>命令和<code>pause</code>命令都没有请求回显了（但是<code>echo off</code>还是有回显，这个可以用@消除，参考后面~）</p>
+<p><a href="https://imgchr.com/i/Di0HVU" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/Di0HVU.png" alt="Di0HVU.png"></a></p>
+<h3 id="1-2-命令"><a href="#1-2-命令" class="headerlink" title="1.2 @ 命令"></a>1.2 @ 命令</h3><p>表示不显示@后面的命令，在入侵过程中（例如使用批处理来格式化敌人的硬盘）自然不能让对方看到你使用的命令啦。<br><strong>举个栗子</strong>：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off	<span class="variable">%关闭请求回显，使用@本句也不会有回显%</span></span><br><span class="line"><span class="built_in">echo</span> hello world</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>@echo off</code>就能关闭所有回显了~（包括本身的<code>echo off</code>语句）</p>
+<p><a href="https://imgchr.com/i/DiBnqf" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiBnqf.png" alt="DiBnqf.png"></a></p>
+<h3 id="1-3-goto-命令"><a href="#1-3-goto-命令" class="headerlink" title="1.3 goto 命令"></a>1.3 goto 命令</h3><p>指定跳转到标签，找到标签后，程序将处理从下一行开始的命令。<br><strong>语法</strong>：</p>
+<p>label是参数，指定所要转向的批处理程序中的行</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">goto label</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-4-pause-命令"><a href="#1-4-pause-命令" class="headerlink" title="1.4 pause 命令"></a>1.4 pause 命令</h3><p>用于暂停鸭，防止一闪而过~~</p>
+<p>运行 Pause 命令时，将显示下面的消息：<br>Press any key to continue . . .（或是：请按任意键继续. . .）</p>
+<h3 id="1-5-call-命令"><a href="#1-5-call-命令" class="headerlink" title="1.5 call 命令"></a>1.5 call 命令</h3><p>从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序。call 命令接受用作调用目标的标签。如果在脚本或批处理文件外使用 call，它将不会在命令行起作用</p>
+<p><strong>语法</strong></p>
+<p>当让其中的路径也可以用相对路径鸭！</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> [[Drive:][<span class="built_in">Path</span>] FileName [BatchParameters]] [:<span class="built_in">label</span> [arguments]]</span><br></pre></td></tr></table></figure>
+<p>注意：filename 参数必须具有 .bat 或 .cmd 扩展名。</p>
+<p><strong>举个栗子</strong>：</p>
+<p><code>test.bat</code>（两个文件再同一目录下）</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> helloworld.bat</span><br></pre></td></tr></table></figure>
+<p><code>helloworld.bat</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@echo off	%关闭请求回显%</span><br><span class="line">echo hello world</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>然后运行<code>test.bat</code></p>
+<p><a href="https://imgchr.com/i/DiDATU" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiDATU.png" alt="DiDATU.png"></a></p>
+<h3 id="1-6-start-命令"><a href="#1-6-start-命令" class="headerlink" title="1.6 start 命令"></a>1.6 start 命令</h3><p>启动单独的“命令提示符”窗口来运行指定程序或命令。如果在没有参数的情况下使用，start 将打开第二个命令提示符窗口。</p>
+<p><strong>语法</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> ["<span class="built_in">title</span>"] [/dPath] [/min] [/max] [&#123;/separate |/shared&#125;] [&#123;/low | /normal | /high | /realtime | /abovenormal | belownormal&#125;][/wait] [/B] [FileName] [parameters]</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&quot;title&quot; 指定在“命令提示符”窗口标题栏中显示的标题。</span><br><span class="line">&#x2F;dpatch 指定启动目录。</span><br><span class="line">&#x2F;i 将 Cmd.exe 启动环境传送到新的“命令提示符”窗口。</span><br><span class="line">&#x2F;min 启动新的最小化窗口。</span><br><span class="line">&#x2F;max 启动新的最大化窗口。</span><br><span class="line">&#x2F;separate 在单独的内存空间启动 16 位程序。</span><br><span class="line">&#x2F;shared 在共享的内存空间启动 16 位程序。</span><br><span class="line">&#x2F;low 以空闲优先级启动应用程序。</span><br><span class="line">&#x2F;normal 以一般优先级启动应用程序。</span><br><span class="line">&#x2F;high 以高优先级启动应用程序。</span><br><span class="line">&#x2F;realtime 以实时优先级启动应用程序。</span><br><span class="line">&#x2F;abovenormal 以超出常规优先级的方式启动应用程序。</span><br><span class="line">&#x2F;belownormal 以低出常规优先级的方式启动应用程序。</span><br><span class="line">&#x2F;wait 启动应用程序，并等待其结束。</span><br><span class="line">&#x2F;b 启动应用程序时不必打开新的“命令提示符”窗口。除非应用程序启用 CTRL+C，否则将忽略 CTRL+C 操作。使用 CTRL+BREAK 中断应用程序。</span><br></pre></td></tr></table></figure>
+<p><strong>举个栗子</strong></p>
+<p>启动同一目录下的<code>helloworld.bat</code>批处理程序（窗口标题为<code>the helloworld</code>）</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> "the helloworld" "helloworld.bat"</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DisvFO" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DisvFO.png" alt="DisvFO.png"></a></p>
+<h3 id="1-7-choice-命令"><a href="#1-7-choice-命令" class="headerlink" title="1.7 choice 命令"></a>1.7 choice 命令</h3><p>choice 使用此命令可以让用户输入一个字符，从而运行不同的命令。使用时应该加/c:参数，c:后应写提示可输入的字符，之间无空格。它的返回码为1234……</p>
+<p><strong>命令</strong>：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;C    choices       指定要创建的选项列表。默认列表是 &quot;YN&quot;。</span><br><span class="line">&#x2F;N                  在提示符中隐藏选项列表。提示前面的消息得到显示，</span><br><span class="line">                    选项依旧处于启用状态。</span><br><span class="line">&#x2F;CS                 允许选择分大小写的选项。在默认情况下，这个工具</span><br><span class="line">                    是不分大小写的。</span><br><span class="line">&#x2F;T    timeout       做出默认选择之前，暂停的秒数。可接受的值是从 0</span><br><span class="line">                    到 9999。如果指定了 0，就不会有暂停，默认选项</span><br><span class="line">                    会得到选择。</span><br><span class="line">&#x2F;D    choice        在 nnnn 秒之后指定默认选项。字符必须在用 &#x2F;C 选</span><br><span class="line">                    项指定的一组选择中; 同时，必须用 &#x2F;T 指定 nnnn。</span><br><span class="line">&#x2F;M    text          指定提示之前要显示的消息。如果没有指定，工具只</span><br><span class="line">                    显示提示。</span><br><span class="line">&#x2F;?                  显示此帮助消息。</span><br><span class="line">注意:</span><br><span class="line">ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选</span><br><span class="line">择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，</span><br><span class="line">该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的</span><br><span class="line">ERRORLEVEL 值。如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0</span><br><span class="line">的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降</span><br><span class="line">序排列。</span><br></pre></td></tr></table></figure>
+<p><strong>举个栗子</strong>：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">choice /c:abc /m:"选一个叭"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%errorlevel%</span>==<span class="number">3</span> <span class="keyword">goto</span> C</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%errorlevel%</span>==<span class="number">2</span> <span class="keyword">goto</span> B</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%errorlevel%</span>==<span class="number">1</span> <span class="keyword">goto</span> A</span><br><span class="line">:A</span><br><span class="line"><span class="built_in">echo</span> 你选择了A</span><br><span class="line"><span class="keyword">goto</span> end</span><br><span class="line">:B</span><br><span class="line"><span class="built_in">echo</span> 你选择了B</span><br><span class="line"><span class="keyword">goto</span> end</span><br><span class="line">:C</span><br><span class="line"><span class="built_in">echo</span> 你选择了C</span><br><span class="line"><span class="keyword">goto</span> end</span><br><span class="line">:end</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-8-If-命令"><a href="#1-8-If-命令" class="headerlink" title="1.8 If 命令"></a>1.8 If 命令</h3><p>if 表示将判断是否符合规定的条件，从而决定执行不同的命令。 有三种格式:</p>
+<ol>
+<li>if “参数” == “字符串” 　待执行的命令</li>
+</ol>
+<p>参数如果等于指定的字符串，则条件成立，运行命令，否则运行下一句。(注意是两个等号）</p>
+<p>如if “%1”==”a” format a:</p>
+<p>if { %1 }=={ } goto noparms</p>
+<p>if { %2 }=={ } goto noparms</p>
+<ol>
+<li>if exist 文件名　 待执行的命令</li>
+</ol>
+<p>如果有指定的文件，则条件成立，运行命令，否则运行下一句</p>
+<p>如if exist config.sys edit config.sys</p>
+<ol>
+<li>if errorlevel / if not errorlevel 数字　 待执行的命令</li>
+</ol>
+<p>如果返回码等于指定的数字，则条件成立，运行命令，否则运行下一句。</p>
+<p>如if errorlevel 2 goto x2 　</p>
+<p>DOS程序运行时都会返回一个数字给DOS，称为错误码errorlevel或称返回码，常见的返回码为0、1。</p>
+<h3 id="1-9-for-命令"><a href="#1-9-for-命令" class="headerlink" title="1.9 for 命令"></a>1.9 for 命令</h3><p>FOR这条命令基本上都被用来处理文本,但还有其他一些好用的功能!</p>
+<p><strong>命令格式</strong>(这里引用的是批处理中的格式,直接在命令行只需要一个%号) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FOR 参数 %%变量名 IN (相关文件或命令) DO 执行的命令</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong>:</p>
+<blockquote>
+<ul>
+<li><p>FOR有4个参数 <strong>/d  /l  /r  /f</strong>  他们的作用我在下面用例子解释 </p>
+</li>
+<li><p>%%变量名 :这个变量名可以是小写a-z或者大写A-Z,他们区分大小写,FOR会把每个读取到的值给他; </p>
+</li>
+<li><p>IN:命令的格式,照写就是了; </p>
+</li>
+<li><p>(相关文件或命令) :FOR要把什么东西读取然后赋值给变量  指定一个或一组文件。可以使用通配符。</p>
+</li>
+<li><p>do:命令的格式,照写就是了! </p>
+</li>
+<li><p>执行的命令:对每个变量的值要执行什么操作就写在这.</p>
+</li>
+<li><p>可以在CMD输入for /?看系统提供的帮助!对照一下 </p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h4 id="1-9-1-d"><a href="#1-9-1-d" class="headerlink" title="1.9.1 /d"></a>1.9.1 /d</h4><p>/d </p>
+<p>仅为目录 </p>
+<p>如果 Set (也就是我上面写的 “相关文件或命令”) 包含通配符（* 和 ?），将对与 Set 相匹配的每个目</p>
+<p>录（而不是指定目录中的文件组）执行指定的 Command。</p>
+<p>系统帮助的格式:FOR /D%%variable IN (set) DO command<br>他主要用于<strong>目录搜索</strong>, <strong>不会搜索文件</strong>,看这样的例子</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /d <span class="variable">%%i</span> <span class="keyword">in</span> (*) <span class="keyword">do</span> @<span class="built_in">echo</span> <span class="variable">%%i</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DiLOxA" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiLOxA.png" alt="DiLOxA.png"></a></p>
+<p>更进一步，使用通配符，这样的话如果你当前目录下有目录名字只有1-3个字母的,就会显示出来,没有就不显示了</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /d <span class="variable">%%i</span> <span class="keyword">in</span> (???) <span class="keyword">do</span> @<span class="built_in">echo</span> <span class="variable">%%i</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-9-2-R"><a href="#1-9-2-R" class="headerlink" title="1.9.2 /R"></a>1.9.2 /R</h4><p>/R </p>
+<p>递归 </p>
+<p>进入根目录树[Drive:]Path，在树的每个目录中执行for 语句。如果在 /R 后没有指定目录，则认为是</p>
+<p>当前目录。如果 Set 只是一个句点 (.)，则只枚举目录树。 </p>
+<p>上面我们知道,/D只能显示当前路径下的目录名字,那么现在这个/R也是和目录有关,他能干嘛呢 ? 放心他比</p>
+<p>/D强大多了!<br>他可以把当前或者你指定路径下的文件名字全部读取,注意是文件名字,有什么用看例子!</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /r c:\ <span class="variable">%%i</span> <span class="keyword">in</span> (*.exe) <span class="keyword">do</span> @<span class="built_in">echo</span> <span class="variable">%%i</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>咋们把这个BAT保存到D盘随便哪里然后执行,我会就会看到,他把C盘根目录,和每个目录的子目录下面全部</p>
+<p>的EXE文件都列出来了,这里的c:\就是目录了。</p>
+<p>再来一个 </p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /r <span class="variable">%%i</span> <span class="keyword">in</span> (*.exe) <span class="keyword">do</span> @<span class="built_in">echo</span> <span class="variable">%%i</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>参数不一样了，这个命令前面没加那个C:\也就是搜索路径,这样他就会以当前目录为搜索路径,比如你这</p>
+<p>个BAT你把他防灾d:\test目录下执行,那么他就会把D:\test目录和他下面的子目录的全部EXE文件列出</p>
+<p>来!!!</p>
+<h4 id="1-9-3-L"><a href="#1-9-3-L" class="headerlink" title="1.9.3 /L"></a>1.9.3 /L</h4><p>/L<br>迭代数值范围<br>使用迭代变量设置起始值(Start#)，然后逐步执行一组范围的值，直到该值超过所设置的终止值 (End#)</p>
+<p>。/L 将通过对 Start# 与 End# 进行比较来执行迭代变量。如果 Start# 小于 End#，就会执行该命令。</p>
+<p>如果迭代变量超过 End#，则命令解释程序退出此循环。还可以使用负的 Step# 以递减数值的方式逐步执</p>
+<p>行此范围内的值。例如，(1,1,5)生成序列 1 2 3 4 5，而 (5,-1,1) 则生成序列 (5 4 3 2 1)。语法是：</p>
+<p>系统帮助的格式:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /L%% Variable <span class="keyword">in</span> (<span class="built_in">Start</span>#,Step#,End#) <span class="keyword">do</span> Command</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /l <span class="variable">%%i</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">%%i</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DiOlRJ" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DiOlRJ.png" alt="DiOlRJ.png"></a></p>
+<p>再看这个例子 </p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line"><span class="keyword">for</span> /l <span class="variable">%%i</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">do</span> <span class="built_in">start</span> <span class="built_in">cmd</span> </span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p>执行后是不是吓了一跳,怎么多了5个CMD窗口,呵呵!如果把那个 (1,1,5)改成 (1,1,65535)会有什么结果,</p>
+<p>我先告诉大家,会打开65535个CMD窗口….这么多你不死机算你强!</p>
+<p>当然我们也可以把那个startcmd改成md %%i 这样就会建立指定个目录了!!!名字为1-65535</p>
+<p>看完这个被我赋予破坏性质的参数后,我们来看最后一个参数</p>
+<h4 id="1-9-4-f"><a href="#1-9-4-f" class="headerlink" title="1.9.4 /f"></a>1.9.4 /f</h4><p>/f</p>
+<p>含有/F的for详细说明</p>
+<p>含有/F的for有很大的用处，在批处理中使用的最多，用法如下：<br>格式： </p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FOR</span> /F ["options"] <span class="variable">%%i</span> <span class="keyword">IN</span> (file) DOcommand</span><br><span class="line"><span class="keyword">FOR</span>/F ["options"] <span class="variable">%%i</span> <span class="keyword">IN</span> ("string") <span class="keyword">DO</span> command</span><br><span class="line"><span class="keyword">FOR</span>/F ["options"] <span class="variable">%%i</span> <span class="keyword">IN</span> ('command') <span class="keyword">DO</span> command</span><br></pre></td></tr></table></figure>
+<p>这个可能是最常用的，也是最强的命令，主要用来处理文件和一些命令的输出结果。</p>
+<blockquote>
+<ul>
+<li><p>file代表一个或多个文件</p>
+</li>
+<li><p>string 代表字符串</p>
+</li>
+<li><p>command代表命令</p>
+</li>
+<li><p>[“options”]可选</p>
+</li>
+</ul>
+</blockquote>
+<p>对于FOR /F %%i IN (file) DO command</p>
+<p>file为文件名，按照官方的说法是，for会依次将file中的文件打开，并且在进行到下一个文件之前将每个文件读取到内存，按照每一行分成一个一个的元素，忽略空白的行，看个例子。</p>
+<p>假如文件a.txt中有如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第1行第1列第1行第2列第1行第3列</span><br><span class="line">第2行第1列第2行第2列第2行第3列</span><br><span class="line">第3行第1列第3行第2列第3行第3列</span><br></pre></td></tr></table></figure>
+<p>你想显示a.txt中的内容，会用什么命令呢？当然是type，type a.txt</p>
+<p>for也可以完成同样的命令：</p>
+<p>for /f %%i in(a.txt) do echo %%i</p>
+<p>还是先从括号执行，因为含有参数/f,所以for会先打开a.txt，然后读出a.txt里面的所有内容，把它作为一个集合，并且以每一行作为一个元素，所以会产生这样的集合，</p>
+<p><strong>{“第1行第1列第1行第2列第1行第3列”， //第一个元素</strong></p>
+<p><strong>“第2行第1列第2行第2列第2行第3列”， //第二个元素</strong></p>
+<p><strong>“第3行第1列第3行第2列第3行第3列”}  //第三个元素</strong></p>
+<p>集合中只有3个元素，同样用%%i依次代替每个元素，然后执行do后面的命令。</p>
+<p>具体过程：</p>
+<p><strong>用%%i代替”第1行第1列第1行第2列第1行第3列”，执行do后面的echo %%i，显示”第1行第1列第1行第2列第1行第3列”，</strong></p>
+<p><strong>用%%i代替”第2行第1列第2行第2列第2行第3列”，执行echo %%i，显示”第2行第1列第2行第2列第2行第3列”，</strong></p>
+<p><strong>依次，直到每个元素都代替完为止。</strong></p>
+<p>为了加强理解/f的作用，请执行一下两个命令，对比即可明白：</p>
+<p><strong>for/f %%i in (a.txt) do echo %%i //这个会显示a.txt里面的内容，因为/f的作用，会读出a.txt中<br>的内容。</strong></p>
+<p><strong>for%%i in (a.txt) do echo %%i //而这个只会显示a.txt这个名字，并不会读取其中的内容。</strong></p>
+<p>通过上面的学习，我们发现for /f会默认以每一行来作为一个元素，但是如果我们还想把每一行再分解更小的内容，该怎么办呢？不用担心，for命令还为我们提供了更详细的参数，使我们将每一行分为更小的元素成为可能。</p>
+<p>它们就是：<strong>delims和tokens</strong></p>
+<p>delims 用来告诉for每一行应该拿什么作为分隔符，默认的分隔符是空格和tab键</p>
+<p>比如，还是上面的文件，我们执行下面的命令：</p>
+<p><strong>for/f “delims= “ %%i in (a.txt) do echo %%i</strong></p>
+<p>显示的结果是：</p>
+<p><strong>第1行第1列<br>第2行第1列<br>第3行第1列</strong></p>
+<p>为什么是这样的呢。因为这里有了delims这个参数，=后面有一个空格，意思是再将每个元素以空格分割，默认是只取分割之后的第一个元素。</p>
+<p>执行过程是：</p>
+<p><strong>将第一个元素”第1行第1列第1行第2列第1行第3列”分成三个元素：”第1行第1列” “第1行第2列” “第1行第3列”，它默认只取第一个，即”第1行第1列”，然后执行do后面的命令，依次类推。</strong></p>
+<p>但是这样还是有局限的，如果我们想要每一行的第二列元素，那又如何呢？</p>
+<p>这时候，<strong>tokens</strong>跳出来说，我能做到。</p>
+<p>它的作用就是当你通过delims将每一行分为更小的元素时，由它来控制要取哪一个或哪几个。</p>
+<p>还是上面的例子，执行如下命令：</p>
+<p><strong>for/f “tokens=2 delims= “ %%i in (a.txt) do echo %%i</strong></p>
+<p>执行结果：</p>
+<p><strong>第1行第2列<br>第2行第2列<br>第3行第2列</strong></p>
+<p>如果要显示第三列，那就换成tokens=3。</p>
+<p>同时tokens支持通配符*，以及限定范围。</p>
+<p>如果要显示第二列和第三列，则换成tokens=2,3或tokens=2-3,如果还有更多的则为：tokens=2-10之类的。</p>
+<p>此时的命令为：</p>
+<p><strong>for/f “tokens=2,3 delims= “ %%i in (a.txt) do echo %%i %%j</strong></p>
+<p><strong>怎么多出一个%%j？</strong></p>
+<p>这是因为你的tokens后面要取每一行的两列，用%%i来替换第二列，用%%j来替换第三列。</p>
+<p>并且必须是按照英文字母顺序排列的，%%j不能换成%%k，因为i后面是j</p>
+<p>执行结果为：</p>
+<p><strong>第1行第2列第1行第3列<br>第2行第2列第2行第3列<br>第3行第2列第3行第3列</strong></p>
+<p>对以通配符*，就是把这一行全部或者这一行的剩余部分当作一个元素了。</p>
+<p>比如：</p>
+<p><strong>for/f “tokens=* delims= “ %%i in (a.txt) do echo %%i</strong></p>
+<p>执行结果为：</p>
+<p><strong>第1行第1列第1行第2列第1行第3列<br>第2行第1列第2行第2列第2行第3列<br>第3行第1列第3行第2列第3行第3列</strong></p>
+<p>其实就跟for /f %%i in (a.txt) do echo %%i的执行结果是一样的。</p>
+<p>再如：</p>
+<p><strong>for/f “tokens=2,* delims= “ %%i in (a.txt) do echo %%i %%j</strong></p>
+<p>执行结果为：</p>
+<p><strong>第1行第2列第1行第3列<br>第2行第2列第2行第3列<br>第3行第2列第3行第3列</strong></p>
+<p>用%%i代替第二列，用%%j代替剩余的所有</p>
+<p>最后还有skip合eol，这俩个简单，skip就是要忽略文件的前多少行，而eol用来指定当一行以什么符号开始时，就忽略它。</p>
+<p>比如：</p>
+<p><strong>for/f “skip=2 tokens=*“ %%i in (a.txt) do echo %%i</strong></p>
+<p>结果为:</p>
+<p><strong>第3行第1列第3行第2列第3行第3列</strong></p>
+<p>用skip来告诉for跳过前两行。</p>
+<p>如果不加tokens=*的话，执行结果为：</p>
+<p><strong>第3行第1列</strong></p>
+<p>不知道怎么回事。</p>
+<p>再如，当a.txt内容变成：</p>
+<p><strong>.第1行第1列第1行第2列第1行第3列<br>\</strong>.*<em>第2行第1列第2行第2列第2行第3列<br>第3行第1列第3行第2列第3行第3列*</em></p>
+<p>执行<strong>for /f “eol=. tokens=*“%%i in (a.txt) do echo %%i</strong>结果是：</p>
+<p><strong>第3行第1列第3行第2列第3行第3列</strong></p>
+<p>用eol来告诉for忽略以”.”开头的行。</p>
+<p>同样也必须加tokens=*，否则只会显示”第3行第1列”</p>
+<h2 id="2-如何在批处理文件中使用参数"><a href="#2-如何在批处理文件中使用参数" class="headerlink" title="2. 如何在批处理文件中使用参数"></a>2. 如何在批处理文件中使用参数</h2><p>批处理中可以使用参数，一般从1%到 9%这九个，当有多个参数时需要用shift来移动，这种情况并不多见，我们就不考虑它了。</p>
+<p><strong>举个栗子</strong>：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> %<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>然后我们运行它</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test.bat helloworld</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DibrMq" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DibrMq.png" alt="DibrMq.png"></a></p>
+<h2 id="3-如何使用组合命令-Compound-Command"><a href="#3-如何使用组合命令-Compound-Command" class="headerlink" title="3. 如何使用组合命令(Compound Command)"></a>3. 如何使用组合命令(Compound Command)</h2><h3 id="3-1-amp"><a href="#3-1-amp" class="headerlink" title="3.1.&amp;"></a>3.1.&amp;</h3><p>Usage：第一条命令 &amp; 第二条命令 [&amp; 第三条命令…]</p>
+<p>用这种方法可以同时执行多条命令，而不管命令是否执行成功</p>
+<p><strong>举个栗子</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> z: &amp; <span class="built_in">dir</span> d:</span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DijyUf" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DijyUf.png" alt="DijyUf.png"></a></p>
+<h3 id="3-2-amp-amp"><a href="#3-2-amp-amp" class="headerlink" title="3.2 &amp;&amp;"></a>3.2 &amp;&amp;</h3><p>Usage：第一条命令 &amp;&amp; 第二条命令[&amp;&amp; 第三条命令…]</p>
+<p>用这种方法可以同时执行多条命令，当碰到执行出错的命令后将不执行后面的命令，如果一直没有出错则一直执行完所有命令；</p>
+<p><strong>举个栗子</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> z: &amp;&amp; <span class="built_in">dir</span> d:</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/DijR2Q" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/DijR2Q.png" alt="DijR2Q.png"></a></p>
+<h3 id="3-3"><a href="#3-3" class="headerlink" title="3.3 ||"></a>3.3 ||</h3><p>Usage：第一条命令 || 第二条命令 [|| 第三条命令…]</p>
+<p>用这种方法可以同时执行多条命令，当碰到执行正确的命令后将不执行后面的命令，如果没有出现正确的命令则一直执行完所有命令；</p>
+<p><strong>举个栗子</strong></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> f: || <span class="built_in">dir</span> e: || <span class="built_in">dir</span> d:</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://imgchr.com/i/Dij75T" target="_blank" rel="noopener"><img src="https://s3.ax1x.com/2020/11/15/Dij75T.png" alt="Dij75T.png"></a></p>
+<h2 id="4-管道命令的使用"><a href="#4-管道命令的使用" class="headerlink" title="4. 管道命令的使用"></a>4. 管道命令的使用</h2><h3 id="1-命令"><a href="#1-命令" class="headerlink" title="1. | 命令"></a>1. | 命令</h3><p>Usage：第一条命令 | 第二条命令 [| 第三条命令…]<br>将第一条命令的结果作为第二条命令的参数来使用，记得在unix中这种方式很常见。</p>
+<p>sample：<br>time /t&gt;&gt;D:\\IP.log<br>netstat -n -p tcp|find “:3389”&gt;&gt;D:\\IP.log<br>start Explore</p>
+<p>看出来了么？用于终端服务允许我们为用户自定义起始的程序，来实现让用户运行下面这个bat，以获得登录用户的IP。</p>
+<h3 id="2-gt-、-gt-gt-输出重定向命令"><a href="#2-gt-、-gt-gt-输出重定向命令" class="headerlink" title="2. &gt;、&gt;&gt;输出重定向命令"></a>2. &gt;、&gt;&gt;输出重定向命令</h3><p>将一条命令或某个程序输出结果的重定向到特定文件中, &gt; 与 &gt;&gt;的区别在于，&gt;会清除调原有文件中的内容后写入指定文件，而&gt;&gt;只会追加内容到指定文件中，而不会改动其中的内容。</p>
+<p>sample1：<br>echo hello world&gt;c:\\hello.txt (stupid example?)</p>
+<p>sample2:</p>
+<p>时下DLL木马盛行，我们知道system32是个捉迷藏的好地方，许多木马都削尖了脑袋往那里钻，DLL马也不例外，针对这一点我们可以在安装好系统和必要的应用程序后，对该目录下的EXE和DLL文件作一个记录：<br>运行CMD—转换目录到system32—dir<em>.exe&gt;exeback.txt &amp; dir </em>.dll&gt;dllback.txt,<br>这样所有的EXE和DLL文件的名称都被分别记录到exeback.txt和dllback.txt中,<br>日后如发现异常但用传统的方法查不出问题时,则要考虑是不是系统中已经潜入DLL木马了.<br>这时我们用同样的命令将system32下的EXE和DLL文件记录到另外的exeback1.txt和dllback1.txt中,然后运行:<br>CMD—fc exeback.txt exeback1.txt&gt;diff.txt &amp; fc dllback.txtdllback1.txt&gt;diff.txt.(用FC命令比较前后两次的DLL和EXE文件,并将结果输入到diff.txt中),这样我们就能发现一些多出来的DLL和EXE文件,然后通过查看创建时间、版本、是否经过压缩等就能够比较容易地判断出是不是已经被DLL木马光顾了。没有是最好，如果有的话也不要直接DEL掉，先用regsvr32 /u trojan.dll将后门DLL文件注销掉,再把它移到回收站里，若系统没有异常反映再将之彻底删除或者提交给杀毒软件公司。</p>
+<h3 id="3-lt-、-gt-amp-、-lt-amp"><a href="#3-lt-、-gt-amp-、-lt-amp" class="headerlink" title="3. &lt; 、&gt;&amp; 、&lt;&amp;"></a>3. &lt; 、&gt;&amp; 、&lt;&amp;</h3><p>&lt; 从文件中而不是从键盘中读入命令输入。<br>>&amp; 将一个句柄的输出写入到另一个句柄的输入中。<br>&lt;&amp; 从一个句柄读取输入并将其写入到另一个句柄输出中。<br>这些并不常用，也就不多做介绍。</p>
+<h2 id="5-如何用批处理文件来操作注册表"><a href="#5-如何用批处理文件来操作注册表" class="headerlink" title="5. 如何用批处理文件来操作注册表"></a>5. 如何用批处理文件来操作注册表</h2><p>在入侵过程中经常会操作注册表的特定的键值来实现一定的目的，例如:为了达到隐藏后门、木马程序而删除Run下残余的键值。或者创建一个服务用以加载后门。当然我们也会修改注册表来加固系统或者改变系统的某个属性，这些都需要我们对注册表操作有一定的了解。下面我们就先学习一下如何使用.REG文件来操作注册表.(我们可以用批处理来生成一个REG文件)<br>关于注册表的操作，常见的是创建、修改、删除</p>
+<h3 id="5-1-创建"><a href="#5-1-创建" class="headerlink" title="5.1 创建"></a>5.1 创建</h3><p>创建分为两种，一种是创建子项(Subkey)</p>
+<p>我们创建一个文件，内容如下：</p>
+<p>Windows Registry Editor Version 5.00</p>
+<p>[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\hacker]</p>
+<p>然后执行该脚本，你就已经在HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft下创建了一个名字为“hacker”的子项。</p>
+<p>另一种是创建一个项目名称<br>那这种文件格式就是典型的文件格式，和你从注册表中导出的文件格式一致，内容如下：</p>
+<p>Windows Registry Editor Version 5.00</p>
+<p>[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run]<br>“Invader”=”Ex4rch”<br>“Door”=C:\\\\WINNT\\\\system32\\\\door.exe<br>“Autodos”=dword:02</p>
+<p>这样就在[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run]下<br>新建了:Invader、door、about这三个项目<br>Invader的类型是“String Value”<br>door的类型是“REG SZ Value”<br>Autodos的类型是“DWORD Value”</p>
+<h3 id="5-2-修改"><a href="#5-2-修改" class="headerlink" title="5.2 修改"></a>5.2 修改</h3><p>修改相对来说比较简单，只要把你需要修改的项目导出，然后用记事本进行修改，然后导入（regedit /s）即可。</p>
+<h3 id="5-3-删除"><a href="#5-3-删除" class="headerlink" title="5.3 删除"></a>5.3 删除</h3><p>我们首先来说说删除一个项目名称，我们创建一个如下的文件：</p>
+<p>Windows Registry Editor Version 5.00</p>
+<p>[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run]<br>“Ex4rch”=-</p>
+<p>执行该脚本，[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run]下的”Ex4rch”就被删除了；</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          
+            <a href="/tags/Linux%E5%86%85%E6%A0%B8/" rel="tag"><i class="fa fa-tag"></i> Linux内核</a>
+          
+            <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="tag"><i class="fa fa-tag"></i> 系统调用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/15/Linux%E6%B7%BB%E5%8A%A0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%B9%B6%E7%BC%96%E8%AF%91/" rel="next" title="Linux添加系统调用函数并编译">
+                <i class="fa fa-chevron-left"></i> Linux添加系统调用函数并编译
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/11/15/windows批处理(bat)程序常用命令/"
+           data-title="windows批处理(bat)程序常用命令" data-url="http://yoursite.com/2020/11/15/windows%E6%89%B9%E5%A4%84%E7%90%86(bat)%E7%A8%8B%E5%BA%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#windows批处理-bat-程序常用命令"><span class="nav-text">windows批处理(bat)程序常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简单批处理内部命令简介"><span class="nav-text">1. 简单批处理内部命令简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-echo-命令"><span class="nav-text">1.1 echo 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-命令"><span class="nav-text">1.2 @ 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-goto-命令"><span class="nav-text">1.3 goto 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-pause-命令"><span class="nav-text">1.4 pause 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-call-命令"><span class="nav-text">1.5 call 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-start-命令"><span class="nav-text">1.6 start 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-choice-命令"><span class="nav-text">1.7 choice 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-If-命令"><span class="nav-text">1.8 If 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-for-命令"><span class="nav-text">1.9 for 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-1-d"><span class="nav-text">1.9.1 &#x2F;d</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-2-R"><span class="nav-text">1.9.2 &#x2F;R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-3-L"><span class="nav-text">1.9.3 &#x2F;L</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-9-4-f"><span class="nav-text">1.9.4 &#x2F;f</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何在批处理文件中使用参数"><span class="nav-text">2. 如何在批处理文件中使用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何使用组合命令-Compound-Command"><span class="nav-text">3. 如何使用组合命令(Compound Command)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-amp"><span class="nav-text">3.1.&amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-amp-amp"><span class="nav-text">3.2 &amp;&amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3"><span class="nav-text">3.3 ||</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-管道命令的使用"><span class="nav-text">4. 管道命令的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-命令"><span class="nav-text">1. | 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-gt-、-gt-gt-输出重定向命令"><span class="nav-text">2. &gt;、&gt;&gt;输出重定向命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-lt-、-gt-amp-、-lt-amp"><span class="nav-text">3. &lt; 、&gt;&amp; 、&lt;&amp;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-如何用批处理文件来操作注册表"><span class="nav-text">5. 如何用批处理文件来操作注册表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-创建"><span class="nav-text">5.1 创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-修改"><span class="nav-text">5.2 修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-删除"><span class="nav-text">5.3 删除</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共125.6k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GksJHYNBz0VjRrAQjwNpruiC-gzGzoHsz", "0pYCKkFIF1OaexePM7yvqmnf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
