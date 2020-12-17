@@ -82,15 +82,15 @@
 
 
 
-<meta name="description" content="树状数组模板 算法细节没工夫写啦~~~  1. 题目洛谷P3374 【模板】树状数组 1">
+<meta name="description" content="树状数组模板 算法细节没工夫写啦~~~ 时间复杂度 树状数组和线段树都是 $nlogn$ ，但是，你会发现，在查询时，树状数组最好情况是$logn$（比如8个数，然后查询8），但是线段树是所有情况都是 $nlogn$，稍慢于树状数组。 空间复杂度 树状数组完胜于线段树，线段树要开2倍到4倍内存（推荐4倍），但是树状数组一倍就够了。 适用范围 树状数组区间、单点的查询修改完胜线段树，但是线段树之所以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树状数组模板">
 <meta property="og:url" content="http://yoursite.com/2020/11/09/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E6%A8%A1%E6%9D%BF/index.html">
 <meta property="og:site_name" content="panfengblog">
-<meta property="og:description" content="树状数组模板 算法细节没工夫写啦~~~  1. 题目洛谷P3374 【模板】树状数组 1">
+<meta property="og:description" content="树状数组模板 算法细节没工夫写啦~~~ 时间复杂度 树状数组和线段树都是 $nlogn$ ，但是，你会发现，在查询时，树状数组最好情况是$logn$（比如8个数，然后查询8），但是线段树是所有情况都是 $nlogn$，稍慢于树状数组。 空间复杂度 树状数组完胜于线段树，线段树要开2倍到4倍内存（推荐4倍），但是树状数组一倍就够了。 适用范围 树状数组区间、单点的查询修改完胜线段树，但是线段树之所以">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-09T13:53:22.808Z">
-<meta property="article:modified_time" content="2020-11-09T13:54:42.336Z">
+<meta property="article:modified_time" content="2020-12-17T11:47:28.490Z">
 <meta property="article:author" content="panfeng&#39;s blog">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="算法">
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  378
+                  593
                 </span>
               
 
@@ -380,9 +380,15 @@
       
         <h1 id="树状数组模板"><a href="#树状数组模板" class="headerlink" title="树状数组模板"></a>树状数组模板</h1><blockquote>
 <p>算法细节没工夫写啦~~~</p>
+<p><strong>时间复杂度</strong></p>
+<p>树状数组和线段树都是 $nlogn$ ，但是，你会发现，在查询时，树状数组最好情况是$logn$（比如8个数，然后查询8），但是线段树是所有情况都是 $nlogn$，稍慢于树状数组。</p>
+<p><strong>空间复杂度</strong></p>
+<p>树状数组完胜于线段树，线段树要开2倍到4倍内存（推荐4倍），但是树状数组一倍就够了。</p>
+<p><strong>适用范围</strong></p>
+<p>树状数组区间、单点的查询修改完胜线段树，但是线段树之所以存在的理由是因为它能适用于很多方面，不仅仅是区间、单点的查询修改，还有标记等等，可以用于模拟、DP等等，而且空间经过离散化以后也可以相对压缩，所以适用范围线段树更加广一些。</p>
 </blockquote>
-<h3 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h3><p><a href="https://www.luogu.com.cn/problem/P3374" target="_blank" rel="noopener">洛谷P3374 【模板】树状数组 1</a></p>
 <a id="more"></a>
+<h3 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h3><p><a href="https://www.luogu.com.cn/problem/P3374" target="_blank" rel="noopener">洛谷P3374 【模板】树状数组 1</a></p>
 <blockquote>
 <p><strong>题目描述</strong></p>
 <p>如题，已知一个数列，你需要进行下面两种操作：</p>
@@ -401,7 +407,7 @@
 <p><strong>输出格式</strong></p>
 <p>输出包含若干行整数，即为所有操作 22 的结果。</p>
 </blockquote>
-<h3 id="2-树状数组模板"><a href="#2-树状数组模板" class="headerlink" title="2. 树状数组模板"></a>2. 树状数组模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5100</span></span><br><span class="line"><span class="keyword">int</span> tree[<span class="number">4</span> * N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i &amp; (-i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">		tree[i] += k;</span><br><span class="line">		i += lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">		ans += tree[i];</span><br><span class="line">		i -= lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, temp, op, temp1, temp2;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; temp;</span><br><span class="line">		add(i, temp, n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; op &gt;&gt; temp1 &gt;&gt; temp2;</span><br><span class="line">		<span class="keyword">switch</span> (op)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>: &#123;</span><br><span class="line">			add(temp1, temp2, n);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>: &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; sum(temp2) - sum(temp1 - <span class="number">1</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-树状数组模板"><a href="#2-树状数组模板" class="headerlink" title="2. 树状数组模板"></a>2. 树状数组模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 5100</span></span><br><span class="line"><span class="keyword">int</span> tree[N], n;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i &amp; (-i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= n) &#123;</span><br><span class="line">		tree[i] += k;</span><br><span class="line">		i += lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">		ans += tree[i];</span><br><span class="line">		i -= lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(tree, <span class="number">0</span>, <span class="keyword">sizeof</span>(tree));</span><br><span class="line">	<span class="keyword">int</span> m, op, temp1, temp2;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; temp1;</span><br><span class="line">		add(i, temp1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; op &gt;&gt; temp1 &gt;&gt; temp2;</span><br><span class="line">		<span class="keyword">switch</span> (op)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>: &#123;</span><br><span class="line">			add(temp1, temp2);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>: &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; sum(temp2) - sum(temp1 - <span class="number">1</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -538,7 +544,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -560,7 +566,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -654,7 +660,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共133.5k字</span>
+  <span class="post-count">博客全站共138.2k字</span>
 </div>
         
 
