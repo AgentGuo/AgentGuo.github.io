@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="code-o4T2nkcjRx" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,算法,字符串匹配,BM算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="转自这里 1. BM（Boyer-Moore）算法 思想：有模式串中不存在的字符，那么肯定不匹配，往后多移动几位，提高效率 BM原理：坏字符规则，好后缀规则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BM算法">
+<meta property="og:url" content="http://yoursite.com/2020/12/30/BM%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="panfengblog">
+<meta property="og:description" content="转自这里 1. BM（Boyer-Moore）算法 思想：有模式串中不存在的字符，那么肯定不匹配，往后多移动几位，提高效率 BM原理：坏字符规则，好后缀规则">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190618200307606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190618202514696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190618212252698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190618213845851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190618221613769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190619001221299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622020201716.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622020627597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622021531230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622023152998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622024032558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622024230227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622024728958.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622035247445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622041158172.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622042832376.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622043606784.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190622043949446.png">
+<meta property="article:published_time" content="2020-12-30T09:04:22.592Z">
+<meta property="article:modified_time" content="2020-12-30T09:07:58.447Z">
+<meta property="article:author" content="panfeng&#39;s blog">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="字符串匹配">
+<meta property="article:tag" content="BM算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190618200307606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/30/BM算法/"/>
+
+
+
+
+
+  <title>BM算法 | panfengblog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/AgentGuo" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">panfengblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/30/BM%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panfeng's blog">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="panfengblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BM算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-30T17:04:22+08:00">
+                2020-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/30/BM%E7%AE%97%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/12/30/BM算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/12/30/BM%E7%AE%97%E6%B3%95/" class="leancloud_visitors" data-flag-title="BM算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转自<a href="https://blog.csdn.net/qq_21201267/article/details/92799488" target="_blank" rel="noopener">这里</a></p>
+<h2 id="1-BM（Boyer-Moore）算法"><a href="#1-BM（Boyer-Moore）算法" class="headerlink" title="1. BM（Boyer-Moore）算法"></a>1. BM（Boyer-Moore）算法</h2><ul>
+<li>思想：有模式串中不存在的字符，那么肯定不匹配，往后多移动几位，提高效率<br><img src="https://img-blog.csdnimg.cn/20190618200307606.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>BM原理：<strong>坏字符</strong>规则，<strong>好后缀</strong>规则</li>
+</ul>
+<a id="more"></a>
+<h3 id="1-1-坏字符规则"><a href="#1-1-坏字符规则" class="headerlink" title="1.1 坏字符规则"></a>1.1 坏字符规则</h3><p><img src="https://img-blog.csdnimg.cn/20190618202514696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>利用<strong>坏字符规则</strong>，BM算法在最好情况下的时间复杂度非常低，是O（n/m）。比如，主串是aaabaaabaaabaaab，模式串是aaaa。每次比对，模式串都可以直接后移四位，所以，匹配<strong>具有类似特点</strong>的模式串和主串的时候，BM算法非常高效。</li>
+<li>单纯使用坏字符规则还是不够的。因为根据 si-xi计算出来的<strong>移动位数</strong>，<strong>有可能是负数</strong>，比如主串是aaaaaaaaaaaaaaaa，模式串是baaa。不但不会向后滑动模式串，还有可能倒退。所以，BM算法还需要用到“好后缀规则”。</li>
+</ul>
+<h3 id="1-2-好后缀规则"><a href="#1-2-好后缀规则" class="headerlink" title="1.2 好后缀规则"></a>1.2 好后缀规则</h3><p><img src="https://img-blog.csdnimg.cn/20190618212252698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从好后缀的后缀子串中，找一个最长的且和模式串的前缀子串匹配的 {v}，滑动至 {v} 对齐<br><img src="https://img-blog.csdnimg.cn/20190618213845851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-3-两种规则如何选择"><a href="#1-3-两种规则如何选择" class="headerlink" title="1.3 两种规则如何选择"></a>1.3 两种规则如何选择</h3><ul>
+<li>分别计算好后缀和坏字符规则往后滑动的位数，取大的，作为滑动位数（还可以避免负数）</li>
+</ul>
+<h2 id="2-BM算法代码实现"><a href="#2-BM算法代码实现" class="headerlink" title="2. BM算法代码实现"></a>2. BM算法代码实现</h2><h3 id="2-1-坏字符"><a href="#2-1-坏字符" class="headerlink" title="2.1 坏字符"></a>2.1 坏字符</h3><ul>
+<li>找到坏字符在模式串中的位置(有重复的，则是靠后的那个)<br>采用哈希，而不是遍历。<br><img src="https://img-blog.csdnimg.cn/20190618221613769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 256    <span class="comment">//字符集字符数</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateBadChar</span><span class="params">(<span class="keyword">char</span> *b, <span class="keyword">int</span> m, <span class="keyword">int</span> *badchar)</span><span class="comment">//(模式串字符b，模式串长度m，模式串的哈希表)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, ascii;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; SIZE; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        badchar[i] = <span class="number">-1</span>;<span class="comment">//哈希表初始化为-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ascii = <span class="keyword">int</span>(b[i]);  <span class="comment">//计算字符的ASCII值</span></span><br><span class="line">        badchar[ascii] = i;<span class="comment">//重复字符被覆盖，记录的是最后出现的该字符的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190619001221299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">str_bm</span><span class="params">(<span class="keyword">char</span> *a, <span class="keyword">int</span> n, <span class="keyword">char</span> *b, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"><span class="comment">//只考虑坏字符方法的程序框架</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *badchar = <span class="keyword">new</span> <span class="keyword">int</span> [SIZE];<span class="comment">//记录模式串中每个字符最后出现的位置</span></span><br><span class="line">    generateBadChar(b,m,hash);     <span class="comment">//构建坏字符哈希表</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n-m+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = m <span class="number">-1</span>; j &gt;= <span class="number">0</span>; --j)  <span class="comment">//模式串从后往前匹配</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i+j] != b[j])</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">//坏字符对应模式串中的下标是j</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j &lt; <span class="number">0</span>)   <span class="comment">//匹配成功</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;   <span class="comment">//返回主串与模式串第一个匹配的字符的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//这里等同于将模式串往后滑动 j-badchar[int(a[i+j])] 位</span></span><br><span class="line">        i = i + (j - badchar[<span class="keyword">int</span>(a[i+j])]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345678910111213141516171819202122</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-好后缀"><a href="#2-2-好后缀" class="headerlink" title="2.2 好后缀"></a>2.2 好后缀</h3><ul>
+<li>在模式串中，查找跟好后缀匹配的另一个子串</li>
+<li>在好后缀的后缀子串中，查找最长的、能跟模式串前缀子串匹配的后缀子串</li>
+</ul>
+<p>不考虑效率的话，上面两个操作都可以暴力查找；<br><strong>解决办法：</strong> 预先对模式串进行处理。<br><img src="https://img-blog.csdnimg.cn/20190622020201716.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190622020627597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>实现过程：<br><img src="https://img-blog.csdnimg.cn/20190622021531230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>预处理模式串，填充suffix，prefix</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateGS</span><span class="params">(<span class="keyword">char</span> *b, <span class="keyword">int</span> m, <span class="keyword">int</span> *suffix, <span class="keyword">bool</span> *prefix)</span></span></span><br><span class="line"><span class="function"><span class="comment">//预处理模式串，填充suffix，prefix</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; ++i)<span class="comment">//两个数组初始化</span></span><br><span class="line">    &#123;</span><br><span class="line">        suffix[i] = <span class="number">-1</span>;</span><br><span class="line">        prefix[i] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m<span class="number">-1</span>; ++i)<span class="comment">//b[0,i]</span></span><br><span class="line">    &#123;</span><br><span class="line">        j = i;</span><br><span class="line">        k = <span class="number">0</span>;<span class="comment">//公共后缀子串长度(模式串尾部取k个出来，分别比较)</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; b[j] == b[m<span class="number">-1</span>-k])<span class="comment">//与b[0,m-1]求公共后缀子串</span></span><br><span class="line">        &#123;</span><br><span class="line">            --j;</span><br><span class="line">            ++k;</span><br><span class="line">            suffix[k] = j+<span class="number">1</span>;</span><br><span class="line">            <span class="comment">//相同后缀子串长度为k时，该子串在b[0,i]中的起始下标</span></span><br><span class="line">            <span class="comment">// (如果有多个相同长度的子串，被赋值覆盖，存较大的)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span>)<span class="comment">//查找到模式串的头部了</span></span><br><span class="line">            prefix[k] = <span class="literal">true</span>;<span class="comment">//如果公共后缀子串也是模式串的前缀子串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345678910111213141516171819202122232425</span></span><br></pre></td></tr></table></figure>
+<p>计算滑动位数</p>
+<ul>
+<li>case1：<br><img src="https://img-blog.csdnimg.cn/20190622023152998.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>case2：<br><img src="https://img-blog.csdnimg.cn/20190622024032558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>case3：（以上都不成立，移动整个模式串（长度m））<br><img src="https://img-blog.csdnimg.cn/20190622024230227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<h3 id="2-3-完整代码"><a href="#2-3-完整代码" class="headerlink" title="2.3 完整代码"></a>2.3 完整代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @description: 字符匹配BM算法</span></span><br><span class="line"><span class="comment"> * @author: michael ming</span></span><br><span class="line"><span class="comment"> * @date: 2019/6/18 22:19</span></span><br><span class="line"><span class="comment"> * @modified by: </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 256    <span class="comment">//字符集字符数</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateBadChar</span><span class="params">(<span class="keyword">char</span> *b, <span class="keyword">int</span> m, <span class="keyword">int</span> *badchar)</span><span class="comment">//(模式串字符b，模式串长度m，模式串的哈希表)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, ascii;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; SIZE; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        badchar[i] = <span class="number">-1</span>;<span class="comment">//哈希表初始化为-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ascii = <span class="keyword">int</span>(b[i]);  <span class="comment">//计算字符的ASCII值</span></span><br><span class="line">        badchar[ascii] = i;<span class="comment">//重复字符被覆盖，记录的是最后出现的该字符的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateGS</span><span class="params">(<span class="keyword">char</span> *b, <span class="keyword">int</span> m, <span class="keyword">int</span> *suffix, <span class="keyword">bool</span> *prefix)</span><span class="comment">//预处理模式串，填充suffix，prefix</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m; ++i)<span class="comment">//两个数组初始化</span></span><br><span class="line">    &#123;</span><br><span class="line">        suffix[i] = <span class="number">-1</span>;</span><br><span class="line">        prefix[i] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; m<span class="number">-1</span>; ++i)<span class="comment">//b[0,i]</span></span><br><span class="line">    &#123;</span><br><span class="line">        j = i;</span><br><span class="line">        k = <span class="number">0</span>;<span class="comment">//公共后缀子串长度(模式串尾部取k个出来，分别比较)</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; b[j] == b[m<span class="number">-1</span>-k])<span class="comment">//与b[0,m-1]求公共后缀子串</span></span><br><span class="line">        &#123;</span><br><span class="line">            --j;</span><br><span class="line">            ++k;</span><br><span class="line">            suffix[k] = j+<span class="number">1</span>;</span><br><span class="line">            <span class="comment">//相同后缀子串长度为k时，该子串在b[0,i]中的起始下标</span></span><br><span class="line">            <span class="comment">// (如果有多个相同长度的子串，被赋值覆盖，存较大的)</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span>)<span class="comment">//查找到模式串的头部了</span></span><br><span class="line">            prefix[k] = <span class="literal">true</span>;<span class="comment">//如果公共后缀子串也是模式串的前缀子串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">moveByGS</span><span class="params">(<span class="keyword">int</span> j, <span class="keyword">int</span> m, <span class="keyword">int</span> *suffix, <span class="keyword">bool</span> *prefix)</span><span class="comment">//传入的j是坏字符对应的模式串中的字符下标</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = m - <span class="number">1</span> - j;<span class="comment">//好后缀长度</span></span><br><span class="line">    <span class="keyword">if</span>(suffix[k] != <span class="number">-1</span>)<span class="comment">//case1，找到跟好后缀一样的模式子串（多个的话，存的靠后的那个（子串起始下标））</span></span><br><span class="line">        <span class="keyword">return</span> j - suffix[k] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> r = j + <span class="number">2</span>; r &lt; m; ++r)<span class="comment">//case2</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(prefix[m-r] == <span class="literal">true</span>)<span class="comment">//m-r是好后缀的子串的长度，如果这个好后缀的子串是模式串的前缀子串</span></span><br><span class="line">            <span class="keyword">return</span> r;<span class="comment">//在上面没有找到相同的好后缀下，移动r位，对齐前缀到好后缀</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m;<span class="comment">//case3,都没有匹配的，移动m位（模式串长度）</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">str_bm</span><span class="params">(<span class="keyword">char</span> *a, <span class="keyword">int</span> n, <span class="keyword">char</span> *b, <span class="keyword">int</span> m)</span><span class="comment">//a表示主串，长n; b表示模式串,长m</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *badchar = <span class="keyword">new</span> <span class="keyword">int</span> [SIZE];<span class="comment">//记录模式串中每个字符最后出现的位置</span></span><br><span class="line">    generateBadChar(b,m,badchar);     <span class="comment">//构建坏字符哈希表</span></span><br><span class="line">    <span class="keyword">int</span> *suffix = <span class="keyword">new</span> <span class="keyword">int</span> [m];</span><br><span class="line">    <span class="keyword">bool</span> *prefix = <span class="keyword">new</span> <span class="keyword">bool</span> [m];</span><br><span class="line">    generateGS(b, m, suffix, prefix);   <span class="comment">//预处理模式串，填充suffix，prefix</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j, moveLen1, moveLen2;<span class="comment">//j表示主串与模式串匹配的第一个字符</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt; n-m+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j = m <span class="number">-1</span>; j &gt;= <span class="number">0</span>; --j)  <span class="comment">//模式串从后往前匹配</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i+j] != b[j])</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">//坏字符对应模式串中的下标是j</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j &lt; <span class="number">0</span>)   <span class="comment">//匹配成功</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> [] badchar;</span><br><span class="line">            <span class="keyword">delete</span> [] suffix;</span><br><span class="line">            <span class="keyword">delete</span> [] prefix;</span><br><span class="line">            <span class="keyword">return</span> i;   <span class="comment">//返回主串与模式串第一个匹配的字符的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//这里等同于将模式串往后滑动 j-badchar[int(a[i+j])] 位</span></span><br><span class="line">        moveLen1 = j - badchar[<span class="keyword">int</span>(a[i+j])];<span class="comment">//按照坏字符规则移动距离</span></span><br><span class="line">        moveLen2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(j &lt; m<span class="number">-1</span>)<span class="comment">//如果有好后缀的话</span></span><br><span class="line">        &#123;</span><br><span class="line">            moveLen2 = moveByGS(j,m,suffix,prefix);<span class="comment">//按照好后缀规则移动距离</span></span><br><span class="line">        &#125;</span><br><span class="line">        i = i + max(moveLen1,moveLen2);<span class="comment">//取大的移动</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">delete</span> [] badchar;</span><br><span class="line">    <span class="keyword">delete</span> [] suffix;</span><br><span class="line">    <span class="keyword">delete</span> [] prefix;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a = <span class="string">"abcacabcbcbacabc"</span>, b = <span class="string">"cbacabc"</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">"中第一次出现"</span> &lt;&lt; b &lt;&lt; <span class="string">"的位置(从0开始)是："</span> &lt;&lt; str_bm(&amp;a[<span class="number">0</span>],a.size(),&amp;b[<span class="number">0</span>],b.size());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20190622024728958.png" alt="在这里插入图片描述"></p>
+<h3 id="2-4-调试"><a href="#2-4-调试" class="headerlink" title="2.4 调试"></a>2.4 调试</h3><p>为方便调试，将字符集SIZE改为3，<code>ascii = int(b[i]-&#39;a&#39;)</code></p>
+<ul>
+<li>坏字符在模式串中的位置（靠后的那个）<br>badchar[0]：a是4<br>badchar[1]：b是5<br>badchar[2]：c是6</li>
+<li>预处理模式串<br><img src="https://img-blog.csdnimg.cn/20190622035247445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMjAxMjY3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>按规则移动<br><img src="https://img-blog.csdnimg.cn/20190622041158172.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190622042832376.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190622043606784.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20190622043949446.png" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><ul>
+<li>BM算法的内存消耗<br>整个算法用到了额外的3个数组，其中bc数组的大小跟字符集大小有关，suffix数组和prefix数组的大小跟模式串长度m有关。<br>如果处理<strong>字符集很大</strong>的字符串匹配问题，badchar数组对内存的消耗就会比较多。<br>因为<strong>好后缀</strong>和<strong>坏字符</strong>规则是<strong>独立</strong>的，如果运行的环境对内存要求苛刻，<strong>可以只使用好后缀规则</strong>，不使用坏字符规则，就可以避免badchar数组过多的内存消耗。不过，单纯使用好后缀规则的BM算法效率就会下降一些了。</li>
+<li>时间复杂度<br>以上BM算法是个初级版本。这个版本，在极端情况下，预处理计算suffix数组、prefix数组的性能会比较差。<br>比如模式串是aaaaaaa这种包含很多重复的字符的模式串，预处理的时间复杂度就是O（m^2）。如何优化这种极端情况下的时间复杂度退化，以后再找空研究。<br>实际上，BM算法的时间复杂度分析起来是非常复杂，论文<a href="https://dl.acm.org/citation.cfm?id=1382431.1382552" target="_blank" rel="noopener">“A new proof of the linearity of the Boyer-Moore string searching algorithm”</a>证明了在最坏情况下，BM算法的比较次数上限是5n。论文<a href="https://dl.acm.org/citation.cfm?id=127830" target="_blank" rel="noopener">“Tight bounds on the complexity of the Boyer-<br>Moore string matching algorithm”</a>证明了在最坏情况下，BM算法的比较次数上限是3n。</li>
+</ul>
+<hr>
+<ul>
+<li>BM算法核心思想是，利用模式串本身的特点，在模式串中某个字符与主串不能匹配的时候，将模式串往后<strong>多滑动</strong>几位，以此来<strong>减少不必要的字符比较</strong>，<strong>提高匹配的效率</strong>。</li>
+<li>BM算法构建的规则有两类，坏字符规则和好后缀规则。</li>
+<li>好后缀规则可以独立于坏字符规则使用。</li>
+<li>因为坏字符规则的实现比较耗内存，<strong>为了节省内存</strong>，我们<strong>可以只用好后缀规则</strong>来实现BM算法。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/" rel="tag"><i class="fa fa-tag"></i> 字符串匹配</a>
+          
+            <a href="/tags/BM%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> BM算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/17/Linux%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%EF%BC%88LDD%EF%BC%89/" rel="next" title="Linux设备驱动（LDD）">
+                <i class="fa fa-chevron-left"></i> Linux设备驱动（LDD）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2020/12/30/BM算法/"
+           data-title="BM算法" data-url="http://yoursite.com/2020/12/30/BM%E7%AE%97%E6%B3%95/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://note.youdao.com/yws/api/personal/file/94706D7C9BE34FFEBAD4C35B311F0E38?method=download&shareKey=5a712edcc9469413b507c8ef9cf15513"
+                alt="panfeng's blog" />
+            
+              <p class="site-author-name" itemprop="name">panfeng's blog</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/AgentGuo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:841796600@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-BM（Boyer-Moore）算法"><span class="nav-text">1. BM（Boyer-Moore）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-坏字符规则"><span class="nav-text">1.1 坏字符规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-好后缀规则"><span class="nav-text">1.2 好后缀规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-两种规则如何选择"><span class="nav-text">1.3 两种规则如何选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BM算法代码实现"><span class="nav-text">2. BM算法代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-坏字符"><span class="nav-text">2.1 坏字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-好后缀"><span class="nav-text">2.2 好后缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-完整代码"><span class="nav-text">2.3 完整代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-调试"><span class="nav-text">2.4 调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-text">3. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panfeng's blog</span>
+
+  
+</div>
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+ -->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共140.6k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GksJHYNBz0VjRrAQjwNpruiC-gzGzoHsz", "0pYCKkFIF1OaexePM7yvqmnf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":270,"height":540},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
+</html>
